@@ -1,12 +1,12 @@
-# docker build -t gcsns/gc-ai:2.2.9 .
+# docker build -t gcsns/gc-pdf-util:0.0.1 .
 # FROM python:3.10-alpine
 FROM python:3.10
 
 RUN apt-get update && \
     apt-get install -y libgl1 build-essential cmake git \
     libgtk-3-dev libboost-all-dev python3-dev \
-    python3-pip python3-setuptools python3-wheel \
-    libopenblas-dev liblapack-dev libx11-dev wkhtmltopdf && \
+    python3-pip python3-setuptools python3-wheel && \
+    # libopenblas-dev liblapack-dev libx11-dev && \
     apt-get clean
 
 RUN apt-get install -y wkhtmltopdf
@@ -50,7 +50,6 @@ COPY --chown=$USER:$GROUP ./requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir uvicorn
 RUN pip install --no-cache-dir -r requirements.txt
-# RUN pip install --no-cache-dir dlib
 
 COPY --chown=$USER:$GROUP ./src /app/src
 
@@ -58,5 +57,5 @@ RUN mkdir data
 
 WORKDIR /app/src
 
-CMD ["/home/gcsns/.local/bin/uvicorn", "app:app", "--host=0.0.0.0", "--port=9432"]
-EXPOSE 9432
+CMD ["/home/gcsns/.local/bin/uvicorn", "app:app", "--host=0.0.0.0", "--port=9433"]
+EXPOSE 9433

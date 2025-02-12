@@ -16,12 +16,12 @@ services:
         build:
             context: .
             dockerfile: dev.Dockerfile
-        container_name: gc-ai-2
+        container_name: gc-pdf-util
         networks:
             - backend
         restart: always
         ports:
-            - 9432:9432
+            - 9433:9433
         extra_hosts:
             - host.docker.internal:host-gateway
         # deploy:

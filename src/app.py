@@ -5,7 +5,7 @@ from utils.verifyaccesstoken import VerifyAccessTokenUtil, VerifiedToken, JwtSub
 from routes import health, pdf
 from asgi_correlation_id import CorrelationIdMiddleware
 
-app = FastAPI(title='gc-ai service', version='1.0.0')
+app = FastAPI(title='gc-pdf-util service', version='0.0.1')
 app.add_middleware(CorrelationIdMiddleware)
 
 

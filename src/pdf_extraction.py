@@ -24,6 +24,7 @@ pipeline_options.generate_page_images = True
 pipeline_options.generate_picture_images = True
 
 import shutil
+import zipfile
 
 doc_converter = DocumentConverter(
         format_options={
@@ -34,6 +35,9 @@ doc_converter = DocumentConverter(
 
 def recreatePdfFunc(
     file: UploadFile = File(description="PDF file to be recreated"),
+    returnPageImages: bool = True,
+    returnPictureImages: bool = True,
+    returnTableImages: bool = True
 ):
     pdf_bytes = file.file.read()
 
@@ -94,11 +98,11 @@ def recreatePdfFunc(
     temp_md_path = os.path.join(temp_dir, "markdown-with-images.md")
     temp_md_path = Path(temp_md_path)
     
-    # # Save markdown with embedded pictures
-    # conv_res.document.save_as_markdown(temp_md_path, image_mode=ImageRefMode.EMBEDDED)
+    # Save markdown with embedded pictures
+    conv_res.document.save_as_markdown(temp_md_path, image_mode=ImageRefMode.EMBEDDED)
 
-    # Save markdown with externally referenced pictures
-    conv_res.document.save_as_markdown(temp_md_path, image_mode=ImageRefMode.REFERENCED)
+    # # Save markdown with externally referenced pictures
+    # conv_res.document.save_as_markdown(temp_md_path, image_mode=ImageRefMode.REFERENCED)
 
     logger.debug("=============================================")
     logger.debug("Markdown has been created")
@@ -112,35 +116,67 @@ def recreatePdfFunc(
     
     md_string = str(md_string)
 
-    tex_file_path = os.path.join(temp_dir, "document.tex")
+    
     temp_final_pdf_path = os.path.join(temp_dir, "document.pdf")
 
-    latex_code = configs.MARKDOWN_TO_PDF_GENERATION_TEMPLATE
+    # tex_file_path = os.path.join(temp_dir, "document.tex")
 
-    with open(tex_file_path, "w", encoding="utf-8") as tex_file:
-        tex_file.write(latex_code)
+    # latex_code = configs.MARKDOWN_TO_PDF_GENERATION_TEMPLATE
 
-    try:
-        # subprocess.run(["pdflatex", "--shell-escape", "-interaction=nonstopmode", "-output-directory", temp_dir, tex_file_path],
-        #                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
-        subprocess.run(["pdflatex", "--shell-escape", "-output-directory", temp_dir, tex_file_path],
-                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True, cwd=temp_dir)
-    except subprocess.CalledProcessError as e:
-        return {"error": "pdflatex compilation failed: " + str(e)}
+    # with open(tex_file_path, "w", encoding="utf-8") as tex_file:
+    #     tex_file.write(latex_code)
+
+    # try:
+    #     # subprocess.run(["pdflatex", "--shell-escape", "-interaction=nonstopmode", "-output-directory", temp_dir, tex_file_path],
+    #     #                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
+    #     subprocess.run(["pdflatex", "--shell-escape", "-output-directory", temp_dir, tex_file_path],
+    #                     stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True, cwd=temp_dir)
+    # except subprocess.CalledProcessError as e:
+    #     return {"error": "pdflatex compilation failed: " + str(e)}
     
 
-    # temp_html_path = str(temp_html_path)
-    # pdfkit.from_file(temp_html_path, temp_final_pdf_path)
+    html_content = markdown.markdown(md_string)
+    pdfkit.from_string(html_content, temp_final_pdf_path)
     
-    # # Create a temporary ZIP file
-    # with tempfile.NamedTemporaryFile(delete=False, suffix=".zip") as temp_zip:
-    #     zip_path = temp_zip.name
+    # Create a temporary ZIP file
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".zip") as temp_zip:
+        zip_path = temp_zip.name
 
+    # Zipping everything in the directory
     # shutil.make_archive(zip_path.replace(".zip", ""), 'zip', temp_dir)
 
-    # return FileResponse(zip_path, filename="files.zip", media_type="application/zip")
-    
-    with open(temp_final_pdf_path, "rb") as pdf_file:
-            pdf_content = pdf_file.read()
+    with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        # optionally returning page images
+        if returnPageImages:
+            for file_name in page_image_names:
+                file_path = os.path.join(temp_dir, file_name)
+                if os.path.exists(file_path):  # Ensure the file exists before adding
+                    zipf.write(file_path, arcname=file_name)
 
-    return Response(content=pdf_content, media_type="application/pdf")
+        
+        # optionally returning picture images
+        if returnPictureImages:
+            for file_name in table_image_names:
+                file_path = os.path.join(temp_dir, file_name)
+                if os.path.exists(file_path):  # Ensure the file exists before adding
+                    zipf.write(file_path, arcname=file_name)
+
+        # optionally returning table images
+        if returnTableImages:
+            for file_name in picture_image_names:
+                file_path = os.path.join(temp_dir, file_name)
+                if os.path.exists(file_path):  # Ensure the file exists before adding
+                    zipf.write(file_path, arcname=file_name)
+
+        # returning generated pdf
+        file_path = temp_final_pdf_path
+        file_name = "document.pdf"
+        if os.path.exists(file_path):  # Ensure the file exists before adding
+            zipf.write(file_path, arcname=file_name)
+
+    return FileResponse(zip_path, filename="files.zip", media_type="application/zip")
+    
+    # with open(temp_final_pdf_path, "rb") as pdf_file:
+    #         pdf_content = pdf_file.read()
+
+    # return Response(content=pdf_content, media_type="application/pdf")

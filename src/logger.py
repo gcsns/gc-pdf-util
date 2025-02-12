@@ -42,7 +42,7 @@ dictConfig(
         # Loggers can be specified to set the log-level to log, and which handlers to use
         "loggers": {
             # project logger
-            "gc-ai": {"handlers": ["console"], "level": "DEBUG", "propagate": True},
+            "gc-pdf-util": {"handlers": ["console"], "level": "DEBUG", "propagate": True},
             # third-party package loggers
             "asgi_correlation_id": {"handlers": ["console"], "level": "WARNING"},
             "uvicorn.access": {"handlers": ["access"], "level": "INFO"}
@@ -54,6 +54,6 @@ dictConfig(
 #     format="%(asctime)s - %(levelname)s [%(correlation_id)s] - %(message)s",
 # )
 
-logger = logging.getLogger("gc-ai")
+logger = logging.getLogger("gc-pdf-util")
 logger.setLevel(logging.DEBUG)
 
