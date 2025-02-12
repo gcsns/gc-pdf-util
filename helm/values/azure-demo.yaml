@@ -24,7 +24,7 @@ image:
     username: ""
     password: ""
   pullSecrets: []
-  versionOverride: "2.2.10-temp"
+  versionOverride: "0.0.1"
 
 service:
   type: ClusterIP
