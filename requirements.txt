@@ -1,0 +1,17 @@
+openai
+fastapi[all]==0.109.1
+requests
+pydantic
+PyMuPDF
+pypdf
+wheel
+torch
+tqdm
+jwcrypto
+asgi-correlation-id
+sentence-transformers
+docling
+markdown
+markitdown
+markdown-pdf
+pdfkit

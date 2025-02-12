@@ -1,0 +1,35 @@
+#docker compose -f docker-compose.local.yml up
+#docker compose -f docker-compose.local.yml build
+#docker compose -f docker-compose.local.yml down -v --remove-orphans
+
+services:
+    server:
+        volumes:
+            - type: bind
+              source: .
+              target: /app
+            - type: bind
+              source: data/.cache
+              target: /home/gcsns/.cache
+        env_file:
+            - '.env'
+        build:
+            context: .
+            dockerfile: dev.Dockerfile
+        container_name: gc-ai-2
+        networks:
+            - backend
+        restart: always
+        ports:
+            - 9432:9432
+        extra_hosts:
+            - host.docker.internal:host-gateway
+        # deploy:
+        #     resources:
+        #         reservations:
+        #             devices:
+        #             - driver: nvidia
+        #               count: all
+        #               capabilities: [gpu]
+networks:
+    backend:
