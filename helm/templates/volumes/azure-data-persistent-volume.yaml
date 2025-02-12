@@ -1,0 +1,21 @@
+{{- if and .Values.volumes.enabled .Values.volumes.azure -}}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  labels:
+    reserved-for: {{ .Release.Namespace }}-{{ include "gc-pdf-util.name" . }}-data
+  name: {{ .Release.Namespace }}-{{ include "gc-pdf-util.name" . }}-data-volume
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: azurefile
+  volumeMode: Filesystem
+  csi:
+    driver: file.csi.azure.com
+    volumeHandle: {{ .Values.volumes.azure.dataVolumeHandle }}
+    volumeAttributes:
+      encryptInTransit: "false"
+{{- end }}

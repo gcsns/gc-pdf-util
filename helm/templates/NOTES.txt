@@ -1,0 +1,14 @@
+gc-pdf-util is up and running!
+
+{{- if .Values.ingress.enabled  }}
+
+Access gc-pdf-util using the URL{{ if gt (len .Values.ingress.hosts) 1 }}s{{ end }}:
+{{- range $host := .Values.ingress.hosts }} 
+- http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host }}/
+{{- end }}
+
+{{- else  }}
+
+Please refer to your system administrator on the API endpoint to access the gc-pdf-util application.
+  
+{{- end }}

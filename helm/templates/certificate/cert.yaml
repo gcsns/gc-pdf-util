@@ -1,0 +1,23 @@
+{{- if .Values.certificates.enabled -}}
+{{- range $host := .Values.ingress.hosts }}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name:  {{ include "gc-pdf-util.name" $ }}-{{ $host | replace "." "-" }}-cert
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    {{- include "gc-pdf-util.labels" $ | nindent 4 }}
+spec:
+  secretName: {{ include "gc-pdf-util.name" $ }}-{{ $host | replace "." "-" }}-secret
+  issuerRef:
+    name: {{ include "gc-pdf-util.certificateIssuer" $ }}
+    {{- if eq (lower $.Values.certificates.issuer) "external" }}
+    kind: {{ $.Values.certificates.externalIssuerKind }}
+    {{- end }}
+  commonName: {{ $host }}
+  dnsNames:
+    - {{ $host }}
+    #- www.{{ $host }}
+{{- end }}
+{{- end }}

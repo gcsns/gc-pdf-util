@@ -1,0 +1,78 @@
+#kubectl create namespace gc-pdf-util
+#kubectl config set-context --current --namespace=gc-pdf-util
+
+# helm install gc-pdf-util ./helm --namespace=gc-pdf-util -f ./helm/values/azure-demo.yaml --no-hooks
+
+#helm install gc-pdf-util ./helm --namespace=gc-pdf-util -f helm/values/azure-demo.yaml
+#helm install --dry-run gc-pdf-util ./helm --namespace=gc-pdf-util -f helm/values/azure-demo.yaml
+#helm upgrade --dry-run gc-pdf-util ./helm --namespace=gc-pdf-util -f helm/values/azure-demo.yaml
+#helm upgrade gc-pdf-util ./helm --namespace=gc-pdf-util -f helm/values/azure-demo.yaml
+
+#helm uninstall gc-pdf-util --namespace=gc-pdf-util
+
+# Default values for gc-pdf-util.
+replicaCount: 1
+nameOverride: ""
+
+image:
+  repository: gcsns/gc-pdf-util
+  pullPolicy: IfNotPresent
+  #using gc hub pull authentication overides all other provided pull secrets
+  fromGcHub: true
+  #These are only used if auth.docker.json is not found. For e.g. - in CI environment
+  hubCredentials:
+    username: ""
+    password: ""
+  pullSecrets: []
+  versionOverride: "2.2.10-temp"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  tls: true
+  hosts:
+    - gc-pdf-util-qa.gamechange.dev
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: http01-cluster-issuer
+    nginx.ingress.kubernetes.io/proxy-body-size: 50m
+    nginx.org/client-max-body-size: 50m
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "360"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "360"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "360"
+
+volumes:
+  enabled: true
+  storageClassName: "azurefile-uid1001"
+  aws: null
+
+certificates:
+  enabled: false
+  issuer: "external" #options - self, staging, production, external
+  externalIssuerName: "cluster-letsencrypt-production"
+  externalIssuerKind: "ClusterIssuer"
+
+authServer:
+  baseUrl: "https://nboard-auth.gamechange.dev"
+
+# additionalEnvConfig:
+
+# additionalEnvSecret:
+
+podSecurityContext: {}
+
+resources:
+  requests:
+    ephemeral-storage: 35Gi
+
+nodeSelector: { gc-pdf-util: "true" }
+
+tolerations:
+  - key: "gc-pdf-util"
+    operator: "Exists"
+    effect: "NoSchedule"
+
+affinity: {}

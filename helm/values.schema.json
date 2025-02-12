@@ -1,0 +1,59 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "ingress": {
+            "type": "object",
+            "form": true,
+            "title": "Ingress Details",
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "form": true,
+                    "title": "Use a custom hostname",
+                    "description": "Enable the ingress resource that allows you to access the gc-pdf-util installation."
+                },
+                "hostname": {
+                    "type": "string",
+                    "form": true,
+                    "title": "Hostname",
+                    "hidden": {
+                        "condition": false,
+                        "value": "ingress.enabled"
+                    }
+                }
+            }
+        },
+        "resources": {
+            "type": "object",
+            "title": "Required Resources",
+            "description": "Configure resource requests",
+            "form": true,
+            "properties": {
+                "requests": {
+                    "type": "object",
+                    "properties": {
+                        "memory": {
+                            "type": "string",
+                            "form": true,
+                            "render": "slider",
+                            "title": "Memory Request",
+                            "sliderMin": 10,
+                            "sliderMax": 2048,
+                            "sliderUnit": "Mi"
+                        },
+                        "cpu": {
+                            "type": "string",
+                            "form": true,
+                            "render": "slider",
+                            "title": "CPU Request",
+                            "sliderMin": 10,
+                            "sliderMax": 2000,
+                            "sliderUnit": "m"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

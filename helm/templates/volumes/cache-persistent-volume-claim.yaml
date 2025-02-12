@@ -1,0 +1,14 @@
+{{- if .Values.volumes.enabled -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "gc-pdf-util.name" . }}-cache-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: {{ .Values.volumes.storageClassName }}
+  volumeMode: Filesystem
+{{- end }}

@@ -1,0 +1,12 @@
+{{- if .Values.image.fromGcHub }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "gc-pdf-util.name" . }}-docker-config
+  namespace: {{.Release.Namespace}}
+  labels:
+    {{- include "gc-pdf-util.labels" . | nindent 4 }}
+data:
+  .dockerconfigjson: {{ include "gc-pdf-util.docker-config" . }}
+type: kubernetes.io/dockerconfigjson
+{{- end }}

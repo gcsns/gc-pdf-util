@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "gc-pdf-util.name" . }}-service
+  namespace: {{.Release.Namespace}}
+  labels:
+    {{- include "gc-pdf-util.labels" . | nindent 4 }}
+spec:
+  selector:
+    {{- include "gc-pdf-util.coreSelectorLabels" . | nindent 4 }}
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: {{ .Values.service.port }} # to access pods internally
+      targetPort: 9433 # application port

@@ -1,0 +1,11 @@
+{{- if eq (lower .Values.certificates.issuer) "self" -}}
+apiVersion: cert-manager.io/v1alpha2
+kind: Issuer
+metadata:
+  name: {{ include "gc-pdf-util.name" . }}-issuer
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "gc-pdf-util.labels" . | nindent 4 }}
+spec:
+  selfSigned: {}
+{{- end }}

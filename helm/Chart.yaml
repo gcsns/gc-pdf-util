@@ -1,0 +1,16 @@
+apiVersion: v2
+name: gc-pdf-util
+description: A helm chart for gc-pdf-util kubernetes deployment
+type: application
+
+dependencies:
+
+sources:
+  - https://github.com/gcsns/gc-pdf-util
+
+maintainers:
+  - name: Gamechange
+    email: admin@gamechangesns.com
+
+version: 1.0.0
+appVersion: 1.0.0

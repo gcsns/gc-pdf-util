@@ -1,0 +1,82 @@
+#kubectl create namespace gc-pdf-util
+#kubectl config set-context --current --namespace=gc-pdf-util
+
+# helm install gc-pdf-util ./helm --namespace=gc-pdf-util -f ./helm/values.yaml --no-hooks
+
+#helm install gc-pdf-util ./helm --namespace=gc-pdf-util -f helm/values.yaml
+#helm install --dry-run gc-pdf-util ./helm --namespace=gc-pdf-util -f helm/values.yaml
+#helm upgrade --dry-run gc-pdf-util ./helm --namespace=gc-pdf-util -f helm/values.yaml
+#helm upgrade gc-pdf-util ./helm --namespace=gc-pdf-util -f helm/values.yaml
+
+#helm uninstall gc-pdf-util --namespace=gc-pdf-util
+
+# Default values for gc-pdf-util.
+replicaCount: 1
+nameOverride: ""
+
+image:
+  repository: gcsns/gc-pdf-util
+  pullPolicy: IfNotPresent
+  #using gc hub pull authentication overides all other provided pull secrets
+  fromGcHub: true
+  #These are only used if auth.docker.json is not found. For e.g. - in CI environment
+  hubCredentials:
+    username: ""
+    password: ""
+  pullSecrets: []
+  versionOverride: "1.8.14"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  tls: true
+  hosts:
+    - gc-pdf-util.gamechange.dev
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: http01-cluster-issuer
+    nginx.ingress.kubernetes.io/proxy-body-size: 50m
+    nginx.org/client-max-body-size: 50m
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "360"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "360"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "360"
+
+# volumes:
+#   enabled: true
+#   storageClassName: "efs-sc"
+#   aws:
+#     dataVolumeHandle: "fs-0828c908dad2daa75:/gc-pdf-util/data" # mount the efs on any ec2 instance and create directory /gc-pdf-util/data and change owner to 1001:1001 before first time deployment
+#     cacheVolumeHandle: "fs-0828c908dad2daa75:/gc-pdf-util/cache" # mount the efs on any ec2 instance and create directory /gc-pdf-util/cache and change owner to 1001:1001 before first time deployment
+
+certificates:
+  enabled: false
+  issuer: "external" #options - self, staging, production, external
+  externalIssuerName: "cluster-letsencrypt-production"
+  externalIssuerKind: "ClusterIssuer"
+
+authServer:
+  baseUrl: "https://nboard-auth.gamechange.dev"
+
+# additionalEnvConfig:
+
+# additionalEnvSecret:
+
+podSecurityContext: {}
+
+resources:
+  requests:
+    ephemeral-storage: 40Gi
+  # limits:
+  #         nvidia.com/gpu: 1 # to use GPU ensure gpu operator installed on k8s https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/getting-started.html
+
+nodeSelector: {}
+
+tolerations:
+  - key: "nvidia.com/gpu"
+    operator: "Exists"
+    effect: "NoSchedule"
+
+affinity: {}

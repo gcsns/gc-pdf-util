@@ -1,0 +1,23 @@
+{{- if and .Values.volumes.enabled .Values.volumes.aws -}}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  labels:
+    reserved-for: {{ .Release.Namespace }}-{{ include "gc-pdf-util.name" . }}-data
+  name: {{ .Release.Namespace }}-{{ include "gc-pdf-util.name" . }}-data-volume
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: efs-sc
+  volumeMode: Filesystem
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: {{ .Values.volumes.aws.dataVolumeHandle }}
+    volumeAttributes:
+      encryptInTransit: "true"
+  mountOptions:
+    - iam
+{{- end }}
