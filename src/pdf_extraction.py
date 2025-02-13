@@ -50,7 +50,7 @@ class ResponseModel(BaseModel):
 
 def recreatePdfFunc(
     file: UploadFile = File(description="PDF file to be recreated"),
-    returnPageImages: bool = True,
+    returnPageImages: bool = False,
     returnPictureImages: bool = True,
     returnTableImages: bool = True
 ):
