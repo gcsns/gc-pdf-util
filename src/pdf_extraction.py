@@ -23,6 +23,8 @@ pipeline_options.images_scale = IMAGE_RESOLUTION_SCALE
 pipeline_options.generate_page_images = True
 pipeline_options.generate_picture_images = True
 
+import base64
+
 import shutil
 import zipfile
 
@@ -31,6 +33,19 @@ doc_converter = DocumentConverter(
             InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options)
         }
 )
+from pydantic import BaseModel
+from typing import List
+
+
+
+# define the structure of a ressponse model that has the page images, picture images, table images, pdf, all as base64 strings
+class ResponseModel(BaseModel):
+    # page_images: List[str]
+    # picture_images: List[str]
+    # table_images: List[str]
+    images : List[str]
+    doc: str
+    markDownText: str
 
 
 def recreatePdfFunc(
@@ -52,8 +67,6 @@ def recreatePdfFunc(
     with open(temp_file_path, "wb") as f:
         f.write(pdf_bytes)
 
-
-    
     
     conv_res = doc_converter.convert(temp_file_path)
     doc_filename = conv_res.input.file.stem
@@ -93,6 +106,32 @@ def recreatePdfFunc(
             with element_image_filename.open("wb") as fp:
                 element.get_image(conv_res.document).save(fp, "PNG")
 
+    # read every image from the arrays page_image_names, picture_image_names and table_image_names to base64 strings
+    page_image_list = [] 
+    picture_image_list = []
+    table_image_list = []
+
+    if returnPageImages:
+        for page_image_name in page_image_names:
+            with open(page_image_name, "rb") as img_file:
+                encoded_string = base64.b64encode(img_file.read()).decode("utf-8")
+                page_image_list.append(encoded_string)
+
+
+    if returnPictureImages:
+        for picture_image_name in picture_image_names:  
+            with open(picture_image_name, "rb") as img_file:
+                encoded_string = base64.b64encode(img_file.read()).decode("utf-8")
+                picture_image_list.append(encoded_string)
+
+
+    if returnTableImages:
+        for table_image_name in table_image_names:
+            with open(table_image_name, "rb") as img_file:
+                encoded_string = base64.b64encode(img_file.read()).decode("utf-8")
+                table_image_list.append(encoded_string)
+
+    images = page_image_list + picture_image_list + table_image_list
 
     # create a temp.md file inside the temp directory
     temp_md_path = os.path.join(temp_dir, "markdown-with-images.md")
@@ -138,45 +177,22 @@ def recreatePdfFunc(
     html_content = markdown.markdown(md_string)
     pdfkit.from_string(html_content, temp_final_pdf_path)
     
-    # Create a temporary ZIP file
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".zip") as temp_zip:
-        zip_path = temp_zip.name
-
-    # Zipping everything in the directory
-    # shutil.make_archive(zip_path.replace(".zip", ""), 'zip', temp_dir)
-
-    with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
-        # optionally returning page images
-        if returnPageImages:
-            for file_name in page_image_names:
-                file_path = os.path.join(temp_dir, file_name)
-                if os.path.exists(file_path):  # Ensure the file exists before adding
-                    zipf.write(file_path, arcname=file_name)
-
-        
-        # optionally returning picture images
-        if returnPictureImages:
-            for file_name in table_image_names:
-                file_path = os.path.join(temp_dir, file_name)
-                if os.path.exists(file_path):  # Ensure the file exists before adding
-                    zipf.write(file_path, arcname=file_name)
-
-        # optionally returning table images
-        if returnTableImages:
-            for file_name in picture_image_names:
-                file_path = os.path.join(temp_dir, file_name)
-                if os.path.exists(file_path):  # Ensure the file exists before adding
-                    zipf.write(file_path, arcname=file_name)
-
-        # returning generated pdf
-        file_path = temp_final_pdf_path
-        file_name = "document.pdf"
-        if os.path.exists(file_path):  # Ensure the file exists before adding
-            zipf.write(file_path, arcname=file_name)
-
-    return FileResponse(zip_path, filename="files.zip", media_type="application/zip")
+    with open(temp_final_pdf_path, "rb") as pdf_file:
+        pdf_content = pdf_file.read()
     
-    # with open(temp_final_pdf_path, "rb") as pdf_file:
-    #         pdf_content = pdf_file.read()
+    # get the pdf_content frorm  the  temp_final_pdf_path file and keep it as a base64 string
+    pdf_content = base64.b64encode(pdf_content).decode("utf-8")
+
+    return ResponseModel(
+        images = images,
+        # page_images=page_image_list,
+        # picture_images=picture_image_list,
+        # table_images=table_image_list,
+        doc=pdf_content,
+        markDownText=md_string
+    )
+
+
+    
 
     # return Response(content=pdf_content, media_type="application/pdf")
