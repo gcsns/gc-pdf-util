@@ -45,7 +45,7 @@ doc_converter = DocumentConverter(
 
 
 # Helper functions to convert a pdf to a set of images and back to a pdf
-def convert_pdf_to_images_fitz(pdf_path, dpi=300):
+def convert_pdf_to_images_fitz(pdf_path, dpi= configs.PDF_TO_IMAGE_CONVERSION_DPI):
     """
     Converts each page of a PDF into an image using PyMuPDF (fitz).
     Returns a list of PIL images.
@@ -89,7 +89,7 @@ class ResponseModel(BaseModel):
     markDownText: str
 
 # Helper function to detect if text is corrupted or not
-def is_text_corrupted(text, threshold=0.3):
+def is_text_corrupted(text, threshold = configs.CORRUPTED_TEXT_THRESHOLD):
     """
     Detects if the extracted text is corrupted.
     - Allows Unicode text (Arabic, Chinese, etc.)
