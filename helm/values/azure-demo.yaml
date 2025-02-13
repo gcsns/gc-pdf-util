@@ -66,12 +66,12 @@ podSecurityContext: {}
 
 resources:
   requests:
-    ephemeral-storage: 35Gi
+    ephemeral-storage: 5Gi
 
-nodeSelector: { gc-pdf-util: "true" }
+nodeSelector: { gc-ai: "true" }
 
 tolerations:
-  - key: "gc-pdf-util"
+  - key: "gc-ai"
     operator: "Exists"
     effect: "NoSchedule"
 
