@@ -24,7 +24,7 @@ image:
     username: ""
     password: ""
   pullSecrets: []
-  versionOverride: "0.0.1"
+  versionOverride: "0.0.3"
 
 service:
   type: ClusterIP
@@ -66,7 +66,7 @@ podSecurityContext: {}
 
 resources:
   requests:
-    ephemeral-storage: 5Gi
+    ephemeral-storage: 15Gi
 
 nodeSelector: { gc-ai: "true" }
 
