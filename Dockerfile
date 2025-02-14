@@ -1,4 +1,4 @@
-# docker build -t gcsns/gc-pdf-util:0.0.1 .
+# docker build -t gcsns/gc-pdf-util:0.0.3 .
 # FROM python:3.10-alpine
 FROM python:3.10
 
@@ -44,6 +44,9 @@ WORKDIR /app
 RUN chown $USER:$GROUP ./
 
 USER $USER
+
+# Set EasyOCR to store its models and files in the .cache directory
+ENV EASYOCR_MODULE_PATH=/home/$USER/.cache/EasyOCR
 
 COPY --chown=$USER:$GROUP ./requirements.txt /app/requirements.txt
 

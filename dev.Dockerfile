@@ -45,6 +45,9 @@ RUN chown $USER:$GROUP ./
 
 USER $USER
 
+# Set EasyOCR to store its models and files in the .cache directory
+ENV EASYOCR_MODULE_PATH=/home/$USER/.cache/EasyOCR
+
 COPY --chown=$USER:$GROUP ./requirements.txt /app/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade pip
