@@ -55,7 +55,7 @@ def latex_to_pdf(latex_code: str = Form(...)):  # Accepts form data
         return Response(content=pdf_content, media_type="application/pdf")
 
 @router.post("/recreate-pdf")
-async def recreatePdf(
+def recreatePdf(
     file: UploadFile = File(description="PDF file to be recreated"),
 ):
     """
