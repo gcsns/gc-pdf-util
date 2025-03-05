@@ -5,6 +5,10 @@ from openai import OpenAI
 import os
 import uuid
 from typing import Dict
+import glob
+import base64
+from logger import logger
+
 
 
 router = APIRouter(prefix="/video")
@@ -13,12 +17,13 @@ router = APIRouter(prefix="/video")
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
-@router.post("/transcribe")
-async def transcribe_video(file: UploadFile = File(...)):
+@router.post("/process-video")
+async def process_video(file: UploadFile = File(...)):
     # Generate unique filenames to avoid conflicts
     temp_id = str(uuid.uuid4())
     video_path = f"/tmp/{temp_id}_{file.filename}"
     audio_path = video_path.rsplit('.', 1)[0] + ".wav"
+    frames_dir = f"/tmp/{temp_id}_frames"
 
     client = OpenAI()
 
@@ -49,7 +54,37 @@ async def transcribe_video(file: UploadFile = File(...)):
                 response_format= 'verbose_json',
             )
 
-        return {"transcript": transcript}
+        logger.info("Transcription Complete")
+        logger.info(transcript.text)
+
+        # Extract frames at 0.2 fps (1 frame every 5 seconds)
+        os.makedirs(frames_dir, exist_ok=True)
+        frame_pattern = f"{frames_dir}/frame_%04d.jpg"
+        ffmpeg_frames_cmd = [
+            "ffmpeg",
+            "-i", video_path,
+            "-vf", "fps=0.2",
+            "-loglevel", "error",
+            frame_pattern
+        ]
+        subprocess.run(ffmpeg_frames_cmd, check=True)
+
+        logger.debug(f"Extracted frames to {frames_dir}")
+        
+        
+        # Read and encode frames as base64
+        frame_files = sorted(glob.glob(f"{frames_dir}/*.jpg"))
+        encoded_frames = []
+        for frame_file in frame_files:
+            with open(frame_file, "rb") as image_file:
+                encoded_string = base64.b64encode(image_file.read()).decode("utf-8")
+                encoded_frames.append(encoded_string)
+
+
+        return {
+            "transcript": transcript,
+            "frames": encoded_frames
+        }
 
     except subprocess.CalledProcessError as e:
         raise HTTPException(status_code=500, detail=f"Error extracting audio: {e}")
