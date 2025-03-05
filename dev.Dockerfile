@@ -9,6 +9,7 @@ RUN apt-get update && \
     # libopenblas-dev liblapack-dev libx11-dev && \
     apt-get clean
 
+RUN apt-get install -y ffmpeg
 RUN apt-get install -y wkhtmltopdf
 
 RUN apt-get install -y \
