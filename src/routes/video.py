@@ -69,7 +69,7 @@ async def process_video(file: UploadFile = File(...)):
         ]
         subprocess.run(ffmpeg_frames_cmd, check=True)
 
-        logger.debug(f"Extracted frames to {frames_dir}")
+        logger.info(f"Extracted frames to {frames_dir}")
         
         
         # Read and encode frames as base64
