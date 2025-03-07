@@ -24,7 +24,7 @@ image:
     username: ""
     password: ""
   pullSecrets: []
-  versionOverride: "0.0.5"
+  versionOverride: "0.0.8"
 
 service:
   type: ClusterIP
@@ -60,7 +60,8 @@ authServer:
 
 # additionalEnvConfig:
 
-# additionalEnvSecret:
+additionalEnvSecret:
+  OPENAI_API_KEY: c2stbUVzUkJnREFHVDdkeDdHWGR5QmhUM0JsYmtGSlREVHN2NGpTYVdkNmFNTkdmdEpa
 
 podSecurityContext: {}
 
