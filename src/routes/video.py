@@ -13,9 +13,6 @@ import configs
 
 router = APIRouter(prefix="/video")
 
-# Make sure your OpenAI API key is set as an environment variable
-openai.api_key = configs.OPENAI_API_KEY
-
 @router.post("/process-video")
 async def processVideo(file: UploadFile = File(...)):
     # Generate unique filenames to avoid conflicts
