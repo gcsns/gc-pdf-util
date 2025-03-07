@@ -26,8 +26,12 @@ async def process_video_2(file: UploadFile = File(...)):
 
     # return(temp_id, video_path, audio_path, frames_dir)
 
-    with open(video_path, "wb") as f:
-        f.write(await file.read())
+    # with open(video_path, "wb") as f:
+    #     f.write(await file.read())
+
+    with open(video_path, "wb") as out_file:
+        while chunk := await file.read(1024 * 1024):  # 1 MB chunks
+            out_file.write(chunk)
 
     try:        
         # Extract audio
