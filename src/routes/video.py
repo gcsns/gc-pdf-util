@@ -1,15 +1,8 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException, APIRouter
-import subprocess
-import openai
-from openai import OpenAI
+from fastapi import UploadFile, File, HTTPException, APIRouter
 import os
 import uuid
-from typing import Dict
-import glob
-import base64
 from logger import logger
 from video import extract_audio_from_video, extract_frames, transcribe_audio
-import configs
 
 router = APIRouter(prefix="/video")
 

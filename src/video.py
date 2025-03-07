@@ -1,4 +1,3 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException, APIRouter
 import subprocess
 from logger import logger
 from openai import OpenAI
