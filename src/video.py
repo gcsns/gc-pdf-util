@@ -5,6 +5,7 @@ import openai
 import os
 import glob
 import base64
+import configs
 
 def extract_audio_from_video(video_file_path: str, audio_file_path: str) -> str:
     """
@@ -43,7 +44,7 @@ def transcribe_audio(audio_file_path: str):
         json: The verbose transcribed text from the audio file.
     """
 
-    openai.api_key = os.getenv("OPENAI_API_KEY")
+    openai.api_key = configs.OPENAI_API_KEY
 
     client = OpenAI()
 
