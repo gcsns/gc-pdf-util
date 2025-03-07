@@ -56,9 +56,6 @@ def transcribe_audio(audio_file_path: str):
             response_format= 'verbose_json',
         )
 
-    logger.info("Transcription Complete")
-    logger.info(transcript.text)
-
     return transcript
 
 def extract_frames(video_file_path: str, frames_dir: str, fps: float = 0.2):
@@ -84,8 +81,6 @@ def extract_frames(video_file_path: str, frames_dir: str, fps: float = 0.2):
         frame_pattern
     ]
     subprocess.run(ffmpeg_frames_cmd, check=True)
-
-    logger.info(f"Extracted frames to {frames_dir}")
 
     frame_files = sorted(glob.glob(f"{frames_dir}/*.jpg"))
     encoded_frames = []

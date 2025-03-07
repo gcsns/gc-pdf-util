@@ -9,25 +9,20 @@ import glob
 import base64
 from logger import logger
 from video import extract_audio_from_video, extract_frames, transcribe_audio
-
+import configs
 
 router = APIRouter(prefix="/video")
 
 # Make sure your OpenAI API key is set as an environment variable
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = configs.OPENAI_API_KEY
 
 @router.post("/process-video")
-async def process_video_2(file: UploadFile = File(...)):
+async def processVideo(file: UploadFile = File(...)):
     # Generate unique filenames to avoid conflicts
     temp_id = str(uuid.uuid4())
     video_path = f"/tmp/{temp_id}_{file.filename}"
     audio_path = video_path.rsplit('.', 1)[0] + ".wav"
     frames_dir = f"/tmp/{temp_id}_frames"
-
-    # return(temp_id, video_path, audio_path, frames_dir)
-
-    # with open(video_path, "wb") as f:
-    #     f.write(await file.read())
 
     with open(video_path, "wb") as out_file:
         while chunk := await file.read(1024 * 1024):  # 1 MB chunks
@@ -41,7 +36,6 @@ async def process_video_2(file: UploadFile = File(...)):
         # Transcribe
         transcript = transcribe_audio(audio_file_path)
         logger.info("Transcription complete")
-        logger.info(transcript.text)
 
         # Extract frames
         frames = extract_frames(video_path, frames_dir)
