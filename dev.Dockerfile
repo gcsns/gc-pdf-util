@@ -9,6 +9,7 @@ RUN apt-get update && \
     # libopenblas-dev liblapack-dev libx11-dev && \
     apt-get clean
 
+RUN apt-get install -y ffmpeg
 RUN apt-get install -y wkhtmltopdf
 
 RUN apt-get install -y \
@@ -44,6 +45,9 @@ WORKDIR /app
 RUN chown $USER:$GROUP ./
 
 USER $USER
+
+# Set EasyOCR to store its models and files in the .cache directory
+ENV EASYOCR_MODULE_PATH=/home/$USER/.cache/EasyOCR
 
 COPY --chown=$USER:$GROUP ./requirements.txt /app/requirements.txt
 
