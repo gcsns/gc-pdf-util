@@ -24,9 +24,8 @@ def extract_audio_from_video(video_file_path: str, audio_file_path: str) -> str:
         "ffmpeg",
         "-i", video_file_path,          # Input file
         "-vn",                     # No video
-        "-acodec", "pcm_s16le",    # Audio codec
-        "-ar", "44100",            # Sample rate
-        "-ac", "2",                # Channels
+        "-acodec", "mp3",    # Audio codec
+        "-b:a", "192k",              # Bitrate (optional, adjust as needed)
         audio_file_path                 # Output file
     ]
     subprocess.run(ffmpeg_command, check=True)
