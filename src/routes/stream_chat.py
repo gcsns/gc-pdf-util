@@ -11,9 +11,8 @@ router = APIRouter(prefix="/stream_chat")
 
 class ChatRequest(BaseModel):
     messages: List[QuestionData]
-    stream: Optional[bool] = True
 
-@router.post("/talk-to-chatbot")
+@router.post("/query-agent")
 async def talkToChatbot(request: ChatRequest):
     try:
         messages = request.messages
@@ -21,5 +20,5 @@ async def talkToChatbot(request: ChatRequest):
         return response
 
     except Exception as e:
-        logger.info(e)
-        raise HTTPException(status_code=400, detail=str(e))
+        logger.info(f'Error in streaming chat messages{e}')
+        raise HTTPException(status_code=500, detail=str(e))
