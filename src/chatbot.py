@@ -16,6 +16,7 @@ import sys
 import json
 from pydantic import BaseModel
 from typing import List, Optional
+from logger import logger
 import configs
 
 import time
@@ -27,16 +28,14 @@ class QuestionData(BaseModel):
     role: Optional[str] = None
     question: str
     answer: Optional[str] = None
-1
-
 
 def generate_chunks(messages: List[QuestionData]):
-    serialized_messages = [message.dict() for message in messages]
-    answer = agent.completion_stream(serialized_messages)
-    for chunk in answer:
+    serialized_messages = [message.model_dump() for message in messages]
+    for chunk in agent.completion_stream(serialized_messages):
         res = json.dumps(chunk)
         yield res + '$$'
         sys.stdout.flush()
 
+
 def stream_response(messages: List[QuestionData]):
-    return StreamingResponse(generate_chunks(messages), media_type="text/event-stream")  # Ensure no buffering
+    return StreamingResponse(generate_chunks(messages), media_type="text/event-stream")
