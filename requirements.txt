@@ -15,3 +15,4 @@ markdown
 markitdown
 markdown-pdf
 pdfkit
+mindsdb_sdk
