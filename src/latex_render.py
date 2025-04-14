@@ -41,8 +41,8 @@ def latex_to_pdf(latex_code: str):
         )
 
         # Print the output and error to help with debugging
-        logger.info(result.stdout.decode())
-        logger.info(result.stderr.decode())
+        logger.debug(result.stdout.decode())
+        logger.debug(result.stderr.decode())
 
         if result.returncode != 0:
             return {"error": "pdflatex compilation failed", "stderr": result.stderr.decode()}

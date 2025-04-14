@@ -15,7 +15,7 @@ import tempfile
 from configs.prompts.annual_report import description, instructions, query1, query2, query3
 
 from utils.fileUtil import FileUtil
-from configs.samples.annual_report import markdown_list
+# from configs.samples.annual_report import markdown_list
 
 import io
 from pypdf import PdfReader, PdfWriter
@@ -133,7 +133,7 @@ async def generate_financial_analysis(file: UploadFile = File(...)):
             # setting the markdowns to the sample
             documents = []
 
-            for mdString in markdown_list:
+            for mdString in markdown_string_list:
                 documents.append(Document(content=mdString))
 
             lance_path = os.path.join(temp_dir, "lancedb")
