@@ -16,9 +16,10 @@ import os
 router = APIRouter(prefix="/pdf")
 
 from pdf_extraction import recreatePdfFunc
+from latex_render import latex_to_pdf
 
 @router.post("/render-latex-pdf")
-def latex_to_pdf(latex_code: str = Form(...)):  # Accepts form data
+def latex_to_pdf_route(latex_code: str = Form(...)):  # Accepts form data
     """
     Compiles LaTeX code into a PDF and returns it as a PDF response.
     
@@ -28,31 +29,10 @@ def latex_to_pdf(latex_code: str = Form(...)):  # Accepts form data
     Returns:
         Response: A FastAPI Response with the generated PDF.
     """
-    with tempfile.TemporaryDirectory() as temp_dir:
-        tex_file_path = os.path.join(temp_dir, "document.tex")
-        pdf_file_path = os.path.join(temp_dir, "document.pdf")
-        
-        # Write the LaTeX code to a .tex file
-        with open(tex_file_path, "w", encoding="utf-8") as tex_file:
-            tex_file.write(latex_code)
-        
-        # Run pdflatex to generate the PDF
-        try:
-            subprocess.run(["pdflatex", "-interaction=nonstopmode", "-output-directory", temp_dir, tex_file_path],
-                           stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
-        except subprocess.CalledProcessError:
-            return {"error": "pdflatex compilation failed"}
-        
-        # Check if PDF exists
-        if not os.path.exists(pdf_file_path):
-            return {"error": "PDF file was not generated."}
-        
-        # Read the generated PDF into a BytesIO buffer
-        with open(pdf_file_path, "rb") as pdf_file:
-            pdf_content = pdf_file.read()
-        
-        # Return the PDF as a response
-        return Response(content=pdf_content, media_type="application/pdf")
+    pdf_content = latex_to_pdf(latex_code)
+    
+    # Return the PDF as a response
+    return Response(content=pdf_content, media_type="application/pdf")
 
 @router.post("/recreate-pdf")
 def recreatePdf(
