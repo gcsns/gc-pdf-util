@@ -161,6 +161,7 @@ async def generate_financial_analysis(file: UploadFile = File(...)):
             )
 
             responseMdString = ""
+            logger.info("Generating section content...")
             queries = [query1, query2, query3]
             for query in queries:
                 for chunk in agent.run(
@@ -172,11 +173,7 @@ async def generate_financial_analysis(file: UploadFile = File(...)):
                     responseMdString += chunk.content
                 responseMdString += "\n"
 
-            # Returning the result
-            return JSONResponse(content={
-                "success": True, 
-                responseMdString: responseMdString
-                })
+            return responseMdString
 
         except Exception as e:
             raise HTTPException(status_code=400, detail=f'Invalid pdf file. {e}')

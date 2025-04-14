@@ -14,7 +14,10 @@ MARKDOWN_TO_PDF_GENERATION_TEMPLATE = os.environ.get("MARKDOWN_TO_PDF_GENERATION
 
 \\begin{document}
 
-\markdownInput{markdown-with-images.md}
+\\begin{markdown}
+<mdString>
+\\end{markdown}
+                                                     
 
 \\end{document}
 """)
