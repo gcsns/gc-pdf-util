@@ -13,7 +13,6 @@ from logger import logger
 import base64
 import tempfile
 from configs.prompts.annual_report import description, instructions, query1, query2, query3
-import asyncio
 
 from utils.fileUtil import FileUtil
 # from configs.samples.annual_report import markdown_list
@@ -27,8 +26,6 @@ import configs
 # Load environment variables
 load_dotenv()
 
-# Semaphore to limit the concurrent tasks
-semaphore = asyncio.Semaphore(5)
 
 # Endpoint to convert PDF to markdown (this is an external service)
 convert_to_markdown_endpoint = configs.GC_AI_PARSERS_BASE_URL + '/api/pdf/convert-to-markdown'
@@ -69,12 +66,6 @@ def convert_single_pdf_chunk_to_markdown(chunk_buffer, file_name, chunk_index):
         raise HTTPException(status_code=500, detail=f"Error converting PDF chunk {chunk_index}: {e}")
 
 
-# Asynchronous wrapper for convert_single_pdf_chunk_to_markdown
-async def async_convert_single_pdf_chunk_to_markdown(chunk_buffer, file_name, chunk_index):
-    async with semaphore:
-        # Simulate the existing synchronous API call asynchronously
-        return convert_single_pdf_chunk_to_markdown(chunk_buffer, file_name, chunk_index)
-
 
 # Function to decode the base64 string to markdown text
 def decode_base64_to_markdown(base64_string):
@@ -105,10 +96,10 @@ def split_pdf(file_buffer, chunk_size=configs.DEFAULT_PDF_CHUNK_SIZE):
     return chunks
 
 
-# The function to handle PDF processing
 async def generate_financial_analysis(file: UploadFile = File(...)):
     with tempfile.TemporaryDirectory() as temp_dir:
         logger.info("Temp Directory" + str(temp_dir))
+
 
         file_suffix = FileUtil.get_file_suffix(file.filename)
 
@@ -116,40 +107,32 @@ async def generate_financial_analysis(file: UploadFile = File(...)):
             raise HTTPException(
                 status_code=400, detail="Invalid file type. Only .pdf files are accepted."
             )
-
+        
         try:
             file_bytes = await file.read()
-            file_buffer = io.BytesIO(file_bytes)
+            file_buffer = io.BytesIO(file_bytes) 
             file_name = file.filename
 
             logger.info(f'Splitting the PDF into chunks of {configs.DEFAULT_PDF_CHUNK_SIZE}')
             chunks = split_pdf(file_buffer, chunk_size=configs.DEFAULT_PDF_CHUNK_SIZE)
             logger.info(f'Splitting done, chunks created: {len(chunks)}')
 
-            # List to store the results (markdown content)
             markdown_string_list = []
-
-            # Run the tasks concurrently with a limit of 5 concurrent tasks
-            tasks = []
             for idx, chunk in enumerate(chunks):
-                task = asyncio.create_task(async_convert_single_pdf_chunk_to_markdown(chunk, file_name, idx))
-                tasks.append(task)
-
-            # Wait for all tasks to complete
-            results = await asyncio.gather(*tasks)
-
-            # Process the results
-            for result in results:
+                result = convert_single_pdf_chunk_to_markdown(chunk, file_name, idx)
                 if isinstance(result, dict) and "markdownBase64" in result:
                     markdown_string = decode_base64_to_markdown(result["markdownBase64"])
+
                     # Log decoded markdown
                     logger.info(f"Decoded markdown: {markdown_string[:30]}...")  # Only print first 30 chars for logging
                     markdown_string_list.append(markdown_string)
                 else:
                     logger.info("Error in markdown segment")
 
+
             # setting the markdowns to the sample
             documents = []
+
             for mdString in markdown_string_list:
                 documents.append(Document(content=mdString))
 
