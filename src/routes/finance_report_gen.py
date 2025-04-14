@@ -49,3 +49,17 @@ async def generate_financial_analysis_route(file: UploadFile = File(...)):
     
     except Exception as e:
         raise HTTPException(status_code=400, detail=f'Invalid pdf file. {e}')
+    
+
+# FastAPI route to receive the PDF file and generate a financial analysis
+@router.post("/generate-financial-analysis-md")
+async def generate_financial_analysis_route(file: UploadFile = File(...)):
+    try:
+        logger.info("Generating financial analysis markdown")
+        markdownString = await generate_financial_analysis(file)
+        logger.debug(markdownString)
+
+        return {"mdString": markdownString}
+    
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f'Invalid pdf file. {e}')
