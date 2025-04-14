@@ -53,7 +53,8 @@ COPY --chown=$USER:$GROUP ./requirements.txt /app/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir uvicorn
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --timeout=60 -r requirements.txt
+RUN pip install openai -U
 
 COPY --chown=$USER:$GROUP ./requirements-dev.txt /app/requirements-dev.txt
 RUN pip install --no-cache-dir -r requirements-dev.txt

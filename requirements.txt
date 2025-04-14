@@ -16,3 +16,9 @@ markitdown
 markdown-pdf
 pdfkit
 mindsdb_sdk
+agno
+pylance
+chonkie
+yfinance
+lancedb
+tantivy
