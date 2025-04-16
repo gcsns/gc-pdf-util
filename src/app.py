@@ -4,10 +4,25 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from utils.verifyaccesstoken import VerifyAccessTokenUtil, VerifiedToken, JwtSubjectType
 from routes import health, pdf, video, stream_chat, axa_business_travel_chat, finance_report_gen
 from asgi_correlation_id import CorrelationIdMiddleware
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI(title='gc-pdf-util service', version='0.0.1')
 app.add_middleware(CorrelationIdMiddleware)
 
+origins = [
+    "http://localhost",
+    "http://localhost:5173",
+    "https://document-validation.gamechange.dev"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 bearerScheme = HTTPBearer()
 
