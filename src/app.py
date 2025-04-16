@@ -2,7 +2,7 @@ from typing import Annotated
 from fastapi import FastAPI, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from utils.verifyaccesstoken import VerifyAccessTokenUtil, VerifiedToken, JwtSubjectType
-from routes import health, pdf, video, stream_chat, axa_business_travel_chat
+from routes import health, pdf, video, stream_chat, axa_travel_entitlements_chat, axa_travel_policy_chat
 from asgi_correlation_id import CorrelationIdMiddleware
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -38,5 +38,5 @@ app.include_router(pdf.router, prefix='/api', dependencies=[Depends(validateToke
 app.include_router(video.router, prefix='/api', dependencies=[Depends(validateToken)], tags=["Video"])
 
 app.include_router(stream_chat.router, prefix='/api', dependencies=[Depends(validateToken)], tags=["StreamChat"])
-
-app.include_router(axa_business_travel_chat.router, prefix='/api', dependencies=[Depends(validateToken)], tags=["Axa business travel Chat"])
+app.include_router(axa_travel_entitlements_chat.router, prefix='/api', dependencies=[Depends(validateToken)], tags=["Axa business travel entitlements Chat"])
+app.include_router(axa_travel_policy_chat.router, prefix='/api', dependencies=[Depends(validateToken)], tags=["Axa business travel policy Chat"])
