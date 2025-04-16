@@ -1,8 +1,4 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException, APIRouter
-from fastapi.responses import JSONResponse
-import requests
 import os
-from dotenv import load_dotenv
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.embedder.openai import OpenAIEmbedder
@@ -10,19 +6,10 @@ from agno.vectordb.lancedb import LanceDb, SearchType
 from agno.knowledge.document import DocumentKnowledgeBase
 from agno.document.base import Document
 from logger import logger
-import base64
 import tempfile
-from configs.agentConfig.axa_business_travel_agent import description, instructions, mdString
-
-from utils.fileUtil import FileUtil
-# from configs.samples.annual_report import markdown_list
-
-import io
-from pypdf import PdfReader, PdfWriter
-
-import configs
+from configs.agentConfig.axa_travel_entitlements_agent import description, instructions, mdString
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List
 
 from agno.models.message import Message
 
@@ -34,7 +21,7 @@ class ChatItem(BaseModel):
 class ChatRequest(BaseModel):
     messages: List[ChatItem]
 
-def axaBusinessTravelChat(req: ChatRequest) -> str:
+def axaEntitlementsTravelChat(req: ChatRequest) -> str:
     with tempfile.TemporaryDirectory() as temp_dir:
         # Import the messages form the request
         formatted_messages = [Message(role=i.role, content=i.content) for i in req.messages]
