@@ -30,7 +30,7 @@ from agno.models.message import Message
 
 from axa_business_travel_chat_query import axaBusinessTravelChat, ChatItem, ChatRequest
 
-@router.post("/ask-query")
+@router.post("/travel-policy-chat")
 def axaHrResponse(req: ChatRequest) -> ChatItem:
     response_string = axaBusinessTravelChat(req)
 
