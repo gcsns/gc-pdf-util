@@ -1,30 +1,10 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException, APIRouter
-from fastapi.responses import JSONResponse
-import requests
-import os
-from dotenv import load_dotenv
-from agno.agent import Agent
-from agno.models.openai import OpenAIChat
-from agno.embedder.openai import OpenAIEmbedder
-from agno.vectordb.lancedb import LanceDb, SearchType
-from agno.knowledge.document import DocumentKnowledgeBase
-from agno.document.base import Document
-from logger import logger
-import base64
-import tempfile
+description = "You are a helpful HR agent with information regarding AXA's business "
 
-from utils.fileUtil import FileUtil
-# from configs.samples.annual_report import markdown_list
-from chatbot import QuestionData
-
-import io
-from pypdf import PdfReader, PdfWriter
-
-import configs
-from pydantic import BaseModel
-from typing import List, Optional
-
-router = APIRouter(prefix="/axa-hr")
+instructions=[
+    "Search your knowledge base for any questions.",
+    "Only use information given in knowledge base don't add things on your own.",
+    "You must mention the user's name in every message that you give."
+]
 
 
 mdString = """
@@ -424,50 +404,3 @@ l. Lampiran 9 : Memo Penugasan | l. Appendix 9 : Assignment Memo
 m. Lampiran 10 : AXA Group Country Ratings | m. Appendix 10 : AXA Group Country Ratings
 
 n. Lampiran 11 : Delegation of Authority | n. Appendix 11 : Delegation of Authority"""
-
-class ChatRequest(BaseModel):
-    messages: List[QuestionData]
-
-@router.post("/ask-query")
-def axaHrResponse():
-
-    # Load documents from the data/docs directory
-    documents = [Document(content=mdString)]
-
-    # Database connection URL
-    # db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
-
-    # Create a knowledge base with the loaded documents
-    knowledge_base = DocumentKnowledgeBase(
-        documents=documents,
-        vector_db=LanceDb(
-                uri="tmp/lancedb",
-                table_name="statement",
-                search_type=SearchType.hybrid,
-                embedder=OpenAIEmbedder(id="text-embedding-ada-002"),
-            ),
-        # vector_db=PgVector(
-        #     table_name="documents",
-        #     db_url=db_url,
-        # ),
-    )
-
-    # Load the knowledge base
-    knowledge_base.load(recreate=False)
-
-    # Create an agent with the knowledge base
-    agent = Agent(
-        model=OpenAIChat(id="gpt-4o"),
-        description="You are a bank statement expert!",
-        instructions=[
-            "Search your knowledge base for bank statement related questions.",
-            "Only use information given in knowledge base don't add things on your own."
-        ],
-        knowledge=knowledge_base,
-    )
-    
-    response_string = agent.run(
-        "What was opening balance and closing balance on various days?", markdown=True,
-    )
-    
-    return response_string
