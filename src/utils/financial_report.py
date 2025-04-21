@@ -1,5 +1,4 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException, APIRouter
-from fastapi.responses import JSONResponse
+from fastapi import HTTPException
 import requests
 import os
 from dotenv import load_dotenv
@@ -15,7 +14,6 @@ import tempfile
 from configs.prompts.annual_report import description, instructions, query1, query2, query3
 from typing import List
 
-from utils.fileUtil import FileUtil
 # from configs.samples.annual_report import markdown_list
 
 import io

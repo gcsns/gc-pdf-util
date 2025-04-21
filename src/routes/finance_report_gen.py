@@ -1,31 +1,18 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException, APIRouter
-from fastapi.responses import JSONResponse, Response
+from fastapi import HTTPException, APIRouter
+from fastapi.responses import JSONResponse
 import requests
 import os
 from dotenv import load_dotenv
-from agno.agent import Agent
-from agno.models.openai import OpenAIChat
-from agno.embedder.openai import OpenAIEmbedder
-from agno.vectordb.lancedb import LanceDb, SearchType
-from agno.knowledge.document import DocumentKnowledgeBase
-from agno.document.base import Document
 from logger import logger
 import base64
-import tempfile
-from configs.prompts.annual_report import description, instructions, query1, query2, query3
 from typing import List
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
-from utils.fileUtil import FileUtil
 from configs.samples.annual_report import markdown_list
 from pydantic import BaseModel
 
-import io
-from pypdf import PdfReader, PdfWriter
-from utils.financial_report import convert_pdf_to_markdown, convert_single_pdf_chunk_to_markdown, decode_base64_to_markdown, split_pdf, generate_financial_analysis
-from latex_render import convert_markdown_to_latex, latex_to_pdf
-import configs
+from utils.financial_report import generate_financial_analysis
 
 # Load environment variables
 load_dotenv()
