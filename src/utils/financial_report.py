@@ -13,6 +13,7 @@ from logger import logger
 import base64
 import tempfile
 from configs.prompts.annual_report import description, instructions, query1, query2, query3
+from typing import List
 
 from utils.fileUtil import FileUtil
 # from configs.samples.annual_report import markdown_list
@@ -66,7 +67,6 @@ def convert_single_pdf_chunk_to_markdown(chunk_buffer, file_name, chunk_index):
         raise HTTPException(status_code=500, detail=f"Error converting PDF chunk {chunk_index}: {e}")
 
 
-
 # Function to decode the base64 string to markdown text
 def decode_base64_to_markdown(base64_string):
     try:
@@ -96,39 +96,11 @@ def split_pdf(file_buffer, chunk_size=configs.DEFAULT_PDF_CHUNK_SIZE):
     return chunks
 
 
-async def generate_financial_analysis(file: UploadFile = File(...)):
+def generate_financial_analysis(mdStrings: List[str]):
     with tempfile.TemporaryDirectory() as temp_dir:
         logger.info("Temp Directory" + str(temp_dir))
-
-
-        file_suffix = FileUtil.get_file_suffix(file.filename)
-
-        if file_suffix != ".pdf":
-            raise HTTPException(
-                status_code=400, detail="Invalid file type. Only .pdf files are accepted."
-            )
-        
         try:
-            file_bytes = await file.read()
-            file_buffer = io.BytesIO(file_bytes) 
-            file_name = file.filename
-
-            logger.info(f'Splitting the PDF into chunks of {configs.DEFAULT_PDF_CHUNK_SIZE}')
-            chunks = split_pdf(file_buffer, chunk_size=configs.DEFAULT_PDF_CHUNK_SIZE)
-            logger.info(f'Splitting done, chunks created: {len(chunks)}')
-
-            markdown_string_list = []
-            for idx, chunk in enumerate(chunks):
-                result = convert_single_pdf_chunk_to_markdown(chunk, file_name, idx)
-                if isinstance(result, dict) and "markdownBase64" in result:
-                    markdown_string = decode_base64_to_markdown(result["markdownBase64"])
-
-                    # Log decoded markdown
-                    logger.info(f"Decoded markdown: {markdown_string[:30]}...")  # Only print first 30 chars for logging
-                    markdown_string_list.append(markdown_string)
-                else:
-                    logger.info("Error in markdown segment")
-
+            markdown_string_list = [decode_base64_to_markdown(md) for md in mdStrings]
 
             # setting the markdowns to the sample
             documents = []
@@ -164,16 +136,14 @@ async def generate_financial_analysis(file: UploadFile = File(...)):
             logger.info("Generating section content...")
             queries = [query1, query2, query3]
             for query in queries:
-                for chunk in agent.run(
-                    query,
-                    markdown=True,
-                    show_tool_calls=True,
-                    stream=True
-                ):
-                    responseMdString += chunk.content
+                response = agent.run(
+                    query
+                )
+                responseMdString += response.content
                 responseMdString += "\n"
+                logger.info("Chunk Complete")
 
             return responseMdString
 
         except Exception as e:
-            raise HTTPException(status_code=400, detail=f'Invalid pdf file. {e}')
+            raise HTTPException(status_code=400, detail=f'{e}')
