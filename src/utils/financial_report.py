@@ -1,7 +1,6 @@
 from fastapi import HTTPException
 import requests
 import os
-from dotenv import load_dotenv
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.embedder.openai import OpenAIEmbedder
@@ -21,9 +20,6 @@ from pypdf import PdfReader, PdfWriter
 
 import configs
 
-
-# Load environment variables
-load_dotenv()
 
 
 # Endpoint to convert PDF to markdown (this is an external service)

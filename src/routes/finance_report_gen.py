@@ -1,21 +1,14 @@
 from fastapi import HTTPException, APIRouter
 from fastapi.responses import JSONResponse
-import requests
-import os
-from dotenv import load_dotenv
 from logger import logger
 import base64
 from typing import List
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
-from configs.samples.annual_report import markdown_list
 from pydantic import BaseModel
 
 from utils.financial_report import generate_financial_analysis
-
-# Load environment variables
-load_dotenv()
 
 router = APIRouter(prefix="/annual-report")
     
