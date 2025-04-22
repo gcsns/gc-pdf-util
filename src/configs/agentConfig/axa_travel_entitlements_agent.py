@@ -9,8 +9,7 @@ instructions=[
 ]
 
 
-mdString = """
-
+mdStrings = ["""
 # Appendix 1 - ID HR 3.06 - V.2.0
 
 ## EMPLOYEE BUSINESS TRAVEL ENTITLEMENTS
@@ -36,13 +35,13 @@ mdString = """
 | Accommodations                   | -                | 3-star Hotel     | 3-star Hotel     | 4-star Hotel      | 4-star Hotel      | 4-star Hotel      | 4-star Hotel      | 5-star Hotel      | 5-star Hotel      | 5-star Hotel      |
 | Daily Trip Expenses (Reimbursement) | -                | Reimbursement with max USD 60 | Reimbursement with max USD 60 | Reimbursement with max USD 70 | Reimbursement with max USD 70 | Reimbursement with max USD 80 | Reimbursement with max USD 80 | 100% Reimbursement with reasonable usage (specific restriction on alcohol reimbursement) | 100% Reimbursement with reasonable usage (specific restriction on alcohol reimbursement) | 100% Reimbursement with reasonable usage (specific restriction ...
 
----
+""",
+
+"""Internal
 
 Internal
-
-Internal
-
-# Confidential Document: Appendix 1: EMPLOYEE BUSINESS TRAVEL ENTITLEMENT
+""",
+"""# Confidential Document: Appendix 1: EMPLOYEE BUSINESS TRAVEL ENTITLEMENT
 
 ## Transportation:
 A. Air transportation for all employees (non-executives) is applicable with terms as follows:
@@ -93,9 +92,8 @@ Daily trip expense reimbursement does not apply to the Foreign Travel Incentive 
 
 Appendix 1 - ID HR 3.06
 Internal
-Internal# AXA redefining / insurance
-
-## Accommodations:
+Internal# AXA redefining / insurance""",
+"""## Accommodations:
 1. Employees may accept a room upgrade if the upgrade is at no additional cost to AXA.
 2. Employee with grade 9 and above entitle to reserve a single occupancy during a group business traveling.
 3. Employees may using the same hotel based on Regulatory/Government/VVIP recommendation with the approval from Chief of Function (domestic), or Commissioner (overseas).
@@ -139,6 +137,6 @@ Appendix 1 - ID HR 3.06
 
 Internal
 
-Internal
+Internal""",
 
-"""
+]

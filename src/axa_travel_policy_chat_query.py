@@ -7,7 +7,7 @@ from agno.knowledge.document import DocumentKnowledgeBase
 from agno.document.base import Document
 from logger import logger
 import tempfile
-from configs.agentConfig.axa_travel_policy_agent import description, instructions, mdString
+from configs.agentConfig.axa_travel_policy_agent import description, instructions, mdStrings
 from pydantic import BaseModel
 from typing import List
 from fastapi import HTTPException, status
@@ -35,7 +35,7 @@ def axaTravelPolicyChat(req: ChatRequest) -> str:
 
 
         # Load documents from the data/docs directory
-        documents = [Document(content=mdString)]
+        documents = [Document(content=item) for item in mdStrings]
 
         lance_path = os.path.join(temp_dir, "lancedb")
 

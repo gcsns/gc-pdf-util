@@ -6,7 +6,7 @@ from agno.vectordb.lancedb import LanceDb, SearchType
 from agno.knowledge.document import DocumentKnowledgeBase
 from agno.document.base import Document
 import tempfile
-from configs.agentConfig.axa_travel_entitlements_agent import description, instructions, mdString
+from configs.agentConfig.axa_travel_entitlements_agent import description, instructions, mdStrings
 from pydantic import BaseModel
 from typing import List
 from fastapi import HTTPException, status
@@ -33,8 +33,9 @@ def axaEntitlementsTravelChat(req: ChatRequest) -> str:
                 detail="The 'messages' list cannot be empty."
             )
         
+
         # Load documents from the data/docs directory
-        documents = [Document(content=mdString)]
+        documents = [Document(content=item) for item in mdStrings]
 
         lance_path = os.path.join(temp_dir, "lancedb")
 

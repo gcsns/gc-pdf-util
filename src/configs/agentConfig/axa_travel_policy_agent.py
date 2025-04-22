@@ -9,8 +9,8 @@ instructions=[
 ]
 
 
-mdString = """
-![AXA Logo]
+mdStrings = [
+"""![AXA Logo]
 
 # PERJALANAN DINAS KARYAWAN
 # EMPLOYEE BUSINESS TRAVEL
@@ -21,7 +21,8 @@ mdString = """
 # PT AXA FINANCIAL INDONESIA
 Versi 3.0
 
-Internal# DAFTAR ISI / TABLE OF CONTENT
+Internal""",
+"""# DAFTAR ISI / TABLE OF CONTENT
 
 | No | Content | Halaman/Page |
 |---|---------|---------------|
@@ -53,7 +54,8 @@ Internal# DAFTAR ISI / TABLE OF CONTENT
 | Tanggal Efektif<br>Effective Date | 9 September 2024 |
 
 1
-Internal# HISTORI PERUBAHAN / CHANGE HISTORY
+Internal""",
+"""# HISTORI PERUBAHAN / CHANGE HISTORY
 
 | # | Effective Date | Version | Prepared by | Part and Page | Information Changes |
 |---|----------------|----------|--------------|---------------|--------------------|
@@ -62,7 +64,8 @@ Internal# HISTORI PERUBAHAN / CHANGE HISTORY
 | 3 | 1 September 2024 | V.2.0 | Dwi Rina Paramitha | 1. Referensi Hal 4<br><br>2. Definisi Hal 5<br><br>3. Aturan Umum Hal. 8 | 1. Penambahan Delegation of Authority<br><br>2. Penambahan definisi Pengajuan Perjalanan Dinas<br><br>3. Perubahan uang saku menjadi Penggantian Biaya Perjalanan Dinas<br><br>4. Penambahan referensi Appendix terkait Travel Security<br><br>5. Penambahan aturan umum terkait non-preffered airlines. |
 
 2
-Internal4. Prosedur Perjalanan
+Internal""",
+"""4. Prosedur Perjalanan
 Dinas Hal. 8-11
 
 5. Biaya Perjalanan
@@ -113,7 +116,8 @@ Delegation of
 Authority
 
 3
-Internal1. LATAR BELAKANG
+Internal""",
+"""1. LATAR BELAKANG
 Kebijakan sumber daya manusia untuk perjalanan dinas karyawan ini ditetapkan sebagai pedoman yang berlaku untuk semua Karyawan PT AXA Financial Indonesia ("AFI" atau "Perusahaan") dan dirancang untuk memastikan bahwa semua perjalanan dinas karyawan dikelola dengan baik dan persyaratan minimum baik dari Grup maupun dari Regulator Lokal ataupun Pemerintah terpenuhi. Persyaratan yang ditetapkan dalam dokumen ini dimasukkan untuk memenuhi persyaratan peraturan lokal maupun praktek pada umumnya.
 
 1. INTRODUCTION
@@ -153,7 +157,8 @@ Perjalanan singkat ke luar tempat kerja resmi dari pemegang jabatan, dengan tuju
 
 5. DEFINITION
 a. Business Travel
-A short trip to destinations outside the jobholder's official workplace with the purpose to conduct an observation,pengawasan, pengadaan bisnis, monitoring, business procurement, pengendalian, diskusi, perekrutan, control, discussion, recruitment, konferensi, seminar, pelatihan, conference, seminar, training, trial, persidangan, mediasi, dan/atau tujuan mediation and/or other similar serupa lainnya, dalam kaitan purposes, for the Company's interest kepentingan Perusahaan, dan dengan and with the Company's formal instruksi formal Perusahaan. instruction.
+A short trip to destinations outside the jobholder's official workplace with the purpose to conduct an observation,""",
+"""pengawasan, pengadaan bisnis, monitoring, business procurement, pengendalian, diskusi, perekrutan, control, discussion, recruitment, konferensi, seminar, pelatihan, conference, seminar, training, trial, persidangan, mediasi, dan/atau tujuan mediation and/or other similar serupa lainnya, dalam kaitan purposes, for the Company's interest kepentingan Perusahaan, dan dengan and with the Company's formal instruksi formal Perusahaan. instruction.
 
 b. Permintaan Perjalanan Dinas (BTR) b. Business Trip Requisition (BTR)
 Formulir yang semua karyawan harus Form that all employees have to lengkapi untuk permintaan perjalanan complete for business trip request and dinas dan disetujui sesuai DoA (Delegasi get it approve as per DoA (Delegation of Otoritas) sebelum melakukan perjalanan Authority) before going on business trip, bisnis, sesuai dengan Lampiran 2.a yang as per the appendix 2.a attached to this melekat pada Kebijakan ini. policy.
@@ -180,7 +185,8 @@ yang melekat pada Kebijakan ini.
 h. Presiden Direktur h. President Director
 
 5
-InternalSeseorang yang dalam bertindak sebagai pemberi persetujuan akhir dari setiap Perjalanan Dinas Internasional.
+Internal""",
+"""Seseorang yang dalam bertindak sebagai pemberi persetujuan akhir dari setiap Perjalanan Dinas Internasional.
 
 A person who is in act as a final approver of any International Business Travel.
 
@@ -229,7 +235,8 @@ d. Melakukan Evaluasi terhadap pelaksanaan peraturan ini.
 d. Conducting an evaluation of the implementation of this regulation.
 
 6
-Internal3. Line Manager/ Head of Dept.
+Internal""",
+"""3. Line Manager/ Head of Dept.
 Proposing Assignment Memo and approving Domestic Business Travel request.
 
 4. Respective BOD/Chief of Function (Mancomm)
@@ -256,8 +263,8 @@ g. Perjalanan Dinas untuk Karyawan harus mematuhi aturan-aturan terkait dengan T
 
 h. Karyawan yang akan bepergian dengan pilihan maskapai dengan kategori non-preferred harus mengisi formulir pengecualian dengan alasan yang kuat dan memperoleh persetujuan sesuai dengan matriks persetujuan yang tercantum pada formulir (Lampiran 7c)
 
-i. Setiap Atasan Langsung wajib mensosialisasikan dan mengimplementasikan Kebijakan ini.
-
+i. Setiap Atasan Langsung wajib mensosialisasikan dan mengimplementasikan Kebijakan ini.""",
+"""
 8. PROSEDUR PERJALANAN DINAS
 1. Pengajuan Perjalanan Dinasa. Employee may only perform Business Travel if the Business Travel Requisition (by APS for employee who have access and Business Travel Requisition Form if the employee does not have access) and to attach assignment memo and memo/invitation (if any) if you are attending external events, AFI's Agency/Telemarketing event and Training from HR. Business Travel Requisition to be approved by authorized person as stated in Delegated of Authorities Parameter (DOA) as following:
 
@@ -270,8 +277,8 @@ iii. If budget for Business Travel (include for training purposes) exceed the ap
 iv. In the case of Employee who has traveled for more than 15 (fifteen) calendar days consecutively in a month, then President Director's approval of the Company will be required in order to be allowed to do the next travel.
 
 b. In situations where cash advance is required, Employee should fill out the Business Travel Requisition form (Appendix 2a) and should complete with estimated costs, to be submitted to Finance Department at least 5 (five) working days prior to departure. This travel expenses advance is only applicable for daily allowance, transportation intercity assignment and airport tax expenses. Cash advance only applicable for Employee with job grade 7tingkat jabatan 7 (tujuh) ke bawah dan persetujuan mengacu pada Delegation of Authority (DoA).
-
-c. Departemen Keuangan atas konfirmasi dari Atasan Langsung berhak untuk menolak lebih lanjut Permintaan Perjalanan Dinas ketika laporan pertanggung jawaban Perjalanan Dinas sebelumnya tidak dilengkapi.
+""",
+"""c. Departemen Keuangan atas konfirmasi dari Atasan Langsung berhak untuk menolak lebih lanjut Permintaan Perjalanan Dinas ketika laporan pertanggung jawaban Perjalanan Dinas sebelumnya tidak dilengkapi.
 
 d. Biaya Perjalanan Dinas yang disetujui dan dapat diproses untuk Penggantian Biaya Perjalanan Dinas mengacu pada ketentuan mengenai hak tingkat jabatan yang berlaku sesuai dengan standar jabatan (Lampiran 1).
 
@@ -281,7 +288,8 @@ f. Tanggung jawab masing-masing departemen untuk mempersiapkan anggaran terkait 
 
 2. Penyelesaian Perjalanan Dinas
 a. Karyawan diwajibkan untuk bertanggung jawab dalam menyelesaikan Perjalanan Dinas masing-masing secara mandiri dengan mengisi Formulir Penyelesaian Perjalanan Dinas (Lampiran 2b), melampirkan Formulir Permintaan Perjalanan Dinas yang sudah disetujui dan diajukan sebelumnya, bukti pembayaran asli yang dicetak, atau bukti pembayaran online (e-receipt) jika menggunakan sarana transportasi online, memo acara (jika tersedia), dan menyerahkannya kepada Departemen Keuangan paling lambat dalam 30 (tiga puluh) hari kalender setelah hari terakhir dari Perjalanan Dinas. Persetujuan Penyelesaian Perjalanan Dinas mengacu pada Delegation of Authority (DoA).b. The approval of daily business trip expense reimbursement refers to the provisions regarding the level of entitlement applied in the Company's standard (Appendix 1).
-
+""",
+"""
 c. Approval for transportation expenses will refer to the Operating Expenditures approval. Business Travel Transportation Settlement must be settled by using Transportation Expense Claim Form (Appendix 3).
 
 d. Employee who does not complete the Business Travel Settlement Form, cannot make a Request for Reimbursement of Travel Expenses, therefore Employees are required to complete the Business Travel Settlement form before they can take the next Business Travel.
@@ -291,8 +299,8 @@ e. Employees are responsible for completing the required documents if there are 
 f. In the event where the cash advance is outstanding for more than 30 (thirty) calendar days without any satisfactory explanation, the amount will be deducted from the next monthly salary. This will be the responsibility of the Employee and/or the Direct Supervisor by using the Deduction Authorization Form (Appendix 4). The Finance Department must inform the Human Resources department before the payroll cut-off date.
 
 g. In the event that the actual travel expenses exceed the approved cash advance through a memo, the approval of the settlement will follow Routine Expenditure approval (refer to Delegation of Authority). The total of the cash advance and the settlement should not more than the entitle limit as per job grade.h. In the event where fraud or misappropriation is found, it will become the responsibility of the Line Manager and/or the respective Employee which one proven guilty and Human Resources have rights to issue a warning letter and/or ended with work dismissal.
-
-i. The Finance Department will process the reimbursement of Business Travel Expenses within the time limit according to the regulations in the Finance Payment Policy.
+""",
+"""i. The Finance Department will process the reimbursement of Business Travel Expenses within the time limit according to the regulations in the Finance Payment Policy.
 
 **Daily Trip Expenses**
 On the day of Employee's departed from or arrived at his/her official workplace, Business Travel expenses shall be calculated as follows:
@@ -308,8 +316,8 @@ iii. Employee must take same day flight for training/meeting held in the afterno
 iv. Employee must take the same day flight home for training/meeting finished in the afternoon, except there is no same day flight home schedule.
 
 v. Employee conducting Business Travel with categorization as 1/2 (half) day trip will only be entitled for 50% (fifty) of the standard daily business trip expense.
-
-**Transportation**
+""",
+"""**Transportation**
 vi. Transportations for the Business Travel applied with following conditions:· Ke bandara / pelabuhan / stasiun kereta dari kediaman/kantor dan sebaliknya
 · To airport / seaport / train station from residence/office and vice versa
 · Ke kota tujuan
@@ -332,9 +340,9 @@ ix. Intercity and/or remote area during Business Travel, subject to Line Manager
 x. Penggantian untuk biaya transportasi Perjalanan Dinas yang meliputi: pelabuhan/pajak bandara, asuransi perjalanan jika berlaku. Rincian lebih lanjut tentang hak atas transportasi disediakan pada Lampiran 1 poin B moda transportasi, yang melekat pada Kebijakan ini.
 
 x. Reimbursement for Business Travel transportation costs covering: seaport/airport tax, travel insurance if applicable. Further details on transportation entitlements are provided in Appendix 1 point B transportation mode, attached to this Policy.
-
 13
-InternalAkomodasi | Accommodation
+Internal""",
+"""Akomodasi | Accommodation
 
 xi. Penyedia jaringan akomodasi mengacu pada vendor resmi procurement yang ditunjuk dengan tarif Perusahaan dan diberikan kepada karyawan setelah mendapatkan persetujuan lengkap, dimana kategori kamarnya sesuai ketentuan yang berlaku dari penyedia akomodasi tersebut. Rincian lebih lanjut disediakan pada Lampiran 1 yang melekat pada Kebijakan ini. | xi. The accommodation network provider refers to the appointed Travel Agent with corporate rate ceiling and will be given after obtaining full approval for the Business Travel Request, where the room category is to be defined by the accommodation provider. Further details are provided in Appendix 1 attached to this Policy.
 
@@ -355,7 +363,8 @@ a. Ke Negara tujuan, dalam rangka menggunakan transportasi penerbangan, Karyawan
 Pemesanan kurang dari pengaturan yang disebutkan sebelumnya hanya diperbolehkan untuk perjalanan yang dikarenakan situasi yang tidak terduga. Dalam hal demikian, Agen Perjalanan akan memesan maskapai terdaftar dengan tarif terendah yang dianggarkan. | Ticket issuance less than the beforementioned arrangement only allowed for travel due to unforeseen circumstances. In such case, the Travel Agent will book the lowest fare of available airlines.
 
 14
-Internalb. Administration cost occurs for the Business Travel assignment will be borne by the Company, i.e. the costs for obtaining and/or extension of passport, visa, including phone bills for business purpose during business traveling.
+Internal""",
+"""b. Administration cost occurs for the Business Travel assignment will be borne by the Company, i.e. the costs for obtaining and/or extension of passport, visa, including phone bills for business purpose during business traveling.
 
 c. Accommodation expense will be referred as per Employee job grades, and with ceiling rates based on corporate accommodation rate.
 
@@ -373,12 +382,13 @@ a. This Policy shall be effective as of September 9th 2024 and will be reviewed 
 b. With the implementation of this Policy, all prior policies and/or guidelines related to this Policy are revoked.
 
 c. This Policy is Company' proprietary information. Any unauthorized disclosure, use or dissemination, either whole or partial of this Policy is prohibited unless for Company interest purposes and obtained prior approval from the Company.
-
 15
-Internald. Kebijakan ini dibuat dalam bahasa Indonesia dan bahasa Inggris. Apabila terdapat perbedaan penafsiran di antara bahasa Indonesia dan bahasa Inggris, maka bahasa Indonesia yang berlaku.
+Internal""",
+"""d. Kebijakan ini dibuat dalam bahasa Indonesia dan bahasa Inggris. Apabila terdapat perbedaan penafsiran di antara bahasa Indonesia dan bahasa Inggris, maka bahasa Indonesia yang berlaku.
 
 d. This Policy is made in Indonesian and English languages. If there is any discrepancy between the Indonesian and English version, the Indonesian shall prevail.# LAMPIRAN | APPENDICIES
-
+""",
+"""
 a. Lampiran 1 : Hak-hak Perjalanan Dinas | a. Appendix 1 : Business Travel Entitlement
 
 b. Lampiran 2a : Permintaan Perjalanan Dinas | b. Appendix 2a : Business Travel Requisition
@@ -406,3 +416,5 @@ l. Lampiran 9 : Memo Penugasan | l. Appendix 9 : Assignment Memo
 m. Lampiran 10 : AXA Group Country Ratings | m. Appendix 10 : AXA Group Country Ratings
 
 n. Lampiran 11 : Delegation of Authority | n. Appendix 11 : Delegation of Authority"""
+]
+
