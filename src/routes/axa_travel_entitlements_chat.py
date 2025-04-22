@@ -1,5 +1,4 @@
 from fastapi import APIRouter
-from logger import logger
 from axa_travel_entitlements_chat_query import axaEntitlementsTravelChat, ChatItem, ChatRequest
 
 router = APIRouter(prefix="/axa-hr")

@@ -10,6 +10,7 @@ import tempfile
 from configs.agentConfig.axa_travel_policy_agent import description, instructions, mdString
 from pydantic import BaseModel
 from typing import List
+from fastapi import HTTPException, status
 
 from agno.models.message import Message
 
@@ -25,7 +26,14 @@ def axaTravelPolicyChat(req: ChatRequest) -> str:
     with tempfile.TemporaryDirectory() as temp_dir:
         # Import the messages form the request
         formatted_messages = [Message(role=i.role, content=i.content) for i in req.messages]
-        
+
+        if(len(formatted_messages) == 0):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="The 'messages' list cannot be empty."
+            )
+
+
         # Load documents from the data/docs directory
         documents = [Document(content=mdString)]
 
