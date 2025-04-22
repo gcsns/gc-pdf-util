@@ -26,7 +26,7 @@ import configs
 convert_to_markdown_endpoint = configs.GC_AI_PARSERS_BASE_URL + '/api/pdf/convert-to-markdown'
 
 # Function to convert PDF to markdown using the external API
-async def convert_pdf_to_markdown(file_buffer, file_name):
+def convert_pdf_to_markdown(file_buffer, file_name):
     headers = {
         "Authorization": f"Bearer {configs.GC_AI_API_KEY}",
     }
