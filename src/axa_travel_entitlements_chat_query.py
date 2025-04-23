@@ -1,7 +1,7 @@
 import os
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
-from agno.embedder.openai import OpenAIEmbedder
+from agno.models.azure import AzureOpenAI
+from agno.embedder.azure_openai import AzureOpenAIEmbedder
 from agno.vectordb.lancedb import LanceDb, SearchType
 from agno.knowledge.document import DocumentKnowledgeBase
 from agno.document.base import Document
@@ -46,17 +46,23 @@ def axaEntitlementsTravelChat(req: ChatRequest) -> str:
                     uri=lance_path,
                     table_name="statement",
                     search_type=SearchType.hybrid,
-                    embedder=OpenAIEmbedder(id="text-embedding-ada-002"),
+                    embedder=AzureOpenAIEmbedder(id="text-embedding-ada-002"),
                 ),
         )
 
         # Load the knowledge base
         knowledge_base.load(recreate=False)
 
+        azure_model = AzureOpenAI(
+            id=os.getenv("AZURE_OPENAI_MODEL_NAME"),
+            api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+            azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+            azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
+        )
 
         # Create an agent with the knowledge base
         agent = Agent(
-            model=OpenAIChat(id="gpt-4o"),
+            model=azure_model,
             description=description,
             instructions=instructions,
             knowledge=knowledge_base,
