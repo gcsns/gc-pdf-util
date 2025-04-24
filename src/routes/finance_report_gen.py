@@ -33,5 +33,5 @@ def generate_financial_analysis_route(mdRequest: MdRequest):
         return JSONResponse(content = json_compatible_item_data)
     
     except Exception as e:
-        raise HTTPException(status_code=400, detail=f'Error in generating the markdown content. {e}')
+        raise HTTPException(status_code=400, detail=f'Error in generating the markdown content.')
     
