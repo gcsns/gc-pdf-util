@@ -19,6 +19,8 @@ RUN apt-get install -y \
     texlive-latex-extra && \
     rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && apt-get install -y pandoc
+
 # RUN wget https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.1-1_all.deb
 # RUN dpkg -i cuda-keyring_1.1-1_all.deb
 # RUN apt-get update
@@ -53,7 +55,7 @@ COPY --chown=$USER:$GROUP ./requirements.txt /app/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir uvicorn
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --timeout=600 -r requirements.txt
 
 COPY --chown=$USER:$GROUP ./requirements-dev.txt /app/requirements-dev.txt
 RUN pip install --no-cache-dir -r requirements-dev.txt
