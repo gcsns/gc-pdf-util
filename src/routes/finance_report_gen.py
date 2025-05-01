@@ -8,7 +8,7 @@ from fastapi.responses import JSONResponse
 
 from pydantic import BaseModel
 
-from utils.financial_report import generate_financial_analysis, generate_about_section, generate_products_section
+from utils.financial_report import generate_financial_analysis
 
 router = APIRouter(prefix="/annual-report")
     
@@ -76,25 +76,7 @@ def generate_products_section_route(mdRequest: MdRequest):
 @router.post("/generate-full-markdown")
 def generate_full_markdown_route(mdRequest: MdRequest):
     try:
-        logger.info("Generating about section markdown")
-        aboutSectionMarkdownString = generate_about_section(mdRequest.mdStrings)
-        logger.info("Generating products section markdown")
-        productMarkdownString = generate_products_section(mdRequest.mdStrings)
-        logger.info("Generating financial analysis section markdown")
-        financialAnalysisMarkdownString = generate_financial_analysis(mdRequest.mdStrings)
-
-        fullMarkdownString = ""
-        fullMarkdownString += "\n# About Section \n"
-        fullMarkdownString += aboutSectionMarkdownString
-        fullMarkdownString += "\n"
-        fullMarkdownString += "\n# Products and Services Section \n"
-        fullMarkdownString += productMarkdownString
-        fullMarkdownString += "\n"
-        fullMarkdownString += "\n# Financial Insights section Section \n"
-        fullMarkdownString += financialAnalysisMarkdownString
-
-
-
+        fullMarkdownString = generate_financial_analysis(mdRequest.mdStrings)
         response_bytes = fullMarkdownString.encode("utf-8")
         base64_bytes = base64.b64encode(response_bytes)
         base64_md_string = base64_bytes.decode("utf-8")
