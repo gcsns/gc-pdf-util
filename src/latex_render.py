@@ -35,7 +35,7 @@ def latex_to_pdf(latex_code: str):
         
         # Run pdflatex to generate the PDF
         result = subprocess.run(
-            ["pdflatex", "-interaction=nonstopmode", "-output-directory", temp_dir, "-shell-escape", tex_file_path],
+            ["lualatex", "-interaction=nonstopmode", "-output-directory", temp_dir, "-shell-escape", tex_file_path],
             cwd=temp_dir,
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False
         )

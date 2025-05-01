@@ -9,8 +9,11 @@ from agno.document.base import Document
 from logger import logger
 import base64
 import tempfile
-from configs.prompts.annual_report import description, instructions, query1, query2, query3
+from configs.prompts.annual_report_financial_analysis_section import financial_analysis_section_description, financial_analysis_section_instructions, financial_analysis_section_queries
+from configs.prompts.annual_report_about_section import about_section_description, about_section_instructions, about_section_queries
+from configs.prompts.annual_report_products_section import products_and_services_section_description, products_and_services_section_instructions, products_and_services_section_queries
 from typing import List
+import re
 
 # Function to decode the base64 string to markdown text
 def decode_base64_to_markdown(base64_string):
@@ -20,7 +23,37 @@ def decode_base64_to_markdown(base64_string):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error decoding base64")
 
+def remove_markdown_blocks(text: str) -> str:
+    """
+    Removes LLM-style markdown code block delimiters (e.g., markdown``` and ```) from the input text.
+
+    Args:
+        text (str): The input string containing markdown-style block delimiters.
+
+    Returns:
+        str: Text with the markdown code block delimiters removed.
+    """
+    # Remove 'markdown```' lines and lines with just '```'
+    cleaned_text = re.sub(r'^markdown```\s*\n?|^```\s*\n?', '', text, flags=re.MULTILINE)
+    return cleaned_text
+
 def generate_financial_analysis(mdStrings: List[str]):
+    mdStringResponse = generate_markdown_from_agent(mdStrings, financial_analysis_section_description, financial_analysis_section_instructions, financial_analysis_section_queries)
+    return mdStringResponse
+
+
+def generate_about_section(mdStrings: List[str]):
+    mdStringResponse = generate_markdown_from_agent(mdStrings, about_section_description, about_section_instructions, about_section_queries)
+    return mdStringResponse
+
+def generate_products_section(mdStrings: List[str]):
+    mdStringResponse = generate_markdown_from_agent(mdStrings, products_and_services_section_description, products_and_services_section_instructions, products_and_services_section_queries)
+    return mdStringResponse
+
+
+
+
+def generate_markdown_from_agent(mdStrings: List[str], description: str, instructions: List[str], queries: List[str]):
     with tempfile.TemporaryDirectory() as temp_dir:
         logger.info("Temp Directory" + str(temp_dir))
         try:
@@ -58,7 +91,6 @@ def generate_financial_analysis(mdStrings: List[str]):
 
             responseMdString = ""
             logger.info("Generating section content...")
-            queries = [query1, query2, query3]
             for query in queries:
                 response = agent.run(
                     query
@@ -67,7 +99,10 @@ def generate_financial_analysis(mdStrings: List[str]):
                 responseMdString += "\n"
                 logger.info("Chunk Complete")
 
+            responseMdString = remove_markdown_blocks(responseMdString)
+
             return responseMdString
 
         except Exception as e:
             raise HTTPException(status_code=400, detail=f'Error in generating markdown string')
+        
