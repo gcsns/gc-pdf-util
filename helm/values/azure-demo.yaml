@@ -40,9 +40,9 @@ ingress:
     cert-manager.io/cluster-issuer: http01-cluster-issuer
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
     nginx.org/client-max-body-size: 100m
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: "360"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "360"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "360"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
 
 volumes:
   enabled: true
@@ -58,10 +58,18 @@ certificates:
 authServer:
   baseUrl: "https://nboard-auth.gamechange.dev"
 
-# additionalEnvConfig:
+additionalEnvConfig:
+  MINDS_DB_API_ENDPOINT: https://gc-ai-bot.gamechange.dev
+  MINDS_DB_MODEL_NAME: ai_agent_8_4_25
+  GC_AI_PARSERS_BASE_URL: https://gc-ai-parsers.gamechange.dev
+  AZURE_OPENAI_MODEL_NAME: gpt-4o
+  AZURE_OPENAI_ENDPOINT: https://gc-ce.openai.azure.com
+  AZURE_OPENAI_DEPLOYMENT: gpt-4o
 
 additionalEnvSecret:
+  GC_AI_API_KEY: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklrMXhVbWswUkdSVE5sRjBTWEJZTFd0NlZIRlhhWGNpTENKMGVYQWlPaUpoZEN0S1YxUWlmUS5leUpqYkdsbGJuUmZhV1FpT2lKbll5MXBiblJsY201aGJDSXNJbWx6Y3lJNkltaDBkSEJ6T2k4dmJtSnZZWEprTFdGMWRHZ3VaMkZ0WldOb1lXNW5aUzVrWlhZaUxDSmhkV1FpT2lKb2RIUndjem92TDI1aWIyRnlaQzFoZFhSb0xtZGhiV1ZqYUdGdVoyVXVaR1YySWl3aWFuUnBJam9pT0RKbU5EQTNZbVF0WlRSbU1DMDBZekl6TFdKbE9UUXRNemd4WlROaU0yUXpaR1JqSWl3aWMzVmlJam9pWTJ4cFpXNTBPbWRqTFdsdWRHVnlibUZzSWl3aVpYaHdJam94TnpRMk1qY3pNVFEyTENKcFlYUWlPakUzTkRZeE9EWTNORFo5Llg5Y2FxMWZVUVRnQUk5MFBydnRmbjJGZ3B6S1RMUkRGYm5ZUnV0ZTNUWmRSRmZDZFhVY0tLV0s2RGZJLTh5aTFIQWRDaFVaZGtnb3RhakktUFBBZ2ZQQzV1bmdXcXNWbVRaVThaM0UtUjh1M0ZkcVJFLWo2U1RkbG9vcTFyelhRUmF5VmFTWmdSZFpGaVAtZHo3MFhqZnpQZ2phUVgtTXR3STh0aDJPZmJYdVFad2RFWFpXMTBiOTY1bmkyMEt6d2xVVF8wdS05SEF1djl3VHZmMXJJTk9SQ3lXSGF3UWowd0R1cDZyZ1RyaEhJMDlCXzVPbFJTdmJINlBKRGJrLWNfQVEyV0tweElRVU1rZi02NFJQU0lBV1QwWkNOd1l1MGFiWC0wRi10SkNjOHY4Z1NmdmdVLVRfUXBqbnRVaVVkRkF3WExzYlZXRHhBd2R2QUtoMmFSdw==
   OPENAI_API_KEY: c2stbUVzUkJnREFHVDdkeDdHWGR5QmhUM0JsYmtGSlREVHN2NGpTYVdkNmFNTkdmdEpa
+  AZURE_OPENAI_API_KEY: Q0xsR0lkT2QzaDRQQVZVS0xBdmJseDdvSldFbXZPVTkxcWVjODBqcWRESzc0OGYwODhrR0pRUUo5OUJEQUNSRWFuYVhKM3czQUFBQkFDT0dqdDh0
 
 podSecurityContext: {}
 
