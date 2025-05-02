@@ -9,16 +9,26 @@ RUN apt-get update && \
     # libopenblas-dev liblapack-dev libx11-dev && \
     apt-get clean
 
+# Install ffmpeg and wkhtmltopdf
 RUN apt-get install -y ffmpeg
 RUN apt-get install -y wkhtmltopdf
 
+# Install LaTeX packages and fonts, and LuaTeX support
 RUN apt-get install -y \
     texlive-latex-base \
     texlive-fonts-recommended \
     texlive-fonts-extra \
-    texlive-latex-extra && \
+    texlive-latex-extra \
+    texlive-luatex && \
     rm -rf /var/lib/apt/lists/*
 
+# Rebuild the font cache
+RUN fc-cache -fv
+
+# Install LuaTeX (luaotfload)
+RUN apt-get install -y texlive-fonts-extra texlive-luatex
+
+# Install Pandoc
 RUN apt-get update && apt-get install -y pandoc
 
 # RUN wget https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.1-1_all.deb

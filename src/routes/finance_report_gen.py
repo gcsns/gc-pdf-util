@@ -17,14 +17,13 @@ class MdRequest(BaseModel):
 
 class MdResponse(BaseModel):
     mdString: str
-
-# FastAPI route to receive the PDF file and generate a financial analysis
-@router.post("/generate-financial-analysis")
-def generate_financial_analysis_route(mdRequest: MdRequest):
+    
+# FastAPI route to receive the PDF file and generate an about section for the company and the leadership
+@router.post("/generate-full-markdown")
+def generate_full_markdown_route(mdRequest: MdRequest):
     try:
-        logger.info("Generating financial analysis markdown")
-        markdownString = generate_financial_analysis(mdRequest.mdStrings)
-        response_bytes = markdownString.encode("utf-8")
+        fullMarkdownString = generate_financial_analysis(mdRequest.mdStrings)
+        response_bytes = fullMarkdownString.encode("utf-8")
         base64_bytes = base64.b64encode(response_bytes)
         base64_md_string = base64_bytes.decode("utf-8")
         resp = MdResponse(mdString = base64_md_string)

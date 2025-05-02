@@ -21,7 +21,7 @@ def test_generate_financial_analysis_route():
 
         # Send the post request to the endpoint
         response = client.post(
-            "/annual-report/generate-financial-analysis",
+            "/annual-report/generate-full-markdown",
             json={"mdStrings": [base64_md]},  # This works correctly
         )
 

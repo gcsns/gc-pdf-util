@@ -9,8 +9,11 @@ from agno.document.base import Document
 from logger import logger
 import base64
 import tempfile
-from configs.prompts.annual_report import description, instructions, query1, query2, query3
+from configs.prompts.annual_report_financial_analysis_section import financial_analysis_section_description, financial_analysis_section_instructions, financial_analysis_section_queries
+from configs.prompts.annual_report_about_section import about_section_description, about_section_instructions, about_section_queries
+from configs.prompts.annual_report_products_section import products_and_services_section_description, products_and_services_section_instructions, products_and_services_section_queries
 from typing import List
+import re
 
 # Function to decode the base64 string to markdown text
 def decode_base64_to_markdown(base64_string):
@@ -20,54 +23,76 @@ def decode_base64_to_markdown(base64_string):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error decoding base64")
 
+def remove_markdown_blocks(text: str) -> str:
+    # Remove 'markdown```' lines and lines with just '```'
+    cleaned_text = re.sub(r'^markdown```\s*\n?|^```\s*\n?', '', text, flags=re.MULTILINE)
+    return cleaned_text
+
 def generate_financial_analysis(mdStrings: List[str]):
     with tempfile.TemporaryDirectory() as temp_dir:
         logger.info("Temp Directory" + str(temp_dir))
-        try:
-            markdown_string_list = [decode_base64_to_markdown(md) for md in mdStrings]
+        lance_path = os.path.join(temp_dir, "lancedb")
+        markdown_string_list = [decode_base64_to_markdown(md) for md in mdStrings]
+        documents = []
+        for mdString in markdown_string_list:
+            documents.append(Document(content=mdString))
+        knowledge_base = DocumentKnowledgeBase(
+            documents=documents,
+            vector_db=LanceDb(
+                uri=lance_path,
+                table_name="statement",
+                search_type=SearchType.hybrid,
+                embedder=OpenAIEmbedder(id="text-embedding-ada-002"),
+            ),
+        )
 
-            # setting the markdowns to the sample
-            documents = []
+    logger.info("Generating about section markdown")
+    aboutSectionMdString = generate_markdown_from_agent(knowledge_base, about_section_description, about_section_instructions, about_section_queries)
+    logger.info("Generating products section markdown")
+    ProductSectionMdString = generate_markdown_from_agent(knowledge_base, products_and_services_section_description, products_and_services_section_instructions, products_and_services_section_queries)
+    logger.info("Generating financial analysis section markdown")
+    financialAnalysisMdString = generate_markdown_from_agent(knowledge_base, financial_analysis_section_description, financial_analysis_section_instructions, financial_analysis_section_queries)
+    
 
-            for mdString in markdown_string_list:
-                documents.append(Document(content=mdString))
+    fullMarkdownString = ""
+    fullMarkdownString += "\n# About Section \n"
+    fullMarkdownString += aboutSectionMdString
+    fullMarkdownString += "\n"
+    fullMarkdownString += "\n# Products and Services Section \n"
+    fullMarkdownString += ProductSectionMdString
+    fullMarkdownString += "\n"
+    fullMarkdownString += "\n# Financial Insights section Section \n"
+    fullMarkdownString += financialAnalysisMdString
+    
+    return fullMarkdownString
 
-            lance_path = os.path.join(temp_dir, "lancedb")
+def generate_markdown_from_agent(knowledge_base: DocumentKnowledgeBase, description: str, instructions: List[str], queries: List[str]):
+    try:
+        # Load the knowledge base
+        knowledge_base.load(recreate=False)
 
-            # Create a knowledge base with the loaded documents
-            knowledge_base = DocumentKnowledgeBase(
-                documents=documents,
-                vector_db=LanceDb(
-                    uri=lance_path,
-                    table_name="statement",
-                    search_type=SearchType.hybrid,
-                    embedder=OpenAIEmbedder(id="text-embedding-ada-002"),
-                ),
+        # Create an agent with the knowledge base
+        agent = Agent(
+            model=OpenAIChat(id="gpt-4o"),
+            description=description,
+            instructions=instructions,
+            knowledge=knowledge_base,
+        )
+
+        responseMdString = ""
+        logger.info("Generating section content...")
+        for query in queries:
+            response = agent.run(
+                query
             )
+            responseMdString += response.content
+            responseMdString += "\n"
+            logger.info("Chunk Complete")
 
-            # Load the knowledge base
-            knowledge_base.load(recreate=False)
+        responseMdString = remove_markdown_blocks(responseMdString)
 
-            # Create an agent with the knowledge base
-            agent = Agent(
-                model=OpenAIChat(id="gpt-4o"),
-                description=description,
-                instructions=instructions,
-                knowledge=knowledge_base,
-            )
+        return responseMdString
 
-            responseMdString = ""
-            logger.info("Generating section content...")
-            queries = [query1, query2, query3]
-            for query in queries:
-                response = agent.run(
-                    query
-                )
-                responseMdString += response.content
-                responseMdString += "\n"
-                logger.info("Chunk Complete")
-
-            return responseMdString
-
-        except Exception as e:
-            raise HTTPException(status_code=400, detail=f'Error in generating markdown string')
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f'Error in generating markdown string')
+        
