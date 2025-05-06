@@ -14,6 +14,7 @@ from configs.prompts.annual_report_about_section import about_section_descriptio
 from configs.prompts.annual_report_products_section import products_and_services_section_description, products_and_services_section_instructions, products_and_services_section_queries
 from typing import List
 import re
+from utils.agnoAgent import generate_markdown_from_agent
 
 # Function to decode the base64 string to markdown text
 def decode_base64_to_markdown(base64_string):
@@ -22,11 +23,6 @@ def decode_base64_to_markdown(base64_string):
         return decoded_bytes.decode("utf-8")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error decoding base64")
-
-def remove_markdown_blocks(text: str) -> str:
-    # Remove 'markdown```' lines and lines with just '```'
-    cleaned_text = re.sub(r'^markdown```\s*\n?|^```\s*\n?', '', text, flags=re.MULTILINE)
-    return cleaned_text
 
 def generate_financial_analysis(mdStrings: List[str]):
     with tempfile.TemporaryDirectory() as temp_dir:
@@ -65,34 +61,3 @@ def generate_financial_analysis(mdStrings: List[str]):
     fullMarkdownString += financialAnalysisMdString
     
     return fullMarkdownString
-
-def generate_markdown_from_agent(knowledge_base: DocumentKnowledgeBase, description: str, instructions: List[str], queries: List[str]):
-    try:
-        # Load the knowledge base
-        knowledge_base.load(recreate=False)
-
-        # Create an agent with the knowledge base
-        agent = Agent(
-            model=OpenAIChat(id="gpt-4o"),
-            description=description,
-            instructions=instructions,
-            knowledge=knowledge_base,
-        )
-
-        responseMdString = ""
-        logger.info("Generating section content...")
-        for query in queries:
-            response = agent.run(
-                query
-            )
-            responseMdString += response.content
-            responseMdString += "\n"
-            logger.info("Chunk Complete")
-
-        responseMdString = remove_markdown_blocks(responseMdString)
-
-        return responseMdString
-
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f'Error in generating markdown string')
-        
