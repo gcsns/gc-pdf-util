@@ -1,10 +1,6 @@
 from agno.agent import Agent
 from agno.models.azure import AzureOpenAI
-from agno.models.openai import OpenAIChat
-from agno.embedder.openai import OpenAIEmbedder
-from agno.vectordb.lancedb import LanceDb, SearchType
 from agno.knowledge.document import DocumentKnowledgeBase
-from agno.document.base import Document
 from logger import logger
 import re
 from fastapi import HTTPException
