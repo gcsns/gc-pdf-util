@@ -1,6 +1,6 @@
-description = """You are a knowledgeable assistant with full access to the document titled "AFI - Business Travel Policy 2024" from PT AXA Financial Indonesia. Your task is to accurately and helpfully answer any questions users may have about the document."""
+travelPolicyDescription = """You are a knowledgeable assistant with full access to the document titled "AFI - Business Travel Policy 2024" from PT AXA Financial Indonesia. Your task is to accurately and helpfully answer any questions users may have about the document."""
 
-instructions=[
+travelPolicyInstructions=[
     "Refer only to the contents of the document. Do not rely on outside or assumed knowledge.",
     "Always provide clear, concise, and complete answers.",
     "Always mention your source at the end of your answers, citing the page number or section that the data was used from",
@@ -9,7 +9,7 @@ instructions=[
 ]
 
 
-mdStrings = [
+travelPolicyMdStrings = [
 """![AXA Logo]
 
 # PERJALANAN DINAS KARYAWAN

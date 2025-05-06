@@ -9,12 +9,12 @@ from agno.document.base import Document
 from logger import logger
 import base64
 import tempfile
-from configs.prompts.annual_report_financial_analysis_section import financial_analysis_section_description, financial_analysis_section_instructions, financial_analysis_section_queries
-from configs.prompts.annual_report_about_section import about_section_description, about_section_instructions, about_section_queries
-from configs.prompts.annual_report_products_section import products_and_services_section_description, products_and_services_section_instructions, products_and_services_section_queries
+from configs.prompts.annual_report.annual_report_financial_analysis_section import financial_analysis_section_description, financial_analysis_section_instructions, financial_analysis_section_queries
+from configs.prompts.annual_report.annual_report_about_section import about_section_description, about_section_instructions, about_section_queries
+from configs.prompts.annual_report.annual_report_products_section import products_and_services_section_description, products_and_services_section_instructions, products_and_services_section_queries
 from typing import List
 import re
-from utils.agnoAgent import generate_markdown_from_agent
+from utils.agnoAgent import generate_markdown_content_from_agent
 
 # Function to decode the base64 string to markdown text
 def decode_base64_to_markdown(base64_string):
@@ -43,11 +43,11 @@ def generate_financial_analysis(mdStrings: List[str]):
         )
 
     logger.info("Generating about section markdown")
-    aboutSectionMdString = generate_markdown_from_agent(knowledge_base, about_section_description, about_section_instructions, about_section_queries)
+    aboutSectionMdString = generate_markdown_content_from_agent(knowledge_base, about_section_description, about_section_instructions, about_section_queries)
     logger.info("Generating products section markdown")
-    ProductSectionMdString = generate_markdown_from_agent(knowledge_base, products_and_services_section_description, products_and_services_section_instructions, products_and_services_section_queries)
+    ProductSectionMdString = generate_markdown_content_from_agent(knowledge_base, products_and_services_section_description, products_and_services_section_instructions, products_and_services_section_queries)
     logger.info("Generating financial analysis section markdown")
-    financialAnalysisMdString = generate_markdown_from_agent(knowledge_base, financial_analysis_section_description, financial_analysis_section_instructions, financial_analysis_section_queries)
+    financialAnalysisMdString = generate_markdown_content_from_agent(knowledge_base, financial_analysis_section_description, financial_analysis_section_instructions, financial_analysis_section_queries)
     
 
     fullMarkdownString = ""

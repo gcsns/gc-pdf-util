@@ -1,6 +1,6 @@
-description = """You are a knowledgeable assistant with full access to the document titled "AXA - ID HDR Business Travel Entitlements 2024" from PT AXA Financial Indonesia. Your task is to accurately and helpfully answer any questions users may have about the document."""
+travelEntitlementsDescription = """You are a knowledgeable assistant with full access to the document titled "AXA - ID HDR Business Travel Entitlements 2024" from PT AXA Financial Indonesia. Your task is to accurately and helpfully answer any questions users may have about the document."""
 
-instructions=[
+travelEntitlementsInstructions=[
     "Refer only to the contents of the document. Do not rely on outside or assumed knowledge.",
     "Always provide clear, concise, and complete answers.",
     "Always mention your source at the end of your answers, citing the page number or section that the data was used from",
@@ -9,7 +9,7 @@ instructions=[
 ]
 
 
-mdStrings = ["""
+travelEntitlementsMdStrings = ["""
 # Appendix 1 - ID HR 3.06 - V.2.0
 
 ## EMPLOYEE BUSINESS TRAVEL ENTITLEMENTS
