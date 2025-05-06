@@ -1,6 +1,4 @@
 import os
-from agno.agent import Agent
-from agno.models.azure import AzureOpenAI
 from agno.embedder.azure_openai import AzureOpenAIEmbedder
 from agno.vectordb.lancedb import LanceDb, SearchType
 from agno.knowledge.document import DocumentKnowledgeBase
