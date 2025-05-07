@@ -21,4 +21,7 @@ chonkie
 yfinance
 lancedb
 tantivy
+azure-ai-inference
+aiohttp
 openai==1.73.0
+mcp
