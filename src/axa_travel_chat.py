@@ -13,6 +13,8 @@ from fastapi import HTTPException, status
 
 from agno.models.message import Message
 from utils.agnoAgent import generate_chat_message_from_agent
+from utils.embeddings import get_embeddings
+import configs
 
 class ChatItem(BaseModel):
     role: str
@@ -39,6 +41,9 @@ def axaEntitlementsTravelChat(req: ChatRequest) -> str:
 
         lance_path = os.path.join(temp_dir, "lancedb")
 
+        model_choice = configs.DEFAULT_EMBEDDINGS_MODEL
+        embedder = get_embeddings(model_choice)
+
         # Create a knowledge base with the loaded documents
         knowledge_base = DocumentKnowledgeBase(
             documents=documents,
@@ -46,7 +51,7 @@ def axaEntitlementsTravelChat(req: ChatRequest) -> str:
                     uri=lance_path,
                     table_name="statement",
                     search_type=SearchType.hybrid,
-                    embedder=AzureOpenAIEmbedder(id="text-embedding-ada-002"),
+                    embedder=embedder,
                 ),
         )
 
@@ -73,6 +78,9 @@ def axaTravelPolicyChat(req: ChatRequest) -> str:
 
         lance_path = os.path.join(temp_dir, "lancedb")
 
+        model_choice = configs.DEFAULT_EMBEDDINGS_MODEL
+        embedder = get_embeddings(model_choice)
+        
         # Create a knowledge base with the loaded documents
         knowledge_base = DocumentKnowledgeBase(
             documents=documents,
@@ -80,7 +88,7 @@ def axaTravelPolicyChat(req: ChatRequest) -> str:
                     uri=lance_path,
                     table_name="statement",
                     search_type=SearchType.hybrid,
-                    embedder=AzureOpenAIEmbedder(id="text-embedding-ada-002"),
+                    embedder=embedder,
                 ),
         )
         response_string = generate_chat_message_from_agent(knowledge_base, travelPolicyDescription, travelPolicyInstructions, formatted_messages)
