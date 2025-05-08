@@ -25,3 +25,6 @@ azure-ai-inference
 aiohttp
 openai==1.73.0
 mcp
+boto3
+anthropic
+qdrant-client

@@ -7,6 +7,8 @@ from fastapi import HTTPException
 from agno.models.message import Message
 from typing import List
 import os
+import configs
+from utils.agnoLlm import get_llm
 
 def remove_markdown_blocks(text: str) -> str:
     # Remove 'markdown```' lines and lines with just '```'
@@ -14,17 +16,18 @@ def remove_markdown_blocks(text: str) -> str:
     return cleaned_text
 
 
-def generate_markdown_content_from_agent(knowledge_base: DocumentKnowledgeBase, description: str, instructions: List[str], queries: List[str]) -> str:
+def generate_markdown_content_from_agent(
+        knowledge_base: DocumentKnowledgeBase, 
+        description: str, 
+        instructions: List[str], 
+        queries: List[str], 
+        llm_choice=configs.DEFAULT_LLM_CHOICE,
+        ) -> str:
     try:
         # Load the knowledge base
         knowledge_base.load(recreate=False)
 
-        model = AzureOpenAI(
-            id=os.getenv("AZURE_OPENAI_MODEL_NAME"),
-            api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-            azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-            azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
-        )
+        model = get_llm(llm_choice)
 
         # Create an agent with the knowledge base
         agent = Agent(
@@ -51,17 +54,18 @@ def generate_markdown_content_from_agent(knowledge_base: DocumentKnowledgeBase, 
     except Exception as e:
         raise HTTPException(status_code=400, detail=f'Error in generating markdown string')
         
-def generate_chat_message_from_agent(knowledge_base: DocumentKnowledgeBase, description: str, instructions: List[str], chatHistory: List[Message]) -> str:
+def generate_chat_message_from_agent(
+        knowledge_base: DocumentKnowledgeBase,
+        description: str, 
+        instructions: List[str], 
+        chatHistory: List[Message], 
+        llm_choice = configs.DEFAULT_LLM_CHOICE,
+        ) -> str:
     try:
         # Load the knowledge base
         knowledge_base.load(recreate=False)
 
-        model = AzureOpenAI(
-            id=os.getenv("AZURE_OPENAI_MODEL_NAME"),
-            api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-            azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-            azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
-        )
+        model = get_llm(llm_choice)
 
         # Create an agent with the knowledge base
         agent = Agent(
@@ -69,7 +73,7 @@ def generate_chat_message_from_agent(knowledge_base: DocumentKnowledgeBase, desc
             description=description,
             instructions=instructions,
             knowledge=knowledge_base,
-            add_messages=chatHistory
+            add_messages=chatHistory,
         )
 
         user_message = chatHistory[-1].content
