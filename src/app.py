@@ -5,7 +5,7 @@ from utils.verifyaccesstoken import VerifyAccessTokenUtil, VerifiedToken, JwtSub
 from routes import health, pdf, video, stream_chat, axa_travel_entitlements_chat, finance_report_gen, colearn_faq_chat
 from asgi_correlation_id import CorrelationIdMiddleware
 from fastapi.middleware.cors import CORSMiddleware
-
+import configs
 
 app = FastAPI(title='gc-pdf-util service', version='0.0.1')
 app.add_middleware(CorrelationIdMiddleware)
@@ -43,4 +43,5 @@ app.include_router(axa_travel_entitlements_chat.router, prefix='/api', dependenc
 
 app.include_router(finance_report_gen.router, prefix='/api', dependencies=[Depends(validateToken)], tags=["Annual Report Financial Report Generation"])
 
-app.include_router(colearn_faq_chat.router, prefix='/api', dependencies=[Depends(validateToken)], tags=["Colearn FAQ Chat"])
+if(configs.LOAD_COLEARN == True):
+    app.include_router(colearn_faq_chat.router, prefix='/api', dependencies=[Depends(validateToken)], tags=["Colearn FAQ Chat"])

@@ -35,6 +35,7 @@ QDRANT_URL = os.getenv("QDRANT_URL")
 
 QDRANT_COLEARN_COLLECTION_NAME = os.getenv("QDRANT_COLEARN_COLLECTION_NAME", "colearn-test")
 COLEARN_LLM_CHOICE = os.getenv("COLEARN_LLM_CHOICE", "claude:anthropic.claude-3-5-sonnet-20240620-v1:0")
+LOAD_COLEARN = os.getenv("LOAD_COLEARN", "True") == "True"
 
 AWS_ACCESS_KEY_ID=os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY=os.getenv("AWS_SECRET_ACCESS_KEY")

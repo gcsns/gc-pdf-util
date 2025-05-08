@@ -13,6 +13,7 @@ from agno.models.message import Message
 from utils.embeddings import get_embeddings
 from utils.agnoLlm import get_llm
 import configs
+from logger import logger
 
 class ChatItem(BaseModel):
     role: str
@@ -21,24 +22,25 @@ class ChatItem(BaseModel):
 class ChatRequest(BaseModel):
     messages: List[ChatItem]
 
+if(configs.LOAD_COLEARN == True):
+    # Load documents from the data/docs directory
+    documents = [Document(content=item) for item in colearnKnowledgeMdStrings]
 
-# Load documents from the data/docs directory
-documents = [Document(content=item) for item in colearnKnowledgeMdStrings]
+    embedder = get_embeddings(configs.DEFAULT_EMBEDDINGS_MODEL)
 
-embedder = get_embeddings(configs.DEFAULT_EMBEDDINGS_MODEL)
+    vector_db = Qdrant(
+        collection=configs.QDRANT_COLEARN_COLLECTION_NAME,
+        url=configs.QDRANT_URL,
+        api_key=configs.QDRANT_API_KEY,
+        embedder=embedder
+    )
 
-vector_db = Qdrant(
-    collection=configs.QDRANT_COLEARN_COLLECTION_NAME,
-    url=configs.QDRANT_URL,
-    api_key=configs.QDRANT_API_KEY,
-    embedder=embedder
-)
-
-# Create a knowledge base with the loaded documents
-knowledge_base = DocumentKnowledgeBase(
-    documents=documents,
-    vector_db=vector_db,
-)
+    # Create a knowledge base with the loaded documents
+    knowledge_base = DocumentKnowledgeBase(
+        documents=documents,
+        vector_db=vector_db,
+    )
+    logger.info("Colearn Docs added to vectorDB!")
 
 def colearnChat(req: ChatRequest) -> str:
     # Import the messages form the request
