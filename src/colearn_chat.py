@@ -2,7 +2,7 @@ from agno.agent import Agent
 from agno.vectordb.qdrant import Qdrant
 from agno.knowledge.document import DocumentKnowledgeBase
 from agno.document.base import Document
-from configs.prompts.colearn.colearn_knowledge_agent import colearnKnowledgeRole, colearnKnowledgeMdStrings
+from configs.prompts.colearn.colearn_knowledge_agent import colearnKnowledgeRole, colearnKnowledgeMdStrings, colearnKnowledgeDescription, colearnKnowledgeInstructions
 from configs.prompts.colearn.colearn_main_agent import colearnMainDescription, colearnMainInstructions, colearnMainRole
 
 from pydantic import BaseModel
@@ -55,37 +55,35 @@ def colearnChat(req: ChatRequest) -> str:
     
     knowledge_base.load(recreate=False)
 
-    knowledge_agent = Agent(
-        name="CoLearn Knowledge Agent",
+    maker_agent = Agent(
+        name="Query Maker Agent",
         role=colearnKnowledgeRole,
         model=get_llm(configs.COLEARN_LLM_CHOICE),
-        knowledge=knowledge_base,
-        search_knowledge=True,
-        show_tool_calls=False,
+        description=colearnKnowledgeDescription,
+        instructions=colearnKnowledgeInstructions,
+        show_tool_calls=True,
     )
 
-    agentTeam = Agent(
-        name="Alex",
+    query_handler_agent = Agent(
+        name="Query Handler Agent",
         role=colearnMainRole,
-        description=colearnMainDescription, 
-        instructions=colearnMainInstructions, 
-        add_messages=formatted_messages, 
-        show_tool_calls=False,
-        team=[knowledge_agent],
         model=get_llm(configs.COLEARN_LLM_CHOICE),
-        search_knowledge=False,
+        description=colearnMainDescription,
+        instructions=colearnMainInstructions,  
+        search_knowledge=True,
+        knowledge=knowledge_base,
+        team=[maker_agent],
+        show_tool_calls=True
     )
 
     user_message = formatted_messages[-1].content
     
 
-    response_string = agentTeam.run(
+    response_string = query_handler_agent.run(
         user_message, 
         markdown=True,
         stream=False
     )
-
-    
 
     return response_string.content
 

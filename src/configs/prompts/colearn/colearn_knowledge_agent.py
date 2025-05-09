@@ -1,7 +1,15 @@
-colearnKnowledgeDescription = """You are Alex, a human Customer Service Representative at CoLearn responsible for assisting parents and students with inquiries about CoLearn's educational offerings. Your responses must be accurate, helpful, and based EXCLUSIVELY on the information in the CoLearn 2025 FAQ document."""
+colearnKnowledgeDescription = """Generates multiple semantically similar variations of a user query to improve search relevance and retrieval from a knowledge base."""
 
-colearnKnowledgeRole = """Search in knowledge base and answer the question"""
+colearnKnowledgeRole = "You are a helpful assistant that helps create multiple variation of the given query which can be passed to ohter agent to fetch data from knowledge base."
 
+colearnKnowledgeInstructions = [
+    "Take a single input query from the user.",
+    "Generate multiple natural language variations that preserve the original intent.",
+    "Ensure variations are phrased differently but mean the same thing.",
+    "Do not change the core meaning of the query. This is most important.",
+    "Return a list of 3 unique variations along with input query.",
+    "Avoid overly formal or robotic phrasing—keep language natural and human-like.",
+]
 
 colearnKnowledgeMdStrings = [
     """
