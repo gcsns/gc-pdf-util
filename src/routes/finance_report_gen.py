@@ -7,7 +7,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
 from pydantic import BaseModel
-
+import configs
 from utils.financial_report import generate_financial_analysis
 
 router = APIRouter(prefix="/annual-report")
@@ -32,5 +32,5 @@ def generate_full_markdown_route(mdRequest: MdRequest):
         return JSONResponse(content = json_compatible_item_data)
     
     except Exception as e:
-        raise HTTPException(status_code=400, detail=f'Error in generating the markdown content.')
+        raise HTTPException(status_code=400, detail=f'Error in generating the markdown content. ' + str(e))
     
