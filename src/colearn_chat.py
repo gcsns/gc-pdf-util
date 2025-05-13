@@ -12,7 +12,8 @@ from fastapi import HTTPException, status
 from agno.models.message import Message
 from utils.embeddings import get_embeddings
 from utils.agnoLlm import get_llm
-import configs
+from utils.findandparsejsonobject import findAndParseJsonObject
+import configs, json
 from logger import logger
 
 class ChatItem(BaseModel):
@@ -84,6 +85,8 @@ def colearnChat(req: ChatRequest) -> str:
         markdown=True,
         stream=False
     )
-
-    return response_string.content
+    json_response = findAndParseJsonObject(response_string.content)
+    
+    return json.dumps(json_response)
+    # return json_response.message
 
