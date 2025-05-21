@@ -608,7 +608,33 @@ For queries related to Settlement/Reconciliation, please contact below:
 
 network>
 
-WWW.NETWORK.GLOBAL"""
+WWW.NETWORK.GLOBAL""",
+
+"""
+Error Codes and Scenarios
+401 - Unauthorized
+1. Incorrect URL when generating access token
+2. Access token expired
+3. Incorrect headers
+
+
+403 - Forbidden
+1. Incorrect access token
+2. Incorrect Outlet ID
+3. API Key from hosted service account
+
+
+405 - Method Not Allowed
+1. Incorrect request, such as using PUT instead of POST
+
+
+422 - Unprocessable Entity
+1. Service account not enabled
+2. Amount limit exceeded
+3. Currency not set as base currency for the account
+
+
+"""
 
 ]
 
