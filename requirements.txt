@@ -28,3 +28,4 @@ mcp
 boto3
 anthropic
 qdrant-client
+tavily-python
