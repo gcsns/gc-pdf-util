@@ -47,7 +47,7 @@ A : I understand your concern, and I'm here to help resolve this situation. I'm 
 
 1. info_lokasi
 Q : Lokasi CoLearn dimana?
-A : Kantor pusat CoLearn ada di MCC lantai 42 Sudirman, Jakarta Selatan. Alamat lengkap bisa dilihat di Google dengan mengetik "CoLearn".
+A : Kantor pusat CoLearn ada di MCC lantai 42 Sudirman, Jakarta Selatan. Alamat lengkap bisa dilihat di Google dengan mengetik *CoLearn*.
 
 2. info_kelas_CoLearn
 Q : Tersedia untuk kelas berapa aja?
@@ -70,72 +70,72 @@ A : Berikut info Bimbel CoLearn:
 - Video testimoni: https://youtu.be/OrABEkNnKEU?si=Wa2NRtEMVk8P6MKg
 6. Info_bimbel_kelas 5
 Q : Mohon info bimbel untuk kelas 5?
-A : "Berikut info Bimbel CoLearn:
+A : Berikut info Bimbel CoLearn:
 - Harga: mulai 95.000/bulan untuk matematika 5 SD. 4 pertemuan per bulan (1x/minggu). Durasi 60 menit.
 - Metode belajar: Kelas Zoom interaktif dengan guru yang memotivasi dan teman lainnya.
 - Laporan belajar: tentang kehadiran dan partisipasi dikirim ke WA orang tua.
 - Jika anak tidak cocok: garansi uang kembali 100% di bulan pertama.
-- Video testimoni: https://youtu.be/OrABEkNnKEU?si=Wa2NRtEMVk8P6MKg "
+- Video testimoni: https://youtu.be/OrABEkNnKEU?si=Wa2NRtEMVk8P6MKg 
 7. info_bimbel_kelas6
 Q : Mohon info bimbel untuk kelas 6?
-A : "Berikut info Bimbel CoLearn:- Harga: mulai 95.000/bulan untuk matematika 6 SD. 4 pertemuan per bulan (1x/minggu). Durasi 60 menit.
+A : Berikut info Bimbel CoLearn:- Harga: mulai 95.000/bulan untuk matematika 6 SD. 4 pertemuan per bulan (1x/minggu). Durasi 60 menit.
 - Metode belajar: Kelas Zoom interaktif dengan guru yang memotivasi dan teman lainnya.
 - Laporan belajar: tentang kehadiran dan partisipasi dikirim ke WA orang tua.
 - Jika anak tidak cocok: garansi uang kembali 100% di bulan pertama.
 - Video testimoni: https://youtu.be/OrABEkNnKEU?si=Wa2NRtEMVk8P6MKg
 8. info_bimbel_kelas7
 Q : Mohon info bimbel untuk kelas 7?
-A : "Berikut info Bimbel CoLearn:
+A : Berikut info Bimbel CoLearn:
 - Harga: mulai 95.000/bulan untuk matematika 7 SMP. 8 pertemuan per bulan (2x/minggu). Durasi 60 menit.
 - Metode belajar: Kelas Zoom interaktif dengan guru yang memotivasi dan teman lainnya.
 - Laporan belajar: tentang kehadiran dan partisipasi dikirim ke WA orang tua.
 - Jika anak tidak cocok: garansi uang kembali 100% di bulan pertama.
-- Video testimoni: https://youtu.be/2xVerh347p4?si=cNuXJPKIWCXuLwMO "
+- Video testimoni: https://youtu.be/2xVerh347p4?si=cNuXJPKIWCXuLwMO 
 9. info_bimbel_kelas8
 Q : Mohon info bimbel untuk kelas 8?
-A : "Berikut info Bimbel CoLearn:
+A : Berikut info Bimbel CoLearn:
 - Harga: mulai 95.000/bulan untuk matematika 8 SMP. 8 pertemuan per bulan (2x/minggu). Durasi 60 menit.
 - Metode belajar: Kelas Zoom interaktif dengan guru yang memotivasi dan teman lainnya.
 - Laporan belajar: tentang kehadiran dan partisipasi dikirim ke WA orang tua.
 - Jika anak tidak cocok: garansi uang kembali 100% di bulan pertama.
-- Video testimoni: https://youtu.be/2xVerh347p4?si=cNuXJPKIWCXuLwMO "
+- Video testimoni: https://youtu.be/2xVerh347p4?si=cNuXJPKIWCXuLwMO 
 10. info_bimbel_kelas 9
 Q : Mohon info bimbel untuk kelas 9?
-A : "Berikut info Bimbel CoLearn:
+A : Berikut info Bimbel CoLearn:
 - Harga: mulai 95.000/bulan untuk matematika 9 SMP. 8 pertemuan per bulan (2x/minggu). Durasi 60 menit.- Metode belajar: Kelas Zoom interaktif dengan guru yang memotivasi dan teman lainnya.
 - Laporan belajar: tentang kehadiran dan partisipasi dikirim ke WA orang tua.
 - Jika anak tidak cocok: garansi uang kembali 100% di bulan pertama.
-- Video testimoni: https://youtu.be/2xVerh347p4?si=cNuXJPKIWCXuLwMO "
+- Video testimoni: https://youtu.be/2xVerh347p4?si=cNuXJPKIWCXuLwMO 
 
 11. Info_bimbel_kelas 10
 Q : Mohon info bimbel untuk kelas 10?
-A : "Berikut info Bimbel CoLearn:
+A : Berikut info Bimbel CoLearn:
 - Harga: mulai 95.000/bulan untuk matematika 10 SMA. 8 pertemuan per bulan (2x/minggu). Durasi 60 menit.
 - Metode belajar: Kelas Zoom interaktif dengan guru yang memotivasi dan teman lainnya.
 - Laporan belajar: tentang kehadiran dan partisipasi dikirim ke WA orang tua.
 - Jika anak tidak cocok: garansi uang kembali 100% di bulan pertama.
-- Video testimoni: https://youtu.be/2xVerh347p4?si=cNuXJPKIWCXuLwMO "
+- Video testimoni: https://youtu.be/2xVerh347p4?si=cNuXJPKIWCXuLwMO 
 
 12. Info_bimbel_kelas 11
 Q : Mohon info bimbel untuk kelas 11?
-A : "Berikut info Bimbel CoLearn:
+A : Berikut info Bimbel CoLearn:
 - Harga: mulai 95.000/bulan untuk matematika 11 SMA. 8 pertemuan per bulan (2x/minggu). Durasi 60 menit.
 - Metode belajar: Kelas Zoom interaktif dengan guru yang memotivasi dan teman lainnya.
 - Laporan belajar: tentang kehadiran dan partisipasi dikirim ke WA orang tua.
 - Jika anak tidak cocok: garansi uang kembali 100% di bulan pertama.
-- Video testimoni: https://youtu.be/2xVerh347p4?si=cNuXJPKIWCXuLwMO "
+- Video testimoni: https://youtu.be/2xVerh347p4?si=cNuXJPKIWCXuLwMO 
 
 13. Info_bimbel_kelas 12
 Q : Mohon info bimbel untuk kelas 12?
-A : "Berikut info Bimbel CoLearn:
+A : Berikut info Bimbel CoLearn:
 - Harga: mulai 95.000/bulan untuk matematika 12 SMA. 8 pertemuan per bulan (2x/minggu). Durasi 60 menit.- Metode belajar: Kelas Zoom interaktif dengan guru yang memotivasi dan teman lainnya.
 - Laporan belajar: tentang kehadiran dan partisipasi dikirim ke WA orang tua.
 - Jika anak tidak cocok: garansi uang kembali 100% di bulan pertama.
-- Video testimoni: https://youtu.be/2xVerh347p4?si=cNuXJPKIWCXuLwMO "
+- Video testimoni: https://youtu.be/2xVerh347p4?si=cNuXJPKIWCXuLwMO 
 
 14. Info_paketlain_kelas 7
 Q : Selain matematika ada pelajaran apa aja untuk kelas 7 SMP?
-A : "Untuk kelas 7 SMP, di bimbel online Colearn ada pilihan:
+A : Untuk kelas 7 SMP, di bimbel online Colearn ada pilihan:
 1. Paket Matematika (2x mat/minggu) - *Rp. 95.000/bulan*
 2. Paket Matematika+IPA (2x mat dan 1x IPA / minggu) - *Rp. 144.000/bulan*
 *Untuk IPA adalah fisika + biologi diberikan dalam bentuk rangkuman*
@@ -143,34 +143,34 @@ Durasi 60 menit/kelas
 
 15. Info_paketlain_kelas 8
 Q : Selain matematika ada pelajaran apa aja untuk kelas 8 SMP?
-A : "Untuk kelas 8 SMP, di bimbel online Colearn ada pilihan:
+A : Untuk kelas 8 SMP, di bimbel online Colearn ada pilihan:
 1. Paket Matematika (2x mat/minggu) - *Rp. 95.000/bulan*
 2. Paket Matematika+IPA (2x mat dan 1x IPA / minggu) - *Rp. 144.000/bulan*
 Durasi 60 menit/kelas
 
 16. Info_paketlain_kelas 9
 Q : Selain matematika ada pelajaran apa aja untuk kelas 9 SMP?
-A : "Untuk kelas 9 SMP, di bimbel online Colearn ada pilihan:
+A : Untuk kelas 9 SMP, di bimbel online Colearn ada pilihan:
 1. Paket Matematika (2x mat/minggu) - *Rp. 95.000/bulan*
 2. Paket Matematika+IPA (2x mat dan 1x IPA / minggu) - *Rp. 144.000/bulan*
 Durasi 60 menit/kelas
 
 17. Info_paketlain_kelas10
-Q : Selain matematika ada pelajaran apa aja untuk kelas 10 SMA?A : "Untuk kelas 10, di bimbel online Colearn ada pilihan:  
+Q : Selain matematika ada pelajaran apa aja untuk kelas 10 SMA?A : Untuk kelas 10, di bimbel online Colearn ada pilihan:  
 1. Paket Matematika (2x mat/minggu) - *Rp. 95.000/bulan*  
 2. Paket Matematika+IPA (2x mat dan 1x IPA/ minggu) - *Rp. 144.000/bulan*  
 *Untuk IPA adalah fisika dan kimia bergantian (sesuai silabus dari pemerintah. Biologi diberikan dalam bentuk rangkuman)*  
-Durasi 60 menit/kelas"  
+Durasi 60 menit/kelas  
 
 18. Info_paketlain_kelas 11  
 Q : Selain matematika ada pelajaran apa aja untuk kelas 11 SMA?  
-A : "Untuk kelas 11 Merdeka, di bimbel online Colearn ada pilihan:  
+A : Untuk kelas 11 Merdeka, di bimbel online Colearn ada pilihan:  
 1. Paket Matematika Merdeka (2x mat/minggu) - *Rp. 95.000/bulan*  
 2. Paket Matematika Merdeka+Lanjutan (3x/minggu) - *Rp. 120.000/bulan*  
 Durasi 60 menit/kelas  
 Upgrade paket:  
 1. Tambah Fisika / Kimia = Rp. 49.000 (1x/minggu)  
-2. Tambah Fisika + Kimia = Rp. 79.000 (2x/minggu)"  
+2. Tambah Fisika + Kimia = Rp. 79.000 (2x/minggu)  
 
 19. info_paketlain_kelas12  
 Q : Selain matematika ada pelajaran apa aja untuk kelas 12 SMA?  
@@ -180,7 +180,7 @@ A : Untuk kelas 12 Merdeka, di bimbel online Colearn ada pilihan:
 Durasi 60 menit/kelas  
 Upgrade paket:  
 1. Tambah Fisika / Kimia = Rp. 49.000 (1x/minggu)  
-2. Tambah Fisika + Kimia = Rp. 79.000 (2x/minggu)"  
+2. Tambah Fisika + Kimia = Rp. 79.000 (2x/minggu)  
 
 20. Info_mapel_lain_SD  
 Q : Untuk SD selain matematika ada apa saja?A : Untuk SD di CoLearn fokusnya di pelajaran matematika saja Ibu
@@ -274,7 +274,7 @@ Q : Belajar dari 0 (dasar) bisa ga?
 A : Mohon maaf tidak bisa, di Colearn materinya berjalan mengikuti urutan silabus yang berjalan menggunakan Kurikulum Merdeka/2013
 
 43. Info_kelas_baru_sesuai_silabus
-Q : Kelas baru, materi dari pertama atau mengikuti timeline silabus?A : "Di CoLearn materi yang berjalan sesuai dengan silabus (urutan) materi dari pemerintah, untuk kelas yang terlewat bisa mengakses rangkuman materi berupa PDF.
+Q : Kelas baru, materi dari pertama atau mengikuti timeline silabus?A : Di CoLearn materi yang berjalan sesuai dengan silabus (urutan) materi dari pemerintah, untuk kelas yang terlewat bisa mengakses rangkuman materi berupa PDF.
 Kelas pertama dimulai sesuai dengan timeline yang ada di silabus
 
 44. Info_anak_baru_bergabung
@@ -380,10 +380,10 @@ Q : Klo seumpama mencoba 1 bln ternyata tidak lanjut tidak apa2 kan kak?
 A : Tidak apa-apa Ibu, karena di CoLearn tidak terikat
 70. info_tanya_soal
 Q : Bisa tanya soal?
-A : "Mohon maaf, nomor ini adalah untuk pendaftaran bimbel online CoLearn.
+A : Mohon maaf, nomor ini adalah untuk pendaftaran bimbel online CoLearn.
 Untuk pertanyaan soal bisa menggunakan fitur video penjelasan dengan cara:
 1. Ketikkan soal di website atau foto soal dengan Google Lens
-2. Pilih rujukan video penjelasan di Youtube CoLearn"
+2. Pilih rujukan video penjelasan di Youtube CoLearn
 71. info_tanya_pr_dikelas
 Q : Bisa tanya PR di kelas?
 A : Mohon maaf (Bapak/Ibu) untuk bertanya PR saat kelas berlangsung tidak bisa, dikarenakan untuk kelas di
@@ -391,14 +391,14 @@ CoLearn membahas konsep dan materi yang sedang dipelajari# FAQ Asuransi AXA Smar
 
 72. info_tanya_pr_diluar_kelas
 Q : Kalau ada tugas bisa konsul ngga kak?
-A : "Jika ada pertanyaan tugas bisa menggunakan fitur video penjelasan (bisa akses 24 jam) dengan cara:
+A : Jika ada pertanyaan tugas bisa menggunakan fitur video penjelasan (bisa akses 24 jam) dengan cara:
 1. Ketikkan soal di website atau foto soal dengan Google Lens
-2. Pilih rujukan video penjelasan di Youtube CoLearn"
+2. Pilih rujukan video penjelasan di Youtube CoLearn
 
 73. info_tanya_guru_jika_tidakpaham
 Q : Semisal anak sy tidak paham materi yang dijelaskan apa bisa coba bertanya dengan tutornya?
-A : "Jika ada yang belum dipahami di dalam kelas hanya bisa bertanya sesuai dengan materi yang dipelajari saat
-kelas berlangsung"
+A : Jika ada yang belum dipahami di dalam kelas hanya bisa bertanya sesuai dengan materi yang dipelajari saat
+kelas berlangsung
 
 74. info_tanyu_guru_pelajaran_disekolah
 Q : Bisa tanya pelajaran yang di sekolah sama gurunya?
@@ -437,7 +437,7 @@ A : Benar Ibu untuk pembayarannya di awal dan masa aktif periode belajar full 30
 
 80. info_cara_bayar
 Q : Kirimkan no rekening aja gausah pakai virtual account bisa kak?
-A : "Mohon maaf, CoLearn tidak tersedia untuk transfer ke rekening🙏 Karena pembayaran CoLearn secara resmi hanya melalui link pembayaran di atas dengan metode yang telah tersedia. Apabila ibu membuka link pembayaran di atas, maka akan muncul tampilan resmi dari CoLearn ibu"81. info_apakah_berbayar
+A : Mohon maaf, CoLearn tidak tersedia untuk transfer ke rekening🙏 Karena pembayaran CoLearn secara resmi hanya melalui link pembayaran di atas dengan metode yang telah tersedia. Apabila ibu membuka link pembayaran di atas, maka akan muncul tampilan resmi dari CoLearn ibu81. info_apakah_berbayar
 Q : Apakah ini berbayar?
 A : Untuk bimbelnya berbayar Ibu, untuk paket matematika Rp95.000/bulan
 82. Info_bayar_perbulan
@@ -450,14 +450,14 @@ A : Untuk biayanya akan tetap Rp95.000/bulan kecuali jika menambah Fisika/Kimia
 Q : Cara pembayaran Bank Lain gimana?
 A : Berikut nomor virtual account untuk (Bank ):
 1. Pilih Menu Pembayaran
-2. Pilih Menu "transfer bank lain"
+2. Pilih Menu transfer bank lain
 3. Pilih bank BNI
 4. Masukkan no VA
 85. info_carabayar_Mandiri
 Q : Cara pembayaran Mandiri gimana?
 A : Berikut nomor virtual account Bank Mandiri:
 1. Pilih Menu Pembayaran
-2. Cari "Xendit 88908"
+2. Cari Xendit 88908
 3. Masukkan no VA86. info_carabayar_BSI
 Q : Cara pembayaran BSI gimana?
 A : Berikut nomor virtual account Bank BSI:
@@ -496,14 +496,14 @@ A : Berikut kode pembayaran melalui Alfamart, bisa langsung tunjukkan ke kasir
 
 92. info_carabayar_QRIS
 Q : Cara pembayaran QRIS/E-wallet gimana?
-A : "Pembayaran melalui (e-wallet) bisa scan QR berikut ini
+A : Pembayaran melalui (e-wallet) bisa scan QR berikut ini
 
 93. info_link_pembayaran
 Q : Link pembayarannya yang mana?
 A : Berikut link pembayaran untuk kelas {kelas} kurikulum {kurikulum} paket matematika semester {1} harga Rp
 (harga).
 {link payment}
-Link/nomor Virtual Account hanya berlaku 1x transaksi hingga tanggal *{tanggal} pukul 23:59 WIB .* "
+Link/nomor Virtual Account hanya berlaku 1x transaksi hingga tanggal *{tanggal} pukul 23:59 WIB .* 
 
 94. info_link_aktif
 Q : Linknya bisa sampai besok nggak?
@@ -539,8 +539,8 @@ A : Untuk buku/modul tidak ada. Namun, setiap sesi kelas berakhir murid mendapat
 
 103. info_contoh_video_belajar
 Q : Video Kelas Semua Guru ada?
-A : "Berikut contoh video pembelajaran di CoLearn
-https://www.youtube.com/playlist?list=PLog6_k-sWUcAE4ONb3QbA1fvX9XqlIJdM"
+A : Berikut contoh video pembelajaran di CoLearn
+https://www.youtube.com/playlist?list=PLog6_k-sWUcAE4ONb3QbA1fvX9XqlIJdM
 
 104. info_perpanjang_paket
 Q : Cara perpanjang paket gimana?
@@ -553,7 +553,7 @@ A : Terkait dengan menambah profil baru, silakan mengikuti tutorial berikut:
 - Klik tombol garis tiga di pojok kiri atas
 - Klik Tambah/Ganti Profil
 - Klik Tambah Profil
-- Isi data diri dan simpan"
+- Isi data diri dan simpan
 
 106. info_nomor_login
 Q : Untuk masuk diaplikasi pakai nomor siapa?
@@ -602,7 +602,7 @@ A : Mohon maaf Ibu, WhatsApp ini diakses melalui sistem sehingga tidak bisa mela
 kendala / pertanyaan yang bisa kakak bantu jawab?
 117. info_penipuan
 Q : Ini bukan penipuan kan?
-A : Tidak perlu khawatir, seluruh pembayaran resmi atas nama "CoLearn", karna kami tidak menerima
+A : Tidak perlu khawatir, seluruh pembayaran resmi atas nama CoLearn, karna kami tidak menerima
 pembayaran atas nama perorangan. Nomor ini didapatkan karena Bapak / Ibu telah mengisi formulir dari iklan
 CoLearn di Instagram/Facebook, dan bisa cek melalui Instagram resmi @colearn.id118. Info_cara_klaim garansi
 Q : Cara klaim Garansi Gimana?
@@ -633,7 +633,7 @@ A : Jika pihak asrama atau pondok memberikan izin kepada anak untuk belajar sela
 
 124. info_kendala
 Q : Kak kok audionya ngga bisa ya?
-A : "Untuk kendala bisa menghubungi Tim Kakak Siaga melalui:
+A : Untuk kendala bisa menghubungi Tim Kakak Siaga melalui:
 · Chat di WA 081119103018
 Jam operasional: Senin-Minggu jam 11:00-20:00 WIB (di luar hari libur nasional)
 
@@ -706,11 +706,11 @@ Q : Ini waktunya WIB ya kak, kalau di maluku gimana?A : Benar Ibu, CoLearn mengg
 
 141. info_pembayaran_berhasil
 Q : Saya sudah melakukan pembayaran ya
-A : "Pembayaran sudah diterima, terima kasih.
+A : Pembayaran sudah diterima, terima kasih.
 Aktivasi akun akan dikirim *ke no. WA murid dari nomor CoLearn* (*081119103010 / 081119103011).* 
 *Mohon segera pilih jadwal melalui aplikasi.* Kelas sudah dapat diikuti setelah murid memilih jadwal di
 aplikasi . Untuk bantuan, chat WA Kakak Siaga: 081119103018 Senin-Minggu, 11.00 - 20.00 WIB (di luar hari libur
-nasional)."
+nasional).
     """,
     """
     Q: 1 kelas berapa anak

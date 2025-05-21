@@ -21,8 +21,8 @@ import configs
 
 import time
 
-server_local = mindsdb_sdk.connect(configs.MINDS_DB_API_ENDPOINT)
-agent = server_local.agents.get(configs.MINDS_DB_MODEL_NAME)
+# server_local = mindsdb_sdk.connect(configs.MINDS_DB_API_ENDPOINT)
+# agent = server_local.agents.get(configs.MINDS_DB_MODEL_NAME)
 
 class QuestionData(BaseModel):
     role: Optional[str] = None

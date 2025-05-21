@@ -14,8 +14,8 @@ CORRUPTED_TEXT_THRESHOLD = os.environ.get("CORRUPTED_TEXT_THRESHOLD", 0.3)
 PDF_TO_IMAGE_CONVERSION_DPI = os.environ.get("PDF_TO_IMAGE_CONVERSION_DPI", 300)
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-MINDS_DB_MODEL_NAME = os.environ.get("MINDS_DB_MODEL_NAME", "bank_statement_agent_prompted_4_4_25_11_23")
-MINDS_DB_API_ENDPOINT = os.environ.get("MINDS_DB_API_ENDPOINT", "http://20.174.12.117:47334")
+# MINDS_DB_MODEL_NAME = os.environ.get("MINDS_DB_MODEL_NAME", "bank_statement_agent_prompted_4_4_25_11_23")
+# MINDS_DB_API_ENDPOINT = os.environ.get("MINDS_DB_API_ENDPOINT", "http://20.174.12.117:47334")
 
 # Set API keys from environment variables
 GC_AI_API_KEY = os.getenv("GC_AI_API_KEY")
