@@ -774,6 +774,95 @@ Q: Kan sy minta jadwal Jumat nah, kalo sy Uda lakukan pembayaran dimulainya hari
 
 A: Setelah pembayaran akan ada proses aktivasi, kemudian bisa mulai belajar sesuai jadwal yang
 dipilih ibu. Jadi malam ini sudah bisa ikut kelasnya
+
+
+1. info_tanya_guru_dikelas
+Q : Apa bisa tanya guru di kelas?
+A : "Jika ada yang belum dipahami di dalam kelas hanya bisa bertanya sesuai dengan materi yang dipelajari saat kelas berlangsung"
+
+2. info_SD_seminggu_2_kali
+Q : Kalau saya mau ikut 2 kali seminggu bisa kak?
+A : "Mohon maaf tidak bisa Bapak/Ibu, jika ikut dua kali dalam seminggu materinya akan sama karena tetap berjalan sesuai dengan urutan silabus"
+
+3. info_coba_1_bulan
+Q : Kalau saya mau coba 1 bulan tapi bulan selanjutnya ga lanjut itu gimana ya kak?
+A : "Tidak apa-apa Ibu, karena di CoLearn tidak terikat"
+
+4. info_IPA_saja
+Q : Mau IPA saja apa bisa kak?
+A : "Mohon maaf untuk paket IPA saja tidak bisa. Untuk paket tersebut pembeliannya 1 paket dengan Matematika"
+
+5. info_ragu_jumlah_murid
+Q : Murid di kelas terlalu banyak
+A : "Baik bapak/ibu, kami paham kekhawatirannya, untuk guru-guru kami sudah melalui pelatihan selama 6 bulan sebelum mengajar murid.  
+Di CoLearn bisa coba kelasnya 1 bulan jika tidak cocok ada garansi uang kembali 100%."
+
+6. info_bentrok_jadwal
+Q : Kalau jadwal bentrok gimana kak?
+A : "Jika nanti tidak cocok/bentrok, jadwal bisa diubah maksimal 1 kali. atau Murid bisa mengubah jadwal maksimal 1 kali jika tidak cocok atau bentrok."
+
+7. info_baru_join
+Q : Kalau baru ikut sekarang apa gak ketinggalan?
+A : "Di CoLearn materi yang berjalan sesuai dengan silabus (urutan) materi dari pemerintah, untuk kelas yang terlewat bisa mengakses rangkuman materi berupa PDF.
+Kelas pertama dimulai sesuai dengan timeline yang ada di silabus"
+
+8. info_kelas_lebih_tinggi
+Q : Apa boleh ambil kelas diatasnya? Anak saya sudah bisa materi di kelasnya
+A : "Baik bapak/ibu kami paham, untuk pembelajaran di CoLearn sebaiknya mengikuti kelas anak saat ini. Karena di Colearn materinya berjalan mengikuti silabus pemerintah. Jika tidak mengikuti sesuai kelasanak dikhawatirkan tidak terbantu sebab materinya berbeda."
+
+9. info_promo_daftar_2_orang
+Q : Ada promo gak kalau daftar 2 orang?
+A : "Mohon maaf saat ini tidak ada program diskon Bapak/Ibu. Sehingga harga yang berlaku Rp 95,000/bulan untuk masing-masing murid."
+
+10. info_tanya_tugas_di_kelas
+Q : Bisa tanya tugas sekolah di kelas gak?
+A : "Mohon maaf untuk bantuan mengerjakan PR tidak tersedia. Jika ada pertanyaan/tugas bisa menggunakan fitur video penjelasan (bisa akses 24 jam) dengan cara:
+
+1. Ketikkan soal di website atau foto soal dengan Google Lens
+2. Pilih rujukan video penjelasan di Youtube CoLearn"
+
+11. info_kapan_kelas_mulai
+Q : Kelasnya dimulai kapan?
+A : "Setelah pembayaran akan ada proses aktivasi, kemudian bisa mulai belajar sesuai jadwal yang dipilih."
+
+12. info_panggilan
+Q : Bisa saya telfon kak?
+A : "Mohon maaf Bapak/Ibu, WhatsApp ini diakses melalui sistem sehingga tidak bisa melakukan panggilan. Apakah ada kendala / pertanyaan yang bisa kakak bantu jawab?"
+
+13. info_anak_malu
+Q : Anak saya malu kalau belajarnya bareng gitu
+A : "Kami paham tidak semua anak nyaman dan merasa malu berpartisipasi. Di CoLearn kami mendorong murid untuk lebih berani bertanya di kelas supaya mereka dapat membangun kepercayaan dirinya."
+
+14. info_pilih_guru
+Q : Pilihin gurunya kak yang sabar dan gak bikin tegang
+A : "Untuk guru-guru kami semua sama kualitasnya karena sudah melalui pelatihan selama 6 bulan sebelum mengajar murid, Bapak/Ibu"
+
+15. info_diskon
+Q : Ada diskon gak kak?
+A : "Mohon maaf saat ini tidak ada program diskon, Bapak/Ibu"
+
+16. info_booking_slot
+Q : Bisa booking dulu kak?
+A : "Untuk pendaftarannya bisa kapan saja selama jadwal masih tersedia. Namun setelah pembayaran akan ada proses aktivasi dan setelah itu bisa mulai belajar sesuai jadwal yang dipilih. Apakah berkenan?"
+
+17. info_kelas_pembahasan_soal
+Q : Dikelasnya ini pembahasan soal ya kak?
+A : "Di CoLearn, kelas bukan hanya pembahasan soal. Kami fokus pada pembahasan materi dengan konsep yang besar dibagi menjadi konsep-konsep kecil agar mudah dipahami. Selama kelas, ada juga pembahasan soal bersama untuk mengetahui pemahaman murid."
+
+18. info_bantu_pr
+Q : Bantu PR anak saya
+A : "Mohon maaf untuk bantuan mengerjakan PR tidak tersedia. Jika ada pertanyaan/tugas bisa menggunakan fitur video penjelasan (bisa akses 24 jam) dengan cara:   
+
+1. Ketikkan soal di website atau foto soal dengan Google Lens   
+2. Pilih rujukan video penjelasan di Youtube CoLearn"
+
+19. info_anak_solat
+Q : Kalau waktu solat bagaimana kak?
+A : "Di CoLearn, kami memahami pentingnya ibadah sholat bagi siswa Muslim. Meskipun tidak ada kebijakan khusus yang disebutkan, CoLearn menerapkan fleksibilitas dalam pembelajaran. Jika ada materi yang terlewat, siswa dapat mengakses video review dan rangkuman materi dalam bentuk PDF yang disediakan setelah setiap sesi kelas"
+
+20. info_tanya_materi_sekolah
+Q : Kalau nanya materi di sekolah bisa kak?
+A : “Mohon maaf Bapak/Ibu murid hanya bisa bertanya sesuai dengan topik yang sedang dibahas selama kelas berlangsung
 """
 ]
 
