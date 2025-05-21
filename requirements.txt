@@ -22,3 +22,6 @@ yfinance
 lancedb
 tantivy
 openai==1.73.0
+pandas
+plotly
+kaleido
