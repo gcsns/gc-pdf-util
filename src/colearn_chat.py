@@ -46,6 +46,16 @@ if(configs.LOAD_COLEARN == True):
     )
     logger.info("Colearn Docs added to vectorDB!")
 
+
+
+
+
+
+
+
+
+
+
 def colearnChat(req: ChatRequest) -> str:
     # Import the messages form the request
     formatted_messages = [Message(role=i.role, content=i.content) for i in req.messages]
@@ -68,6 +78,17 @@ def colearnChat(req: ChatRequest) -> str:
         show_tool_calls=True,
     )
 
+    class_schedule_agent = Agent(
+        name="Class Schedule Agent",
+        role="Can get the class schedule.",
+        model=get_llm(configs.COLEARN_LLM_CHOICE),
+        description="Retrieves the class schedule.",
+        instructions=["Do not process response, give it as you receive from get_class_schedule.", "YOU MUST RETURN THE JSON AS IS TO THE USER"],
+        tools=[get_class_schedule], 
+        show_tool_calls=True, 
+        markdown=False, 
+    )
+
     query_handler_agent = Agent(
         name="Query Handler Agent",
         role=colearnMainRole,
@@ -76,9 +97,12 @@ def colearnChat(req: ChatRequest) -> str:
         instructions=colearnMainInstructions,  
         search_knowledge=True,
         knowledge=knowledge_base,
-        team=[maker_agent],
+        team=[maker_agent, class_schedule_agent],
         show_tool_calls=True
     )
+
+    
+
 
     user_message = formatted_messages[-1].content
     
@@ -122,10 +146,15 @@ def get_class_schedule(kelas: int, sem: int= 2, year: int= 2025, curriculum: str
             }]
         }
     """
+
+    logger.debug("Getting class schedule for {} {} {} {} {}".format(kelas, sem, year, curriculum, subject))
     url = "https://e2oc2ege54.execute-api.ap-southeast-1.amazonaws.com/slotschedule?kelas={}&sem={}&year={}&curriculum={}&subject={}".format(kelas, sem, year, curriculum, subject)
 
 
     response = requests.request("GET", url, headers={}, data={})
+
+    logger.debug("Class schedule for {} {} {} {} {}".format(kelas, sem, year, curriculum, subject))
+    logger.debug(response.json())
 
     return json.dumps({
         "schedule": response.json()
@@ -133,9 +162,6 @@ def get_class_schedule(kelas: int, sem: int= 2, year: int= 2025, curriculum: str
 
 
 def get_class_chedule_from_agent(req: GetClassScheduleRequest) -> str:
-    agent = Agent(tools=[get_class_schedule], show_tool_calls=True, markdown=False, 
-            #   instructions=["Do not process response, give it as you receive from get_class_schedule"]
-            )
     userMessage = req.message
     response_string = agent.run(userMessage, stream=False)
     return response_string.content
