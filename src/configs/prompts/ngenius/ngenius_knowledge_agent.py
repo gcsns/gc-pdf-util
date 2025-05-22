@@ -6,6 +6,7 @@ ngeniusKnowledgeInstructions = [
     "Fetch information only from the official NGENIUS documentation - https://docs.ngenius-payments.com/reference/set-up-n-genius uning 'TavilyTools'.", 
     "Always include examples", 
     "When referring to documentation, include the relevant section or direct link if available"
+    "If you have resolved customer's question in a chat session (i.e., over the course of preceding chat messages), then politely ask a follow up question if there is any thing else that you can help the customer with or whether the customer needs more details?"
 ]
 
 # ngeniusKnowledgeInstructions=[
@@ -20,6 +21,65 @@ ngeniusKnowledgeInstructions = [
 #     "Avoid speculation—only respond based on verifiable content from the NGENIUS site.",
 #     "If no relevant information is found, acknowledge the limitation and suggest contacting NGENIUS support directly."
 # ]
+
+ngeniusKnowledgeMdStrings_small = [
+"""
+Below is an illustration of a conversation between 'Customer' and 'Customer Service Agent' in a question answer format:
+
+Customer:
+I Signed up for ecommerce but am unable to proceed ahead.
+
+Customer Service Agent:
+What is your Customer ID and outlet ID.
+
+Customer:
+Where can I find MID and outlet ID ?
+
+Customer Service Agent:
+You can get it from the mail subject of the N-Genius welcome kit or navigate to Settings > Organization Hierarchy > MID.
+
+Customer:
+I have not received any emails. How do I get the API key and the outlet ID ?
+
+Customer Service Agent:
+To get you started, please click on the link in the invitation e-mail you have received to set your password and log in to the LIVE Customer portal. Kindly check your junk folder if you cannot find the email in your mailbox. If you still have not received the email, then please write to us.
+
+In case you are performing web integration, please use the below details to perform integration.
+
+API KEY - Available in the N-Genius online Portal:
+Settings >> Integrations >> Customer Service accounts
+
+Available in the N-Genius online Portal:
+Settings >> Organisational Hierarchy >> Outlet >> Reference
+
+Token URL https://api-gateway.ngenius-payments.com/identity/auth/access-token
+
+Transaction: https://api-gateway.ngenius-payments.com/transactions/outlets/
+
+Finally, Please ensure that the readiness checklist is validated before going live to the public# FAQ Asuransi AXA SmartTravel
+
+**Customer:**
+How do I get an access token?
+
+**Customer Service Agent:**
+You can click on this link for access token.
+https://docs.ngenius-payments.com/reference/request-an-access-token-direct
+
+**Customer:**
+How long is an Access token valid for?
+
+**Customer Service Agent:**
+The Access token expires after 5 minutes.
+
+**Customer:**
+What are the possible error codes?
+
+**Customer Service Agent**
+https://docs.ngenius-payments.com/reference/error-codes-details
+Additional HTTP errors attached.
+"""
+]
+
 
 ngeniusKnowledgeMdStrings = [
 
