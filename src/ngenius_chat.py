@@ -3,8 +3,8 @@ from agno.vectordb.qdrant import Qdrant
 from agno.knowledge.document import DocumentKnowledgeBase
 from agno.tools.tavily import TavilyTools
 from agno.document.base import Document
-from agno.memory.v2.db.sqlite import SqliteMemoryDb
-from agno.memory.v2.memory import Memory
+# from agno.memory.v2.db.sqlite import SqliteMemoryDb
+# from agno.memory.v2.memory import Memory
 from configs.prompts.ngenius.ngenius_knowledge_agent import ngeniusKnowledgeRole, ngeniusKnowledgeMdStrings, ngeniusKnowledgeMdStrings_small, ngeniusKnowledgeDescription, ngeniusKnowledgeInstructions
 from configs.prompts.ngenius.ngenius_main_agent import ngeniusMainDescription, ngeniusMainDescriptionSmall, ngeniusMainInstructions, ngeniusMainInstructionsSmall, ngeniusMainRole, ngeniusMainRoleSmall
 
@@ -66,8 +66,8 @@ if(configs.LOAD_NGENIUS == True):
     logger.info("Ngenius Docs added to vectorDB!")
 
 
-memory_db = SqliteMemoryDb(table_name="memory", db_file="tmp/brain.db")
-memory = Memory(db=memory_db)
+# memory_db = SqliteMemoryDb(table_name="memory", db_file="tmp/brain.db")
+# memory = Memory(db=memory_db)
 
 
 def ngeniusChat(req: ChatRequest) -> str:
@@ -164,8 +164,8 @@ def ngeniusChat(req: ChatRequest) -> str:
         """
     ],
         team=[ngenius_documentation_agent, small_kb_agent, faq_agent],
-        memory=memory,
-        enable_agentic_memory=True,
+        # memory=memory,
+        # enable_agentic_memory=True,
         show_tool_calls=False
     )
 

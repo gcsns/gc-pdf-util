@@ -8,10 +8,6 @@ from configs.prompts.colearn.colearn_main_agent import colearnMainDescription, c
 from pydantic import BaseModel
 from typing import List
 from fastapi import HTTPException, status
-from agno.storage.sqlite import SqliteStorage
-from agno.memory.v2.db.sqlite import SqliteMemoryDb
-from agno.memory.v2.memory import Memory
-from agno.reranker.cohere import CohereReranker
 import os
 import requests, httpx
 import threading
