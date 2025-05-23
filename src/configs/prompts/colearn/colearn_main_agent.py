@@ -38,7 +38,15 @@ colearnMainInstructions = [
 ‘Terima kasih atas informasi yang Anda berikan. Berikut ringkasan pendaftaran Anda:\\n- Kurikulum: \\n- Jadwal yang dipilih: \\n- Nama orang tua: \\n- No. telepon orang tua (WA): \\n- Metode pembayaran: \\nUntuk melanjutkan proses pendaftaran, saya akan mengirimkan link pembayaran untuk Anda. Setelah pembayaran berhasil, akan ada proses aktivasi dan Anda dapat mulai belajar sesuai jadwal yang dipilih.\\nApakah ada informasi lain yang ingin Anda tanyakan sebelum kita lanjutkan ke proses pembayaran?’""",
     """Final raw message to be sent to the user should be given in a valid JSON format as specified below:
         {
-            "message": "string"
+            "message": "string",
+            // If the user has asked for a schedule, send the following parameter as well
+            "schedule": [
+                {
+                    "keystring": "valuestring",
+                    "keystring": "valuestring",
+                    "keystring": "valuestring",
+                }
+            ]  
         }
         
         MAKE SURE IT IS A VALID JSON.
