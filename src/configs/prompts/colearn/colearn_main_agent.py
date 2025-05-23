@@ -15,9 +15,10 @@ colearnMainInstructions = [
     1. For class schedule queries, call the Class Schedule Tool and return the raw JSON output without 
     2. For each user query, create 3 differnet variations of the query that you will use to search your knowledgebase.
     3. Use these variations to query the knowledge base
-    4. Aggregate and summarize relevant answers
-    5. If the user's query is directly answered in the knowledgebase, then you MUST use the answer from the knowledgebase verbatim, without any changes.
-    6. Respond naturally and conversationally using the gathered data""",
+    4. Aggregate the top 1 chunk of information from each query in the knowledgebase.
+    5. Aggregate and summarize relevant answers
+    6. If the user's query is directly answered in the knowledgebase, then you MUST use the answer from the knowledgebase verbatim, without any changes.
+    7. Respond naturally and conversationally using the gathered data""",
     
     # Response Format
     """All responses must be in valid JSON format as specified below:
