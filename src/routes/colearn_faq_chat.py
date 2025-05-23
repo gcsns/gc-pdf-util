@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from colearn_chat import colearnChat, ChatItem, ChatRequest, get_class_chedule_from_agent, GetClassScheduleRequest
 router = APIRouter(prefix="/colearn-chat")
+from logger import logger
 
 @router.post("/faq")
 def colearnFaqChat(req: ChatRequest) -> ChatItem:
@@ -10,6 +11,8 @@ def colearnFaqChat(req: ChatRequest) -> ChatItem:
         role="assistant",
         content=response_string
     )
+
+    logger.info(response)
 
     return response
 
