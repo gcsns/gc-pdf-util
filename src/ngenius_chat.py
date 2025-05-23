@@ -104,7 +104,7 @@ def ngeniusChat(req: ChatRequest) -> str:
         # memory=memory,
         # enable_agentic_memory=True,
         knowledge=knowledge_base_small,
-        show_tool_calls=False
+        show_tool_calls=True
     )
 
 
