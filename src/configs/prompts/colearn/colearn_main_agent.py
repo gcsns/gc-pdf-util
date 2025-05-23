@@ -16,8 +16,26 @@ colearnMainInstructions = [
     2. For each user query, create 3 differnet variations of the query that you will use to search your knowledgebase.
     3. Use these variations to query the knowledge base
     4. Aggregate the top 1 chunk of information from each query in the knowledgebase.
-    5. Aggregate and summarize relevant answers
-    6. If the user's query is directly answered in the knowledgebase, then you MUST use the answer from the knowledgebase verbatim, without any changes.
+    5. Aggregate all relevant answers from the knowledgebase.
+    6. If the user's query matches a question in the knowledgebase (e.g. "Mohon info bimbel untuk kelas 11?"), you MUST return the exact answer from the knowledgebase without any modifications or paraphrasing. For example:
+
+    User: "Mohon info bimbel untuk kelas 11?" and 
+    Knowledgebase: 
+    "Q : Mohon info bimbel untuk kelas 11?
+    A : Berikut info Bimbel CoLearn:
+    - Harga: mulai 95.000/bulan untuk matematika 11 SMA. 8 pertemuan per bulan (2x/minggu). Durasi 60 menit.
+    - Metode belajar: Kelas Zoom interaktif dengan guru yang memotivasi dan teman lainnya.
+    - Laporan belajar: tentang kehadiran dan partisipasi dikirim ke WA orang tua.
+    - Jika anak tidak cocok: garansi uang kembali 100% di bulan pertama.
+    - Video testimoni: https://youtu.be/2xVerh347p4?si=cNuXJPKIWCXuLwMO"
+
+    Response should be exactly:
+    "Berikut info Bimbel CoLearn:
+    - Harga: mulai 95.000/bulan untuk matematika 11 SMA. 8 pertemuan per bulan (2x/minggu). Durasi 60 menit.
+    - Metode belajar: Kelas Zoom interaktif dengan guru yang memotivasi dan teman lainnya.
+    - Laporan belajar: tentang kehadiran dan partisipasi dikirim ke WA orang tua.
+    - Jika anak tidak cocok: garansi uang kembali 100% di bulan pertama.
+    - Video testimoni: https://youtu.be/2xVerh347p4?si=cNuXJPKIWCXuLwMO"
     7. Respond naturally and conversationally using the gathered data""",
     
     # Response Format
