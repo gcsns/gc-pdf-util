@@ -30,3 +30,5 @@ anthropic
 qdrant-client
 tavily-python
 sqlalchemy
+litellm
+cohere

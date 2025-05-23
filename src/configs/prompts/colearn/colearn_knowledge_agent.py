@@ -13,7 +13,7 @@ colearnKnowledgeInstructions = [
 
 colearnKnowledgeMdStrings = [
     """
-    # FAQ- CoLearn 2025
+# FAQ- CoLearn 2025
 
 basic_greeting
 Q : Hi / Hello / Halo / Hey / Selamat pagi / siang / sore / malam
@@ -713,7 +713,7 @@ aplikasi . Untuk bantuan, chat WA Kakak Siaga: 081119103018 Senin-Minggu, 11.00 
 nasional).
     """,
     """
-    Q: 1 kelas berapa anak
+Q: 1 kelas berapa anak
 A: Di CoLearn, jumlah maksimal murid per kelas bervariasi tergantung tingkatannya. Untuk SD maksimal 30 murid, sedangkan untuk SMP dan SMA maksimal 70 murid per kelas.
 
 Q: Adakah yg lebih sedikit kelasnya

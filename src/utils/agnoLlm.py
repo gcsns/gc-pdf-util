@@ -1,6 +1,7 @@
 from agno.models.openai import OpenAIChat
 from agno.models.azure import AzureOpenAI
 from agno.models.aws.claude import Claude
+from agno.models.anthropic import Claude as AnthropicClaude
 from logger import logger
 import configs
 
@@ -25,8 +26,15 @@ def get_llm(llm: str, temperature: float = 0.0):
         return model
     elif llm.startswith('claude'):
         model = Claude(
+            # id="claude-3-7-sonnet-20250219",
             id=model_name,
             temperature=temperature,
             )
+        return model
+    elif llm.startswith('anthropic'):
+        model = AnthropicClaude(
+            id=model_name,
+            temperature=temperature,
+        )
         return model
     raise Exception(f'Invalid model: {llm}')

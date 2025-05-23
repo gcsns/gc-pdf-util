@@ -34,6 +34,7 @@ QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
 QDRANT_URL = os.getenv("QDRANT_URL")
 
 QDRANT_COLEARN_COLLECTION_NAME = os.getenv("QDRANT_COLEARN_COLLECTION_NAME", "colearn-test-qdrant-2")
+# COLEARN_LLM_CHOICE = os.getenv("COLEARN_LLM_CHOICE", "claude:anthropic.claude-3-5-sonnet-20240620-v1:0")
 COLEARN_LLM_CHOICE = os.getenv("COLEARN_LLM_CHOICE", "claude:anthropic.claude-3-5-sonnet-20240620-v1:0")
 LOAD_COLEARN = os.getenv("LOAD_COLEARN", "True") == "True"
 
@@ -49,3 +50,5 @@ APIFY_API_TOKEN=os.getenv("APIFY_API_TOKEN")
 QDRANT_NGENIUS_COLLECTION_NAME = os.getenv("QDRANT_NGENIUS_COLLECTION_NAME", "ngenius-test-qdrant-2")
 LOAD_NGENIUS = os.getenv("LOAD_NGENIUS", "True") == "True"
 NGENIUS_LLM_CHOICE = os.getenv("NGENIUS_LLM_CHOICE", "openai:o4-mini")
+
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
