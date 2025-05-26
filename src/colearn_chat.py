@@ -106,7 +106,7 @@ def colearnChat(req: ChatRequest) -> str:
     query_handler_agent = Agent(
         name="Query Handler Agent",
         role=colearnMainRole,
-        model=get_llm(configs.COLEARN_LLM_CHOICE),
+        model=get_llm(configs.COLEARN_LLM_CHOICE, structured_outputs=True),
         description=colearnMainDescription,
         instructions=colearnMainInstructions,
         add_datetime_to_instructions=True,
@@ -126,21 +126,31 @@ def colearnChat(req: ChatRequest) -> str:
 
     user_message = formatted_messages[-1].content
     
+    # # Prod version
+    # response_string = query_handler_agent.run(
+    #     user_message, 
+    #     markdown=True,
+    #     stream=False,
+    #     add_messages=formatted_messages[:-1]
+    # )
+
+    # Dev version to test with only last message
     response_string = query_handler_agent.run(
         user_message, 
         markdown=True,
         stream=False,
-        add_messages=formatted_messages[:-1]
+        # add_messages=formatted_messages[:-1]
     )
 
     logger.debug("Response string: {}".format(response_string.content))
     try:
         json_response = findAndParseJsonObject(response_string.content)
+        return json.dumps(json_response)
     except Exception as e:
         logger.error("Error parsing JSON: {}".format(e))
-        return {"message": response_string.content}
+        # Return the raw content in the expected JSON structure
+        return json.dumps({"message": response_string.content})
     
-    return json.dumps(json_response)
     # return json_response.message
 
 

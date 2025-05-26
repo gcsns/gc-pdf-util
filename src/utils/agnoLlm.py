@@ -5,7 +5,7 @@ from agno.models.anthropic import Claude as AnthropicClaude
 from logger import logger
 import configs
 
-def get_llm(llm: str, temperature: float = 0.0):
+def get_llm(llm: str, temperature: float = 0.0, structured_outputs = False):
     splitted = llm.split(":", 1)
     model_name = None
     if(len(splitted) > 1):
@@ -27,6 +27,7 @@ def get_llm(llm: str, temperature: float = 0.0):
     elif llm.startswith('claude'):
         model = Claude(
             # id="claude-3-7-sonnet-20250219",
+            structured_outputs=structured_outputs,
             id=model_name,
             temperature=temperature,
             )

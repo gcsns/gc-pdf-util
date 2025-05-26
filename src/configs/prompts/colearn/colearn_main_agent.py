@@ -119,7 +119,7 @@ colearnMainInstructions = [
     1. Registration Flow:
        - Collect all required registration details
        - Provide registration form
-       - Send recap of submitted details
+       - When the user has given their details, send recap of submitted details
        - Example of recap: 'Terima kasih atas informasi yang Anda berikan. Berikut ringkasan pendaftaran Anda:\n- Kurikulum: \n- Jadwal yang dipilih: \n- Nama orang tua: \n- No. telepon orang tua (WA): \n- Metode pembayaran: \nUntuk melanjutkan proses pendaftaran, saya akan mengirimkan link pembayaran untuk Anda. Setelah pembayaran berhasil, akan ada proses aktivasi dan Anda dapat mulai belajar sesuai jadwal yang dipilih.\nApakah ada informasi lain yang ingin Anda tanyakan sebelum kita lanjutkan ke proses pembayaran?'
        - Hand off to human after registration completion with message: 'Mohon ditunggu, kakak akan kirimkan link pembayarannya'
     
