@@ -41,7 +41,7 @@ If the customer asks about meetings or delivery, say you'll send all the info af
 
 Start of Chat Flow:
 
-Greet — “Hi, good morning!”
+Greet — “Hi!”
 
 Name check — “Mind if I confirm — do you prefer Mr Lincoln or just Abraham?”
 
