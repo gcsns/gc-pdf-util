@@ -51,8 +51,8 @@ ARG UID=1001
 ARG GID=$UID
 
 #use non root user
-# RUN groupadd --gid $GID $GROUP
-# RUN useradd --uid $UID --gid $GID -m $USER
+RUN groupadd --gid $GID $GROUP
+RUN useradd --uid $UID --gid $GID -m $USER
 
 WORKDIR /app
 
