@@ -127,10 +127,11 @@ def colearnChat(req: ChatRequest) -> str:
     user_message = formatted_messages[-1].content
     
     response_string = query_handler_agent.run(
-        user_message, 
+        # user_message, 
+        messages=formatted_messages,
         markdown=True,
         stream=False,
-        add_messages=formatted_messages[:-1]
+        # add_messages=formatted_messages[:-1]
     )
 
     logger.debug("Response string: {}".format(response_string.content))
