@@ -21,10 +21,10 @@ image:
   fromGcHub: true
   #These are only used if auth.docker.json is not found. For e.g. - in CI environment
   hubCredentials:
-    username: ""
-    password: ""
+    username: "ayushvtf"
+    password: "P@ssw0rd@123"
   pullSecrets: []
-  versionOverride: "0.0.14"
+  versionOverride: "0.0.12-axa-internal-5"
 
 service:
   type: ClusterIP

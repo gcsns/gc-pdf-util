@@ -22,6 +22,8 @@ RUN apt-get install -y \
     texlive-luatex && \
     rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && apt-get install -y pandoc
+
 # Rebuild the font cache
 RUN fc-cache -fv
 
@@ -61,18 +63,19 @@ USER $USER
 # Set EasyOCR to store its models and files in the .cache directory
 ENV EASYOCR_MODULE_PATH=/home/$USER/.cache/EasyOCR
 
-COPY --chown=$USER:$GROUP ./requirements.txt /app/requirements.txt
+COPY ./requirements.txt /app/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir uvicorn
 RUN pip install --no-cache-dir --timeout=600 -r requirements.txt
+RUN pip install openai -U
 
-COPY --chown=$USER:$GROUP ./requirements-dev.txt /app/requirements-dev.txt
+COPY ./requirements-dev.txt /app/requirements-dev.txt
 RUN pip install --no-cache-dir -r requirements-dev.txt
 
-COPY --chown=$USER:$GROUP ./src /app/src
-COPY --chown=$USER:$GROUP ./tests /app/tests
+COPY ./src /app/src
+COPY ./tests /app/tests
 WORKDIR /app/src
 
-CMD ["/home/gcsns/.local/bin/uvicorn", "app:app", "--host=0.0.0.0", "--port=9433", "--reload"]
+CMD ["uvicorn", "app:app", "--host=0.0.0.0", "--port=9433", "--reload"]
 EXPOSE 9433
