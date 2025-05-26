@@ -56,9 +56,9 @@ ARG GID=$UID
 
 WORKDIR /app
 
-# RUN chown $USER:$GROUP ./
+RUN chown $USER:$GROUP ./
 
-# USER $USER
+USER $USER
 
 # Set EasyOCR to store its models and files in the .cache directory
 ENV EASYOCR_MODULE_PATH=/home/$USER/.cache/EasyOCR
