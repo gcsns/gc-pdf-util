@@ -24,7 +24,7 @@ image:
     username: "ayushvtf"
     password: "P@ssw0rd@123"
   pullSecrets: []
-  versionOverride: "0.0.12-axa-internal-5"
+  versionOverride: "0.0.17"
 
 service:
   type: ClusterIP
@@ -56,12 +56,12 @@ certificates:
   externalIssuerKind: "ClusterIssuer"
 
 authServer:
-  baseUrl: "https://nboard-auth.gamechange.dev"
+  baseUrl: "https://nboard-auth-qa.gamechange.dev"
 
 additionalEnvConfig:
   MINDS_DB_API_ENDPOINT: https://gc-ai-bot.gamechange.dev
   MINDS_DB_MODEL_NAME: ai_agent_8_4_25
-  GC_AI_PARSERS_BASE_URL: https://gc-ai-parsers.gamechange.dev
+  GC_AI_PARSERS_BASE_URL: https://gc-ai-parsers-qa.gamechange.dev
   AZURE_OPENAI_MODEL_NAME: gpt-4o
   AZURE_OPENAI_ENDPOINT: https://gc-ce.openai.azure.com
   AZURE_OPENAI_DEPLOYMENT: gpt-4o
