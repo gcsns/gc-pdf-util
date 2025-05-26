@@ -24,7 +24,7 @@ image:
     username: "ayushvtf"
     password: "P@ssw0rd@123"
   pullSecrets: []
-  versionOverride: "0.0.17"
+  versionOverride: "0.0.18"
 
 service:
   type: ClusterIP
