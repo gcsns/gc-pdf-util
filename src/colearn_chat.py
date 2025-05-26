@@ -126,20 +126,11 @@ def colearnChat(req: ChatRequest) -> str:
 
     user_message = formatted_messages[-1].content
     
-    # # Prod version
-    # response_string = query_handler_agent.run(
-    #     user_message, 
-    #     markdown=True,
-    #     stream=False,
-    #     add_messages=formatted_messages[:-1]
-    # )
-
-    # Dev version to test with only last message
     response_string = query_handler_agent.run(
         user_message, 
         markdown=True,
         stream=False,
-        # add_messages=formatted_messages[:-1]
+        add_messages=formatted_messages[:-1]
     )
 
     logger.debug("Response string: {}".format(response_string.content))
