@@ -52,3 +52,5 @@ LOAD_NGENIUS = os.getenv("LOAD_NGENIUS", "True") == "True"
 NGENIUS_LLM_CHOICE = os.getenv("NGENIUS_LLM_CHOICE", "openai:o4-mini")
 
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+
+ENBD_CHAT_PRODUCT_QUERY_LLM = os.getenv("ENBD_CHAT_PRODUCT_QUERY_LLM", "azure:gpt-4o")

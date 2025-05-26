@@ -3,7 +3,7 @@ from fastapi import FastAPI, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from utils.verifyaccesstoken import VerifyAccessTokenUtil, VerifiedToken, JwtSubjectType
 # from routes import health, pdf, video, stream_chat, axa_travel_entitlements_chat, finance_report_gen, colearn_faq_chat
-from routes import health, pdf, video, axa_travel_entitlements_chat, finance_report_gen, colearn_faq_chat, ngenius_faq_chat
+from routes import health, pdf, video, axa_travel_entitlements_chat, finance_report_gen, colearn_faq_chat, ngenius_faq_chat, enbd_chat
 from asgi_correlation_id import CorrelationIdMiddleware
 from fastapi.middleware.cors import CORSMiddleware
 import configs
@@ -49,3 +49,5 @@ if(configs.LOAD_COLEARN == True):
 
 if(configs.LOAD_NGENIUS == True):
     app.include_router(ngenius_faq_chat.router, prefix='/api', dependencies=[Depends(validateToken)], tags=["Ngenius FAQ Chat"])
+
+app.include_router(enbd_chat.router, prefix='/api', dependencies=[Depends(validateToken)], tags=["Enbd Chat"])
