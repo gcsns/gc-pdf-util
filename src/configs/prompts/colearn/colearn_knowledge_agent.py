@@ -15,18 +15,6 @@ colearnKnowledgeMdStrings = [
     """
 # FAQ- CoLearn 2025
 
-basic_greeting
-Q : Hi / Hello / Halo / Hey / Selamat pagi / siang / sore / malam
-A : Hello! I'm Alex from CoLearn. How can I help you today?
-
-Interest_based_greeting
-Q : Hi, I saw your ad on Instagram / I was referred by my friend
-A : Hi! Thank you for reaching out to us. CoLearn is an online learning platform specializing in mathematics and science subjects (IPA). We offer live interactive classes taught by qualified teachers who have undergone 6 months of training before teaching students. Would you like to know more about our programs, pricing, or anything else about CoLearn?
-
-time_specific_greeting
-Q : Good morning / Good afternoon / Good evening
-A : Good [morning/afternoon/evening]! I'm Alex from CoLearn. How may I help you?
-
 pre_sales_inquiry
 Q : I'm thinking of enrolling / I want to register
 A : Hello! I'm excited you're considering CoLearn for your child's education. I'm Alex, and I'd be happy to guide you through our programs, explain how our online classes work, and answer any questions you might have. What grade is your child in?
@@ -677,7 +665,7 @@ A : Untuk mengakses rangkuman pdf materi dan video review, buka aplikasi CoLearn
 'Bimbel'
 
 134. info_kelas_berisik
-Q : Saya khawatir kalau kelasnya berisik bagaimana?# FAQ Asuransi AXA SmartTravel
+Q : Saya khawatir kalau kelasnya berisik bagaimana?
 
 A : Baik, kakak paham kekhawatirannya untuk guru-guru kami sudah melalui pelatihan untuk mengajar online dan membuat kelas berjalan kondusif. Jika berkenan, bisa daftar 1 bulan dahulu apabila tidak cocok bisa klaim garansi uang kembali 100%
 

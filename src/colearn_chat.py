@@ -1,5 +1,7 @@
 from agno.agent import Agent
 from agno.vectordb.qdrant import Qdrant
+from agno.vectordb.lancedb import LanceDb
+from agno.vectordb.search import SearchType
 from agno.knowledge.document import DocumentKnowledgeBase
 from agno.document.base import Document
 from configs.prompts.colearn.colearn_knowledge_agent import colearnKnowledgeRole, colearnKnowledgeMdStrings, colearnKnowledgeDescription, colearnKnowledgeInstructions
@@ -12,6 +14,7 @@ import os
 import requests, httpx
 import threading
 import time
+import tempfile
 
 from agno.models.message import Message
 from utils.embeddings import get_embeddings
@@ -19,6 +22,7 @@ from utils.agnoLlm import get_llm
 from utils.findandparsejsonobject import findAndParseJsonObject
 import configs, json
 from logger import logger
+from typing import Optional
 
 # Create data directory if it doesn't exist
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
@@ -33,8 +37,18 @@ class ChatItem(BaseModel):
 class ChatRequest(BaseModel):
     messages: List[ChatItem]
 
+class ClassSchedule(BaseModel):
+    days: str
+    time: str
+    teacher: str
+    seatsLeft: int
+    classStarted: bool
+    subject: str
+    course_id: str
+
 class GetClassScheduleRequest(BaseModel):
     message: str
+    schedule: Optional[List[ClassSchedule]] = None
 
 if(configs.LOAD_COLEARN == True):
     # Load documents from the data/docs directory
@@ -42,6 +56,7 @@ if(configs.LOAD_COLEARN == True):
 
     embedder = get_embeddings(configs.DEFAULT_EMBEDDINGS_MODEL)
 
+    # Qdrant DB 
     vector_db = Qdrant(
         collection=configs.QDRANT_COLEARN_COLLECTION_NAME,
         url=configs.QDRANT_URL,
@@ -55,7 +70,23 @@ if(configs.LOAD_COLEARN == True):
         vector_db=vector_db,
         # reranker=CohereReranker(model="rerank-multilingual-v3.0"),
     )
-    logger.info("Colearn Docs added to vectorDB!")
+    logger.info("Colearn Docs added to Qdrant vectorDB!")
+
+    # # LanceDB initialization
+    # lance_path = os.path.join(DB_DIR, "lancedb")
+    # os.makedirs(lance_path, exist_ok=True)
+
+    # # Create LanceDB knowledge base
+    # knowledge_base = DocumentKnowledgeBase(
+    #     documents=documents,
+    #     vector_db=LanceDb(
+    #         uri=lance_path,
+    #         table_name="colearn_knowledge",
+    #         search_type=SearchType.hybrid,
+    #         embedder=embedder,
+    #     ),
+    # )
+    # logger.info("Colearn Docs added to LanceDB!")
 
 # # Initialize SQLite storage with proper path
 # storage = SqliteStorage(
@@ -106,7 +137,8 @@ def colearnChat(req: ChatRequest) -> str:
     query_handler_agent = Agent(
         name="Query Handler Agent",
         role=colearnMainRole,
-        model=get_llm(configs.COLEARN_LLM_CHOICE, structured_outputs=True),
+        # model=get_llm(configs.COLEARN_LLM_CHOICE, structured_outputs=True),
+        model=get_llm(configs.COLEARN_LLM_CHOICE),
         description=colearnMainDescription,
         instructions=colearnMainInstructions,
         add_datetime_to_instructions=True,
@@ -122,6 +154,7 @@ def colearnChat(req: ChatRequest) -> str:
         # add_history_to_messages=True,
         # memory=memory,
         # enable_agentic_memory=True,
+        response_model=GetClassScheduleRequest,
     )
 
     user_message = formatted_messages[-1].content
@@ -140,8 +173,27 @@ def colearnChat(req: ChatRequest) -> str:
         return json.dumps(json_response)
     except Exception as e:
         logger.error("Error parsing JSON: {}".format(e))
+        logger.debug("Response string type: {}".format(type(response_string.content)))
         # Return the raw content in the expected JSON structure
-        return json.dumps({"message": response_string.content})
+
+        if(type(response_string.content) == GetClassScheduleRequest):
+
+            response = {}
+            if(response_string.content.message):
+                response["message"] = response_string.content.message
+            else:
+                response["message"] = "    "
+
+            if(response_string.content.schedule):
+                response["schedule"] = response_string.content.schedule
+
+            return json.dumps(response)
+
+        if(type(response_string.content) == str):
+            return json.dumps({"message": response_string.content})
+
+        else:
+            return json.dumps(response_string.content)
     
     # return json_response.message
 

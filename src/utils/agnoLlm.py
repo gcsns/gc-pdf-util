@@ -26,10 +26,9 @@ def get_llm(llm: str, temperature: float = 0.0, structured_outputs = False):
         return model
     elif llm.startswith('claude'):
         model = Claude(
-            # id="claude-3-7-sonnet-20250219",
-            structured_outputs=structured_outputs,
             id=model_name,
             temperature=temperature,
+            cache_system_prompt=True,
             )
         return model
     elif llm.startswith('anthropic'):

@@ -77,5 +77,5 @@ COPY ./src /app/src
 COPY ./tests /app/tests
 WORKDIR /app/src
 
-CMD ["uvicorn", "app:app", "--host=0.0.0.0", "--port=9433", "--reload"]
+CMD ["/home/gcsns/.local/bin/uvicorn", "app:app", "--host=0.0.0.0", "--port=9433", "--reload"]
 EXPOSE 9433

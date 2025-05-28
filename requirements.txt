@@ -15,7 +15,7 @@ markitdown
 markdown-pdf
 pdfkit
 mindsdb_sdk
-agno
+agno==1.5.5
 pylance
 chonkie
 yfinance
