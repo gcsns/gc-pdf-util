@@ -177,17 +177,11 @@ def colearnChat(req: ChatRequest) -> str:
         # Return the raw content in the expected JSON structure
 
         if(type(response_string.content) == GetClassScheduleRequest):
-
-            response = {}
-            if(response_string.content.message):
-                response["message"] = response_string.content.message
-            else:
-                response["message"] = "    "
-
-            if(response_string.content.schedule):
-                response["schedule"] = response_string.content.schedule
-
-            return json.dumps(response)
+            # Ensure message is not empty
+            if not response_string.content.message:
+                response_string.content.message = "      "
+            
+            return response_string.content.model_dump_json()
 
         if(type(response_string.content) == str):
             return json.dumps({"message": response_string.content})
