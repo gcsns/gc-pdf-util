@@ -26,9 +26,9 @@ from typing import Optional
 from agno.document.chunking.semantic import SemanticChunking
 
 # Create data directory if it doesn't exist
-DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
-DB_DIR = os.path.join(DATA_DIR, "db")
-os.makedirs(DB_DIR, exist_ok=True)
+HOME_DIR = os.path.expanduser("~")
+LANCE_DB_PATH = os.path.join(HOME_DIR, ".cache", "lancedb")
+os.makedirs(LANCE_DB_PATH, exist_ok=True)
 
 
 class ChatItem(BaseModel):
@@ -57,15 +57,15 @@ if(configs.LOAD_COLEARN == True):
 
     embedder = get_embeddings(configs.DEFAULT_EMBEDDINGS_MODEL)
 
-    # Qdrant DB 
-    vector_db = Qdrant(
-        collection=configs.QDRANT_COLEARN_COLLECTION_NAME,
-        url=configs.QDRANT_URL,
-        api_key=configs.QDRANT_API_KEY,
-        embedder=embedder,
-    )
+    # # Qdrant DB 
+    # vector_db = Qdrant(
+    #     collection=configs.QDRANT_COLEARN_COLLECTION_NAME,
+    #     url=configs.QDRANT_URL,
+    #     api_key=configs.QDRANT_API_KEY,
+    #     embedder=embedder,
+    # )
 
-    # # Create a knowledge base with the loaded documents
+    # # # Create a knowledge base with the loaded documents
     # knowledge_base = DocumentKnowledgeBase(
     #     documents=documents,
     #     vector_db=vector_db,
@@ -73,15 +73,12 @@ if(configs.LOAD_COLEARN == True):
     # )
     # logger.info("Colearn Docs added to Qdrant vectorDB!")
 
-    # LanceDB initialization
-    lance_path = os.path.join(DB_DIR, "lancedb")
-    os.makedirs(lance_path, exist_ok=True)
 
     # Create LanceDB knowledge base
     knowledge_base = DocumentKnowledgeBase(
         documents=documents,
         vector_db=LanceDb(
-            uri=lance_path,
+            uri=LANCE_DB_PATH,
             table_name="colearn_knowledge",
             search_type=SearchType.hybrid,
             embedder=embedder,
@@ -112,7 +109,7 @@ def colearnChat(req: ChatRequest) -> str:
         knowledge=knowledge_base,
         tools=[get_class_schedule], 
         show_tool_calls=True,
-        debug_mode=True,
+        # debug_mode=True,
         markdown=True,
         response_model=GetClassScheduleRequest,
     )

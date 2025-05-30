@@ -57,9 +57,6 @@ WORKDIR /app
 
 RUN chown $USER:$GROUP ./
 
-# directory to store lancedb
-RUN mkdir -p /app/data && chown -R $USER:$GROUP /app
-
 USER $USER
 
 # Set EasyOCR to store its models and files in the .cache directory
