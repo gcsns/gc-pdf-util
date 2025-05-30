@@ -3,6 +3,7 @@ import sys
 
 sys.path.append("../src")
 from field import Field
+from utils.common import convert_md_to_wa
 
 from utils.common import (
     has_repetitive_words,
@@ -77,3 +78,43 @@ def test_fix_arabic_text_in_nested_output():
             "subfield2": {"value": "محل 11-1 - ملك مؤسسة دبي العقارية - الطي 23-13"},
         },
     }
+
+
+@pytest.mark.parametrize(
+    "input_text, expected_output",
+    [
+        # Test bold conversion
+        ("**bold text**", "*bold text*"),
+        ("__another bold__", "*another bold*"),
+        # Test italic conversion
+        ("*italic text*", "_italic text_"),
+        ("_another italic_", "_another italic_"),
+        # Test strikethrough
+        ("~~strikethrough~~", "~strikethrough~"),
+        # Test inline code
+        ("`code here`", "`code here`"),
+        # Test links
+        ("[link text](https://example.com)", "link text (https://example.com)"),
+        # Test lists
+        (
+            "- list item\n* another item\n+ third item",
+            "- list item\n- another item\n- third item",
+        ),
+        ("1. First\n2. Second", "- First\n- Second"),
+        # Test headers
+        ("# Header 1\n## Header 2", "Header 1\nHeader 2"),
+        # Test blockquotes
+        ("> quoted text", "quoted text"),
+        # Test multiple newlines
+        ("first\n\n\n\nsecond", "first\n\nsecond"),
+        # Test combination
+        (
+            "# Title\n**bold** and *italic*\n> quote\n`code`\n\n\n\n\n\n\n- list",
+            "Title\n*bold* and _italic_\nquote\n`code`\n\n- list",
+        ),
+        # Test empty input
+        ("", ""),
+    ],
+)
+def test_convert_md_to_wa(input_text, expected_output):
+    assert convert_md_to_wa(input_text) == expected_output

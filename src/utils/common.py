@@ -84,3 +84,38 @@ def transform_file_to_llm_images(fileContent: bytes, filename: str):
         })
 
     return imageContentForLlm
+
+def convert_md_to_wa(text: str)->str:
+    """
+    replaces markdown tags with whatsapp tags
+    """
+    # Convert italic (*text* or _text_) to WhatsApp italic (_text_)
+    text = re.sub(r'([^*]?)\*(.*?)\*([^*]?)', r'\1_\2_\3', text)
+
+    # Convert bold (**text** or __text__) to WhatsApp bold (*text*)
+    text = re.sub(r'\*\*(.*?)\*\*', r'*\1*', text)
+    text = re.sub(r'__(.*?)__', r'*\1*', text)
+
+    # Convert strikethrough (~~text~~) to WhatsApp format
+    text = re.sub(r'~~(.*?)~~', r'~\1~', text)
+
+    # Convert inline code to WhatsApp mono (`text`)
+    text = re.sub(r'`([^`]+)`', r'`\1`', text)
+
+    # Flatten links [text](url) → text (url)
+    text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'\1 (\2)', text)
+
+    # Replace list markers with simple dashes
+    text = re.sub(r'^ *[-+*] +', '- ', text, flags=re.MULTILINE)
+    text = re.sub(r'^ *\d+\. +', '- ', text, flags=re.MULTILINE)
+
+    # Remove markdown headers (#, ##, ### etc.)
+    text = re.sub(r'^#+\s*', '', text, flags=re.MULTILINE)
+
+    # Remove blockquotes
+    text = re.sub(r'^>\s?', '', text, flags=re.MULTILINE)
+
+    # Trim excessive newlines
+    text = re.sub(r'\n{3,}', '\n\n', text)
+
+    return text.strip()
