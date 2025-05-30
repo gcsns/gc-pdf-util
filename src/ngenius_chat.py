@@ -13,12 +13,15 @@ from typing import List
 from fastapi import HTTPException, status
 from agno.document.chunking.semantic import SemanticChunking
 
+from agno.vectordb.lancedb import LanceDb
+from agno.vectordb.search import SearchType
 from agno.models.message import Message
 from utils.embeddings import get_embeddings
 from utils.agnoLlm import get_llm
 from utils.findandparsejsonobject import findAndParseJsonObject
 import configs, json
 from logger import logger
+import os
 
 
 class ChatItem(BaseModel):
@@ -28,6 +31,10 @@ class ChatItem(BaseModel):
 class ChatRequest(BaseModel):
     messages: List[ChatItem]
 
+HOME_DIR = os.path.expanduser("~")
+LANCE_DB_PATH = os.path.join(HOME_DIR, ".cache", "lancedb")
+os.makedirs(LANCE_DB_PATH, exist_ok=True)
+
 if(configs.LOAD_NGENIUS == True):
     # Load documents from the data/docs directory
     small_documents = [Document(content=item) for item in ngeniusKnowledgeMdStrings_small]
@@ -36,17 +43,31 @@ if(configs.LOAD_NGENIUS == True):
 
     embedder = get_embeddings(configs.DEFAULT_EMBEDDINGS_MODEL)
 
-    vector_db = Qdrant(
-        collection="ngenius_big_1",
-        url=configs.QDRANT_URL,
-        api_key=configs.QDRANT_API_KEY,
+    # vector_db = Qdrant(
+    #     collection="ngenius_big_1",
+    #     url=configs.QDRANT_URL,
+    #     api_key=configs.QDRANT_API_KEY,
+    #     embedder=embedder
+    # )
+
+    vector_db=LanceDb(
+        uri=LANCE_DB_PATH,
+        table_name="ngenius_big_1",
+        search_type=SearchType.hybrid,
         embedder=embedder
     )
     
-    vector_db_small = Qdrant(
-        collection='ngenius_small_1',
-        url=configs.QDRANT_URL,
-        api_key=configs.QDRANT_API_KEY,
+    # vector_db_small = Qdrant(
+    #     collection='ngenius_small_1',
+    #     url=configs.QDRANT_URL,
+    #     api_key=configs.QDRANT_API_KEY,
+    #     embedder=embedder
+    # )
+
+    vector_db_small = LanceDb(
+        uri=LANCE_DB_PATH,
+        table_name="ngenius_small_1",
+        search_type=SearchType.hybrid,
         embedder=embedder
     )
 
