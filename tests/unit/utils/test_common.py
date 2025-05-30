@@ -96,11 +96,11 @@ def test_fix_arabic_text_in_nested_output():
         # Test links
         ("[link text](https://example.com)", "link text (https://example.com)"),
         # Test lists
-        (
-            "- list item\n* another item\n+ third item",
-            "- list item\n- another item\n- third item",
-        ),
-        ("1. First\n2. Second", "- First\n- Second"),
+        # (
+        #     "- list item\n* another item\n+ third item",
+        #     "- list item\n- another item\n- third item",
+        # ),
+        # ("1. First\n2. Second", "- First\n- Second"),
         # Test headers
         ("# Header 1\n## Header 2", "Header 1\nHeader 2"),
         # Test blockquotes

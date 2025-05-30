@@ -106,8 +106,8 @@ def convert_md_to_wa(text: str)->str:
     text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'\1 (\2)', text)
 
     # Replace list markers with simple dashes
-    text = re.sub(r'^ *[-+*] +', '- ', text, flags=re.MULTILINE)
-    text = re.sub(r'^ *\d+\. +', '- ', text, flags=re.MULTILINE)
+    # text = re.sub(r'^( *)[-+*]( +)', '- ', text, flags=re.MULTILINE)
+    # text = re.sub(r'^( *)\d+\.() +', '- ', text, flags=re.MULTILINE)
 
     # Remove markdown headers (#, ##, ### etc.)
     text = re.sub(r'^#+\s*', '', text, flags=re.MULTILINE)
