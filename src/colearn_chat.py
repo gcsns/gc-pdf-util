@@ -90,16 +90,6 @@ if(configs.LOAD_COLEARN == True):
     )
     logger.info("Colearn Docs added to LanceDB!")
 
-# # Initialize SQLite storage with proper path
-# storage = SqliteStorage(
-#     table_name="agent_sessions",
-#     db_file=os.path.join(DB_DIR, "agent.db")
-# )
-
-
-# memory_db = SqliteMemoryDb(table_name="memory", db_file="../data/.cache/brain.db")
-# memory = Memory(db=memory_db)
-
 def colearnChat(req: ChatRequest) -> str:
     # Import the messages form the request
     formatted_messages = [Message(role=i.role, content=i.content) for i in req.messages]
@@ -195,12 +185,6 @@ def get_class_schedule(kelas: int, sem: int= 2, year: int= 2025, curriculum: str
     return json.dumps({
         "schedule": response.json()
     })
-
-def get_class_chedule_from_agent(req: GetClassScheduleRequest) -> str:
-    userMessage = req.message
-    return " Test str"
-    # response_string = agent.run(userMessage, stream=False)
-    # return response_string.content
 
 
 

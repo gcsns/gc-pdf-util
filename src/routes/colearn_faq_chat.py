@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from colearn_chat import colearnChat, ChatItem, ChatRequest, get_class_chedule_from_agent, GetClassScheduleRequest
+from colearn_chat import colearnChat, ChatItem, ChatRequest, GetClassScheduleRequest
 router = APIRouter(prefix="/colearn-chat")
 from logger import logger
 import time
@@ -18,8 +18,3 @@ def colearnFaqChat(req: ChatRequest) -> ChatItem:
     logger.info(f"Time taken: {end_time - start_time} seconds")
     return response
 
-
-@router.post("/get-class-schedule")
-def get_class_schedule(req: GetClassScheduleRequest) -> str:
-    response = get_class_chedule_from_agent(req)
-    return response
