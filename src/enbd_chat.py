@@ -20,6 +20,6 @@ def product_query(req: ChatRequest) -> str:
         system_message=ENBD_CHAT_PRODUCT_QUERY_SYSTEM_MESSAGE,
         model=get_llm(configs.ENBD_CHAT_PRODUCT_QUERY_LLM),
     )
-    response = product_query_agent.run(messages=formatted_messages)
+    response = product_query_agent.run(messages=formatted_messages, markdown=False, stream=False)
 
     return ChatItem(role="assistant", content=response.content)
