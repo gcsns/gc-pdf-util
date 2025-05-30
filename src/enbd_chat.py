@@ -1,6 +1,6 @@
 from agno.agent import Agent
 from agno.models.message import Message
-from utils.common import convert_md_to_wa
+from utils.common import convert_md_to_wa, is_markdown
 from logger import logger
 
 # from azure-ai-inference import OpenAIChat
@@ -24,10 +24,11 @@ def product_query(req: ChatRequest) -> str:
     )
     response = product_query_agent.run(messages=formatted_messages, markdown=False, stream=False)
     try:
-        wa_content = convert_md_to_wa(response.content)
-        if response.content != wa_content:
-            logger.debug(f"converted md tags from message: {response.content}\n to wa tags to message: {wa_content}")
-            response.content = wa_content
+        if is_markdown(response.content):
+            wa_content = convert_md_to_wa(response.content)
+            if response.content != wa_content:
+                logger.debug(f"converted md tags from message: {response.content}\n to wa tags to message: {wa_content}")
+                response.content = wa_content
     except Exception as e:
         logger.warning(f"error in convert_md_to_wa {e}")
 

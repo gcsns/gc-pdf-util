@@ -119,3 +119,22 @@ def convert_md_to_wa(text: str)->str:
     text = re.sub(r'\n{3,}', '\n\n', text)
 
     return text.strip()
+
+def is_markdown(text: str) -> bool:
+    markdown_patterns = [
+        r'(^|\n)#{1,6} ',          # Headers: #, ##, ..., ######
+        r'\*\*.*?\*\*',            # Bold: **text**
+        # r'\*.*?\*',                # Italics: *text*
+        # r'\[.*?\]\(.*?\)',         # Links: [text](url)
+        # r'\!\[.*?\]\(.*?\)',       # Images: ![alt](url)
+        # r'(^|\n)(\*|\-|\+) ',      # Lists: *, -, +
+        # r'(^|\n)[0-9]+\.',         # Numbered lists: 1., 2., ...
+        # r'`{1,3}[^`\n]+`{1,3}',    # Inline code or code blocks: `code`, ```code```
+        # r'^> ',                    # Blockquote
+        # r'^---$',                  # Horizontal rule
+    ]
+
+    for pattern in markdown_patterns:
+        if re.search(pattern, text, re.MULTILINE):
+            return True
+    return False
