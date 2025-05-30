@@ -27,6 +27,7 @@ def product_query(req: ChatRequest) -> str:
         wa_content = convert_md_to_wa(response.content)
         if response.content != wa_content:
             logger.debug(f"converted md tags from message: {response.content}\n to wa tags to message: {wa_content}")
+            response.content = wa_content
     except Exception as e:
         logger.warning(f"error in convert_md_to_wa {e}")
 
