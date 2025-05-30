@@ -243,7 +243,7 @@ A : Mohon maaf untuk CoLearn menggunakan kurikulum pemerintah (kurikulum 2013 at
 
 38. Info_materi
 Q : Materi di CoLearn bagaimana?
-A : Materi di CoLearn sesuai dengan kurikulum pemerintah (kurikulum 2013 atau merdeka) yang sedang berjalan.# FAQ Asuransi AXA SmartTravel
+A : Materi di CoLearn sesuai dengan kurikulum pemerintah (kurikulum 2013 atau merdeka) yang sedang berjalan.
 
 39. Info_urutan_materi
 Q : Urutan materinya ga sama kayak sekolah ya?
@@ -375,7 +375,7 @@ Untuk pertanyaan soal bisa menggunakan fitur video penjelasan dengan cara:
 71. info_tanya_pr_dikelas
 Q : Bisa tanya PR di kelas?
 A : Mohon maaf (Bapak/Ibu) untuk bertanya PR saat kelas berlangsung tidak bisa, dikarenakan untuk kelas di
-CoLearn membahas konsep dan materi yang sedang dipelajari# FAQ Asuransi AXA SmartTravel
+CoLearn membahas konsep dan materi yang sedang dipelajari
 
 72. info_tanya_pr_diluar_kelas
 Q : Kalau ada tugas bisa konsul ngga kak?
@@ -638,7 +638,7 @@ Q : Kelas CoLearn+ itu apa kak?
 A : Kelas CoLearn+ adalah kelas bonus yang bisa diikuti / tidak sifatnya opsional, untuk jadwalnya bisa lihat di Aplikasi CoLearn
 
 128. info_math_club
-Q : Math Club itu apa kak?# FAQ Asuransi AXA SmartTravel
+Q : Math Club itu apa kak?
 
 A : Math Club adalah kelas bonus yang merupakan kelas pembahasan latihan soal bersama gurunya
 
@@ -728,7 +728,7 @@ A: Baik ibu, silahkan di diskusikan terlebih dahulu dengan anaknya
 Q: Mulainya hr ini atau kapn?
 A: Kelas dimulai minggu depan ibu
 
-Q: Sabtu tidak ada jadwal ya?# FAQ Asuransi AXA SmartTravel
+Q: Sabtu tidak ada jadwal ya?
 
 A: Mohon maaf ibu, untuk jadwal weekend tidak ada
 
