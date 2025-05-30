@@ -1,4 +1,4 @@
-# docker build -t gcsns/gc-pdf-util:0.0.19 .
+# docker build -t gcsns/gc-pdf-util:0.0.20 .
 # FROM python:3.10-alpine
 FROM python:3.10
 
